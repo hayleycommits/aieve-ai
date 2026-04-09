@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI EVE | Direct Revenue Protection for Independent Hotels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --bg-soft: #fbf8f2;
+      --panel: rgba(255, 252, 247, 0.74);
+      --panel-strong: #fffaf3;
+      --line: rgba(63, 47, 31, 0.12);
+      --line-strong: rgba(63, 47, 31, 0.22);
+      --text: #201814;
+      --muted: #6f6257;
+      --accent: #8e6a42;
+      --accent-soft: #e7d8c7;
+      --shadow: 0 24px 80px rgba(58, 42, 27, 0.08);
+      --max: 1220px;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: var(--sans);
+      background:
+        radial-gradient(circle at top left, rgba(232, 219, 202, 0.8), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8), transparent 30%),
+        linear-gradient(180deg, #f7f2ea 0%, #f3ede4 46%, #efe7dd 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(53, 38, 24, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(53, 38, 24, 0.02) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      opacity: 0.45;
+      z-index: -2;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, iframe { font: inherit; }
+
+    .shell {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .shell::before,
+    .shell::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 34rem;
+      height: 34rem;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .shell::before {
+      top: -10rem;
+      right: -8rem;
+      background: rgba(211, 190, 164, 0.7);
+    }
+
+    .shell::after {
+      bottom: -16rem;
+      left: -10rem;
+      background: rgba(233, 221, 206, 0.9);
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.85s var(--ease),
+        transform 0.85s var(--ease);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section {
+      padding: 36px 0 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(102, 82, 61, 0.75);
+    }
+
+    .section-heading {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .section-copy {
+      max-width: 38rem;
+      margin: 18px 0 0;
+      font-size: 18px;
+      line-height: 1.82;
+      color: var(--muted);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(20px);
+      background: rgba(247, 242, 234, 0.72);
+      border-bottom: 1px solid rgba(63, 47, 31, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 47, 31, 0.16);
+      background: rgba(255, 255, 255, 0.4);
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: rgba(32, 24, 20, 0.72);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color 0.28s var(--ease);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta,
+    .btn-main,
+    .btn-secondary,
+    .calc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition:
+        transform 0.32s var(--ease),
+        background 0.32s var(--ease),
+        color 0.32s var(--ease),
+        border-color 0.32s var(--ease),
+        box-shadow 0.32s var(--ease);
+    }
+
+    .nav-cta,
+    .btn-main,
+    .calc-btn {
+      background: var(--text);
+      color: #f7f2ea;
+      box-shadow: 0 20px 40px rgba(32, 24, 20, 0.12);
+    }
+
+    .nav-cta {
+      padding: 13px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .btn-main,
+    .btn-secondary {
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .btn-main:hover,
+    .btn-secondary:hover,
+    .nav-cta:hover,
+    .calc-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid rgba(63, 47, 31, 0.18);
+      box-shadow: none;
+    }
+
+    .hero {
+      padding: 72px 0 12px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 52px;
+      align-items: end;
+    }
+
+    .hero-panel {
+      padding: 18px 0 0;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      margin-bottom: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 47, 31, 0.12);
+      background: rgba(255, 255, 255, 0.42);
+      color: rgba(79, 62, 42, 0.82);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #97714a;
+      box-shadow: 0 0 0 8px rgba(151, 113, 74, 0.12);
+    }
+
+    .hero-title {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(4.1rem, 9vw, 7.8rem);
+      line-height: 0.85;
+      letter-spacing: -0.06em;
+      font-weight: 600;
+    }
+
+    .hero-title span {
+      display: block;
+      color: rgba(126, 96, 64, 0.92);
+    }
+
+    .hero-copy {
+      max-width: 42rem;
+      margin: 24px 0 0;
+      font-size: clamp(18px, 2.1vw, 22px);
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: rgba(111, 98, 87, 0.9);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-aside {
+      position: relative;
+      min-height: 620px;
+      padding: 34px;
+      border: 1px solid rgba(63, 47, 31, 0.1);
+      border-radius: 32px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 248, 240, 0.88)),
+        radial-gradient(circle at top right, rgba(226, 207, 182, 0.5), transparent 38%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-aside::before {
+      content: "";
+      position: absolute;
+      top: 26px;
+      right: 28px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(141, 108, 72, 0.14);
+      background: radial-gradient(circle, rgba(233, 221, 206, 0.5), rgba(255, 255, 255, 0));
+    }
+
+    .voice-card {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .voice-card-header {
+      max-width: 20rem;
+    }
+
+    .voice-card-header h2 {
+      margin: 8px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .voice-card-header p {
+      margin: 18px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .voice-card-body {
+      margin-top: 36px;
+      padding: 26px;
+      border: 1px solid rgba(63, 47, 31, 0.12);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.52);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .voice-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+      color: rgba(83, 64, 46, 0.72);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eve-control {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .eve-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .eve-button {
+      width: 74px;
+      height: 74px;
+      border-radius: 24px;
+      border: 1px solid rgba(63, 47, 31, 0.12);
+      background: var(--text);
+      color: #f5efe7;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition:
+        transform 0.32s var(--ease),
+        background 0.32s var(--ease),
+        box-shadow 0.32s var(--ease);
+      box-shadow: 0 18px 36px rgba(32, 24, 20, 0.16);
+    }
+
+    .eve-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .eve-button.call-active {
+      background: #8e6a42;
+    }
+
+    .eve-button svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    .eve-spinner {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: #f5efe7;
+      display: none;
+      animation: spin 2.8s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .eve-copy strong {
+      display: block;
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .eve-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .eve-timer {
+      margin: 0;
+      color: rgba(83, 64, 46, 0.5);
+      font-size: 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .eve-timer.active {
+      color: var(--text);
+    }
+
+    .eve-visualizer {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 34px;
+    }
+
+    .eve-bar {
+      width: 3px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(142, 106, 66, 0.14);
+      transition: height 0.14s ease, background 0.18s ease;
+    }
+
+    .eve-bar.active {
+      background: rgba(142, 106, 66, 0.62);
+    }
+
+    .eve-status {
+      margin: 0;
+      color: rgba(83, 64, 46, 0.7);
+      font-size: 13px;
+    }
+
+    .sketch-section {
+      padding: 0;
+      line-height: 0;
+    }
+
+    #sketchCanvas {
+      display: block;
+      max-width: 100%;
+    }
+
+    .marquee-section {
+      padding: 12px 0 24px;
+    }
+
+    .marquee-label {
+      margin: 0 0 18px;
+      text-align: center;
+      color: rgba(83, 64, 46, 0.52);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .marquee-shell {
+      overflow: hidden;
+      border-block: 1px solid rgba(63, 47, 31, 0.08);
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .marquee {
+      display: flex;
+      gap: 56px;
+      width: max-content;
+      padding: 18px 0;
+      animation: drift 32s linear infinite;
+      white-space: nowrap;
+      color: rgba(83, 64, 46, 0.56);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes drift {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .split-section {
+      padding-top: 90px;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      gap: 46px;
+      align-items: start;
+    }
+
+    .story-card {
+      padding: 32px 32px 36px;
+      border: 1px solid rgba(63, 47, 31, 0.1);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.46);
+      box-shadow: var(--shadow);
+    }
+
+    .story-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .proof-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .proof-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      padding: 26px 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(63, 47, 31, 0.1);
+      background: rgba(255, 255, 255, 0.52);
+      transition:
+        transform 0.32s var(--ease),
+        border-color 0.32s var(--ease),
+        background 0.32s var(--ease);
+    }
+
+    .proof-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(142, 106, 66, 0.24);
+      background: rgba(255, 252, 247, 0.82);
+    }
+
+    .proof-index {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(231, 216, 199, 0.7);
+      color: var(--accent);
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .proof-card h3 {
+      margin: 0 0 8px;
+      font-family: var(--serif);
+      font-size: 32px;
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
+
+    .proof-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .capabilities {
+      padding-top: 96px;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 42px;
+    }
+
+    .capability-card {
+      position: relative;
+      min-height: 260px;
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(63, 47, 31, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(250, 244, 236, 0.82)),
+        radial-gradient(circle at top right, rgba(228, 212, 190, 0.58), transparent 42%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .capability-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -30% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226, 209, 187, 0.6), rgba(255, 255, 255, 0));
+      opacity: 0.75;
+      transition: transform 0.6s var(--ease);
+    }
+
+    .capability-card:hover::after {
+      transform: translate(-14px, -14px);
+    }
+
+    .capability-no {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: rgba(112, 93, 72, 0.72);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .capability-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 12px;
+      font-family: var(--serif);
+      font-size: 36px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .capability-card p {
+      position: relative;
+      z-index: 1;
+      max-width: 22rem;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .economics {
+      padding-top: 96px;
+    }
+
+    .economics-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.85fr);
+      gap: 40px;
+      align-items: start;
+      margin-top: 38px;
+    }
+
+    .economics-copy {
+      padding-right: 20px;
+    }
+
+    .economics-copy p {
+      max-width: 38rem;
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.88;
+      font-size: 17px;
+    }
+
+    .loss-card {
+      margin: 28px 0 30px;
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid rgba(63, 47, 31, 0.1);
+      background: rgba(255, 255, 255, 0.54);
+      box-shadow: var(--shadow);
+    }
+
+    .loss-card h3 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 34px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .loss-card strong {
+      color: var(--accent);
+    }
+
+    .loss-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .calc-shell {
+      padding: 22px;
+      border-radius: 30px;
+      border: 1px solid rgba(63, 47, 31, 0.12);
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: var(--shadow);
+    }
+
+    .calc-card {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(63, 47, 31, 0.08);
+      background: linear-gradient(180deg, #fbf8f2 0%, #f6efe5 100%);
+    }
+
+    .calc-card h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 40px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .calc-card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .calc-row {
+      margin-top: 18px;
+    }
+
+    .calc-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(83, 64, 46, 0.76);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .calc-value {
+      color: var(--accent);
+    }
+
+    .calc-range {
+      width: 100%;
+      appearance: none;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(63, 47, 31, 0.12);
+      outline: none;
+    }
+
+    .calc-range::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #f8f1e7;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(142, 106, 66, 0.12);
+      cursor: pointer;
+    }
+
+    .calc-btn {
+      width: 100%;
+      margin-top: 22px;
+      padding: 16px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .calc-result {
+      margin-top: 18px;
+      min-height: 48px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .booking {
+      padding-top: 104px;
+      padding-bottom: 74px;
+    }
+
+    .booking-panel {
+      padding: 34px;
+      border-radius: 32px;
+      border: 1px solid rgba(63, 47, 31, 0.1);
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: var(--shadow);
+    }
+
+    .booking-panel .section-copy {
+      max-width: 42rem;
+    }
+
+    .booking-frame {
+      margin-top: 28px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(63, 47, 31, 0.08);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .intake-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 26px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .intake-card {
+      padding: 26px;
+      border-radius: 24px;
+      border: 1px solid rgba(63, 47, 31, 0.08);
+      background: rgba(255, 255, 255, 0.64);
+    }
+
+    .intake-card h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 34px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .intake-card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .intake-form {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .intake-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .intake-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .intake-field label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(83, 64, 46, 0.72);
+    }
+
+    .intake-field input,
+    .intake-field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(63, 47, 31, 0.12);
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
+    }
+
+    .intake-field input:focus,
+    .intake-field textarea:focus {
+      border-color: rgba(142, 106, 66, 0.36);
+      box-shadow: 0 0 0 4px rgba(142, 106, 66, 0.08);
+    }
+
+    .intake-field textarea {
+      min-height: 118px;
+      resize: vertical;
+    }
+
+    .intake-submit {
+      justify-self: start;
+      margin-top: 8px;
+    }
+
+    .intake-status {
+      min-height: 22px;
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: rgba(83, 64, 46, 0.78);
+    }
+
+    .booking-frame iframe {
+      width: 100%;
+      min-height: 840px;
+      border: none;
+      display: block;
+      background: #fff;
+    }
+
+    .final-cta {
+      padding: 30px 0 92px;
+    }
+
+    .final-cta-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      padding: 34px;
+      border-top: 1px solid rgba(63, 47, 31, 0.12);
+    }
+
+    .final-cta-card h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.6rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .final-cta-card p {
+      max-width: 34rem;
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .footer {
+      padding: 0 0 50px;
+      color: rgba(83, 64, 46, 0.66);
+      font-size: 13px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(63, 47, 31, 0.08);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .split-grid,
+      .economics-grid,
+      .final-cta-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-aside {
+        min-height: auto;
+      }
+
+      .capability-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(var(--max), calc(100% - 28px));
+      }
+
+      .nav {
+        min-height: 74px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-title {
+        font-size: clamp(3.2rem, 18vw, 5rem);
+      }
+
+      .hero-copy,
+      .section-copy {
+        font-size: 16px;
+      }
+
+      .voice-card-body,
+      .booking-panel,
+      .story-card,
+      .loss-card,
+      .capability-card,
+      .proof-card,
+      .calc-shell,
+      .intake-card {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .intake-grid,
+      .intake-row {
+        grid-template-columns: 1fr;
+      }
+
+      .voice-row,
+      .hero-actions,
+      .footer-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .marquee {
+        gap: 28px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="#">
+          <span class="brand-mark">E</span>
+          <span>AI EVE</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#story">Why Eve</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#economics">Economics</a>
+          <a href="#book">Book a call</a>
+        </nav>
+        <a class="nav-cta" href="#book">Book a call</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-panel">
+            <div class="hero-kicker reveal is-visible">
+              <span class="hero-kicker-dot"></span>
+              Direct revenue protection for independent hotels
+            </div>
+            <h1 class="hero-title reveal is-visible">
+              Capture the enquiries
+              <span>your team misses.</span>
+            </h1>
+            <p class="hero-copy reveal is-visible">
+              AI EVE answers direct booking enquiries, after-hours calls, and routine guest questions with the calm consistency your property needs, before guests drift to OTAs or competitors.
+            </p>
+            <div class="hero-actions reveal is-visible">
+              <button id="eveButton" class="btn-main" type="button">Speak to Eve live</button>
+            </div>
+            <p class="hero-note reveal is-visible">
+              Hotels lose revenue in the gap between intent and response. Eve closes that gap.
+            </p>
+          </div>
+
+          <aside class="hero-aside reveal is-visible">
+            <div class="voice-card">
+              <div class="voice-card-header">
+                <p class="eyebrow">Live voice demo</p>
+                <h2>Hear how Eve sounds.</h2>
+                <p>
+                  No pitch deck. No staged video. Just a direct conversation with the assistant itself.
+                </p>
+              </div>
+
+              <div class="voice-card-body">
+                <div class="voice-meta">
+                  <span>Voice interface</span>
+                  <span id="eveTimer" class="eve-timer">00:00</span>
+                </div>
+
+                <div class="eve-control">
+                  <div class="eve-row">
+                    <button class="eve-button" type="button" aria-label="Speak to Eve">
+                      <svg class="eve-mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 1 1-6 0V6a3 3 0 0 1 3-3Z"></path>
+                        <path d="M19 11a7 7 0 0 1-14 0"></path>
+                        <path d="M12 18v3"></path>
+                        <path d="M8 21h8"></path>
+                      </svg>
+                      <span id="eveSpinner" class="eve-spinner" aria-hidden="true"></span>
+                    </button>
+                    <div class="eve-copy">
+                      <strong>Start a live call</strong>
+                      <p>Ask how Eve handles direct bookings, late-night calls, or guest FAQs.</p>
+                    </div>
+                  </div>
+
+                  <div id="eveVisualizer" class="eve-visualizer"></div>
+                  <p id="eveStatus" class="eve-status">Click to speak</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- How It Works — sketch animation -->
+      <div class="sketch-section">
+        <iframe id="sketchFrame" src="eve-sketch.html?v=8" scrolling="no" frameborder="0" style="display:block;width:100%;height:600px;border:none;"></iframe>
+      </div>
+
+      <section class="marquee-section reveal">
+        <div class="container">
+          <p class="marquee-label">Built for the moments hotels usually lose</p>
+        </div>
+        <div class="marquee-shell">
+          <div class="marquee">
+            <span>Direct booking enquiries</span>
+            <span>After-hours guest calls</span>
+            <span>OTA deflection</span>
+            <span>WhatsApp and SMS replies</span>
+            <span>Group and event enquiries</span>
+            <span>Overflow call coverage</span>
+            <span>Direct booking enquiries</span>
+            <span>After-hours guest calls</span>
+            <span>OTA deflection</span>
+            <span>WhatsApp and SMS replies</span>
+            <span>Group and event enquiries</span>
+            <span>Overflow call coverage</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" class="section split-section">
+        <div class="container split-grid">
+          <div class="story-card reveal">
+            <p class="eyebrow">Why Eve</p>
+            <h2 class="section-heading">A quieter, stronger front line.</h2>
+            <p>
+              Your guests do not experience your staffing schedule. They experience response time. Eve is built for the exact moments when independent hotels leak intent, miss calls, and watch direct revenue slip into third-party channels.
+            </p>
+            <p>
+              She responds instantly, stays consistent across channels, and gives your team clean information to work from when human attention is needed.
+            </p>
+          </div>
+
+          <div class="proof-stack">
+            <article class="proof-card reveal">
+              <div class="proof-index">1</div>
+              <div>
+                <h3>Faster first response</h3>
+                <p>Guests stay engaged when someone answers immediately. Eve covers the delay that costs hotels the most.</p>
+              </div>
+            </article>
+            <article class="proof-card reveal">
+              <div class="proof-index">2</div>
+              <div>
+                <h3>Less OTA leakage</h3>
+                <p>When direct questions are handled properly, fewer guests need to leave your site and search elsewhere.</p>
+              </div>
+            </article>
+            <article class="proof-card reveal">
+              <div class="proof-index">3</div>
+              <div>
+                <h3>Cleaner handoff to staff</h3>
+                <p>Eve captures context, not chaos, so your team sees what matters and steps in only when necessary.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="capabilities" class="section capabilities">
+        <div class="container">
+          <p class="eyebrow reveal">Capabilities</p>
+          <h2 class="section-heading reveal">What Eve handles for your hotel.</h2>
+          <p class="section-copy reveal">
+            One assistant across voice, web chat, SMS, and WhatsApp, designed around the places direct revenue usually breaks down.
+          </p>
+
+          <div class="capability-grid">
+            <article class="capability-card reveal">
+              <span class="capability-no">01</span>
+              <h3>Direct booking enquiries</h3>
+              <p>Answer availability, rates, and booking intent before guests leave the conversation and open an OTA tab.</p>
+            </article>
+            <article class="capability-card reveal">
+              <span class="capability-no">02</span>
+              <h3>After-hours guest questions</h3>
+              <p>Cover routine calls about check-in, parking, breakfast, pets, and room details when your front desk is stretched.</p>
+            </article>
+            <article class="capability-card reveal">
+              <span class="capability-no">03</span>
+              <h3>Group and event capture</h3>
+              <p>Collect the right detail for weddings, group stays, and corporate enquiries so your team can follow up with context.</p>
+            </article>
+            <article class="capability-card reveal">
+              <span class="capability-no">04</span>
+              <h3>Overflow and missed-call recovery</h3>
+              <p>Give your property a consistent response layer when the desk is busy, unavailable, or juggling multiple channels at once.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="economics" class="section economics">
+        <div class="container">
+          <p class="eyebrow reveal">Economics</p>
+          <h2 class="section-heading reveal">Turn response gaps into measurable revenue.</h2>
+
+          <div class="economics-grid">
+            <div class="economics-copy reveal">
+              <p>
+                Eve is not just about saving staff time. She helps protect the revenue attached to enquiries your team cannot reach quickly enough.
+              </p>
+              <p>
+                If even one meaningful booking call goes unanswered each day, the cost compounds fast. Eve is designed to catch that demand before it disappears.
+              </p>
+
+              <div class="loss-card">
+                <h3>The cost of a missed call.</h3>
+                <p><strong>Example:</strong> 1 missed call per day × £240 average booking × 30 days = <strong>£7,200 per month lost</strong>.</p>
+              </div>
+
+            </div>
+
+            <div class="calc-shell reveal">
+              <div class="calc-card">
+                <h3>Estimate the upside.</h3>
+                <p>A simple working model for routine volume automation and response coverage.</p>
+
+                <div class="calc-row">
+                  <div class="calc-label">
+                    <span>Calls, emails, messages / day</span>
+                    <span id="v1" class="calc-value">20</span>
+                  </div>
+                  <input id="q1" class="calc-range" type="range" min="0" max="200" value="20" />
+                </div>
+
+                <div class="calc-row">
+                  <div class="calc-label">
+                    <span>Minutes per interaction</span>
+                    <span id="v2" class="calc-value">5</span>
+                  </div>
+                  <input id="q2" class="calc-range" type="range" min="1" max="30" value="5" />
+                </div>
+
+                <div class="calc-row">
+                  <div class="calc-label">
+                    <span>Staff cost / hour</span>
+                    <span id="v3" class="calc-value">15</span>
+                  </div>
+                  <input id="q3" class="calc-range" type="range" min="10" max="50" value="15" />
+                </div>
+
+                <div class="calc-row">
+                  <div class="calc-label">
+                    <span>Working days / year</span>
+                    <span id="v4" class="calc-value">250</span>
+                  </div>
+                  <input id="q4" class="calc-range" type="range" min="1" max="365" value="250" />
+                </div>
+
+                <button id="calcBtn" class="calc-btn" type="button">Calculate your savings</button>
+                <div id="result" class="calc-result"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="book" class="section booking">
+        <div class="container booking-panel reveal">
+          <p class="eyebrow">Book a call</p>
+          <h2 class="section-heading">See how Eve would work for your property.</h2>
+          <p class="section-copy">
+            We’ll walk through enquiry handling, channel coverage, integrations, and where direct revenue is currently leaking.
+          </p>
+
+          <div class="intake-grid">
+            <div class="intake-card">
+              <h3>Prefer a direct callback?</h3>
+              <p>Send a short enquiry and it can land straight inside AI EVE Control CRM for follow-up.</p>
+
+              <form id="leadForm" class="intake-form">
+                <div class="intake-row">
+                  <div class="intake-field">
+                    <label for="leadName">Name</label>
+                    <input id="leadName" name="name" type="text" autocomplete="name" required />
+                  </div>
+                  <div class="intake-field">
+                    <label for="leadCompany">Hotel / company</label>
+                    <input id="leadCompany" name="company" type="text" autocomplete="organization" />
+                  </div>
+                </div>
+
+                <div class="intake-row">
+                  <div class="intake-field">
+                    <label for="leadEmail">Email</label>
+                    <input id="leadEmail" name="email" type="email" autocomplete="email" />
+                  </div>
+                  <div class="intake-field">
+                    <label for="leadPhone">Phone</label>
+                    <input id="leadPhone" name="phone" type="tel" autocomplete="tel" />
+                  </div>
+                </div>
+
+                <div class="intake-field">
+                  <label for="leadWebsite">Website</label>
+                  <input id="leadWebsite" name="website" type="url" placeholder="https://yourhotel.com" autocomplete="url" />
+                </div>
+
+                <div class="intake-field">
+                  <label for="leadNotes">What would you like help with?</label>
+                  <textarea id="leadNotes" name="notes" placeholder="Tell us about your enquiry, current setup, or what you want Eve to handle."></textarea>
+                </div>
+
+                <button id="leadSubmit" class="btn-main intake-submit" type="submit">Send to AI EVE</button>
+                <p id="leadStatus" class="intake-status"></p>
+              </form>
+            </div>
+
+            <div class="booking-frame">
+              <iframe src="https://cal.com/hayley-moses-jrkuxq/30min" title="AI EVE booking calendar"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-card reveal">
+          <div>
+            <h2>Hear Eve live. Then decide.</h2>
+            <p>No long deck. No heavy sales process. Just a direct look at how AI EVE handles the conversations independent hotels lose most often.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-main" type="button" onclick="document.getElementById('eveButton').click()">Speak to Eve</button>
+            <a class="btn-secondary" href="#book">Book a call</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-row">
+        <span>AI EVE</span>
+        <span>Direct revenue protection for independent hotels.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module">
+    import Vapi from "https://esm.sh/@vapi-ai/web";
+
+    const vapi = new Vapi("3d943765-7118-405d-b24e-505a7a79f07c");
+    const triggerButton = document.getElementById("eveButton");
+    const cardButton = document.querySelector(".eve-button");
+    const spinner = document.getElementById("eveSpinner");
+    const micIcon = cardButton.querySelector(".eve-mic-icon");
+    const timerEl = document.getElementById("eveTimer");
+    const visualizer = document.getElementById("eveVisualizer");
+    const statusEl = document.getElementById("eveStatus");
+
+    const BAR_COUNT = 38;
+    let active = false;
+    let connecting = false;
+    let seconds = 0;
+    let timerInterval = null;
+    let vizInterval = null;
+
+    for (let i = 0; i < BAR_COUNT; i++) {
+      const bar = document.createElement("div");
+      bar.className = "eve-bar";
+      visualizer.appendChild(bar);
+    }
+
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60);
+      const remainder = totalSeconds % 60;
+      return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+    }
+
+    function setCallButtonState(isActive) {
+      triggerButton.classList.toggle("call-active", isActive);
+      cardButton.classList.toggle("call-active", isActive);
+    }
+
+    function activateUI() {
+      setCallButtonState(true);
+      micIcon.style.display = "none";
+      spinner.style.display = "block";
+      timerEl.classList.add("active");
+      statusEl.textContent = "Listening...";
+
+      const bars = visualizer.querySelectorAll(".eve-bar");
+      bars.forEach((bar) => bar.classList.add("active"));
+
+      const randomizeBars = () => {
+        bars.forEach((bar) => {
+          bar.style.height = `${6 + Math.random() * 28}px`;
+        });
+      };
+
+      randomizeBars();
+      vizInterval = setInterval(randomizeBars, 150);
+      seconds = 0;
+      timerInterval = setInterval(() => {
+        seconds += 1;
+        timerEl.textContent = formatTime(seconds);
+      }, 1000);
+    }
+
+    function deactivateUI() {
+      connecting = false;
+      setCallButtonState(false);
+      micIcon.style.display = "block";
+      spinner.style.display = "none";
+      timerEl.classList.remove("active");
+      timerEl.textContent = "00:00";
+      statusEl.textContent = "Click to speak";
+
+      const bars = visualizer.querySelectorAll(".eve-bar");
+      bars.forEach((bar) => {
+        bar.classList.remove("active");
+        bar.style.height = "6px";
+      });
+
+      clearInterval(vizInterval);
+      clearInterval(timerInterval);
+      vizInterval = null;
+      timerInterval = null;
+      seconds = 0;
+    }
+
+    async function ensureMicrophoneAccess() {
+      if (!window.isSecureContext && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
+        throw new Error("Microphone access needs HTTPS.");
+      }
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error("This browser cannot access the microphone.");
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach((track) => track.stop());
+    }
+
+    async function toggleCall() {
+      if (connecting) return;
+
+      if (!active) {
+        connecting = true;
+        statusEl.textContent = "Checking microphone...";
+        setCallButtonState(true);
+        micIcon.style.display = "none";
+        spinner.style.display = "block";
+
+        try {
+          await ensureMicrophoneAccess();
+          statusEl.textContent = "Connecting...";
+          await vapi.start("b24725a8-f5f5-4664-b292-185e2e4c0cd2");
+        } catch (error) {
+          console.error("Eve call failed to start", error);
+          deactivateUI();
+          statusEl.textContent = error instanceof Error ? error.message : "Microphone connection failed.";
+        } finally {
+          connecting = false;
+        }
+      } else {
+        statusEl.textContent = "Ending...";
+        vapi.stop();
+      }
+    }
+
+    vapi.on("call-start", () => {
+      active = true;
+      connecting = false;
+      activateUI();
+    });
+
+    vapi.on("call-end", () => {
+      active = false;
+      deactivateUI();
+    });
+
+    vapi.on("error", (error) => {
+      console.error("Vapi error", error);
+      active = false;
+      deactivateUI();
+      statusEl.textContent = "Eve could not access the microphone.";
+    });
+
+    triggerButton.addEventListener("click", toggleCall);
+    cardButton.addEventListener("click", toggleCall);
+  </script>
+
+  <script>
+    (function () {
+      const observers = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16, rootMargin: "0px 0px -6% 0px" }
+      );
+
+      observers.forEach((node) => {
+        if (!node.classList.contains("is-visible")) io.observe(node);
+      });
+
+      // Reset sketch animation each time it scrolls into view
+      const sketchFrame = document.getElementById('sketchFrame');
+      if (sketchFrame) {
+        let sketchVisible = false;
+        let sketchLoaded = false;
+        sketchFrame.addEventListener('load', () => { sketchLoaded = true; });
+        const sketchIO = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !sketchVisible && sketchLoaded) {
+              sketchVisible = true;
+              sketchFrame.contentWindow.postMessage('reset', '*');
+            } else if (!entry.isIntersecting) {
+              sketchVisible = false;
+            }
+          });
+        }, { threshold: 0.2 });
+        sketchIO.observe(sketchFrame);
+      }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const CRM_LEAD_ENDPOINT = "https://replace-with-your-control-crm-domain/api/public/website-leads";
+      const leadForm = document.getElementById("leadForm");
+      const leadSubmit = document.getElementById("leadSubmit");
+      const leadStatus = document.getElementById("leadStatus");
+
+      if (leadForm && leadSubmit && leadStatus) {
+        leadForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          if (CRM_LEAD_ENDPOINT.includes("replace-with-your-control-crm-domain")) {
+            leadStatus.textContent = "Set your live AI EVE Control CRM URL to turn this form on.";
+            return;
+          }
+
+          const form = new FormData(leadForm);
+          const payload = {
+            name: String(form.get("name") || "").trim(),
+            company: String(form.get("company") || "").trim(),
+            email: String(form.get("email") || "").trim(),
+            phone: String(form.get("phone") || "").trim(),
+            website: String(form.get("website") || "").trim(),
+            notes: String(form.get("notes") || "").trim(),
+            nextAction: "Respond to website enquiry",
+          };
+
+          if (!payload.name) {
+            leadStatus.textContent = "Please add a name.";
+            return;
+          }
+
+          leadSubmit.disabled = true;
+          leadStatus.textContent = "Sending to AI EVE Control CRM...";
+
+          try {
+            const response = await fetch(CRM_LEAD_ENDPOINT, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+              throw new Error(`Request failed with ${response.status}`);
+            }
+
+            leadForm.reset();
+            leadStatus.textContent = "Enquiry sent. It should now be in AI EVE Control CRM.";
+          } catch (error) {
+            console.error("Lead intake failed", error);
+            leadStatus.textContent = "Could not send the enquiry. Check the CRM endpoint and try again.";
+          } finally {
+            leadSubmit.disabled = false;
+          }
+        });
+      }
+
+      const v1 = document.getElementById("v1");
+      const v2 = document.getElementById("v2");
+      const v3 = document.getElementById("v3");
+      const v4 = document.getElementById("v4");
+      const q1 = document.getElementById("q1");
+      const q2 = document.getElementById("q2");
+      const q3 = document.getElementById("q3");
+      const q4 = document.getElementById("q4");
+      const btn = document.getElementById("calcBtn");
+      const result = document.getElementById("result");
+
+      function sync() {
+        v1.textContent = q1.value;
+        v2.textContent = q2.value;
+        v3.textContent = q3.value;
+        v4.textContent = q4.value;
+      }
+
+      function showResult() {
+        const savedMinutes = parseFloat(q1.value) * parseFloat(q2.value) * 0.7;
+        const yearlySave = (savedMinutes / 60) * parseFloat(q3.value) * parseFloat(q4.value);
+        result.innerHTML = `Potential annual efficiency gain: <strong>£${Math.round(yearlySave).toLocaleString()}</strong>. Based on routine enquiry and guest communication automation.`;
+      }
+
+      [q1, q2, q3, q4].forEach((input) => input.addEventListener("input", sync));
+      btn.addEventListener("click", showResult);
+      sync();
+    })();
+  </script>
+
+  <script>
+  // sketch rendered in iframe (eve-sketch.html)
+  (function() {
+    const C = document.getElementById('sketchCanvas');
+    if (!C) return;
+    const ctx = C.getContext('2d');
+    const DPR = window.devicePixelRatio || 1;
+
+    const COL = {
+      line:    '#1a2e4a',
+      lineDim: '#1a2e4a55',
+      dark:    '#0a1828',
+      muted:   '#3a5070',
+      soft:    '#a8c0d8',
+      accent:  '#c8780a',
+      green:   '#1a6e38',
+      red:     '#b82818',
+    };
+
+    let W = 1200, H = 520;
+    function resize() {
+      W = Math.min(window.innerWidth, 1200);
+      H = 520;
+      C.width = W * DPR; C.height = H * DPR;
+      C.style.width = W + 'px'; C.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', function() { resize(); scenes = build(); });
+
+    // Sketch primitives
+    var seed = 0;
+    function sr() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    function wb(x, y, a) { a = a || 1.2; return [x + (sr() - 0.5) * a, y + (sr() - 0.5) * a]; }
+
+    function sLine(x1, y1, x2, y2) {
+      var s = Math.max(3, Math.floor(Math.hypot(x2-x1, y2-y1) / 7));
+      var p = [];
+      for (var i = 0; i <= s; i++) { var t = i/s; p.push(wb(x1+(x2-x1)*t, y1+(y2-y1)*t)); }
+      return p;
+    }
+    function sRR(x, y, w, h, r) {
+      var p = [];
+      var c = function(cx,cy,sa) { for(var i=0;i<=5;i++){var a=sa+(Math.PI/2)*(i/5);p.push(wb(cx+Math.cos(a)*r,cy+Math.sin(a)*r,0.8));} };
+      p.push.apply(p, sLine(x+r,y,x+w-r,y)); c(x+w-r,y+r,-Math.PI/2);
+      p.push.apply(p, sLine(x+w,y+r,x+w,y+h-r)); c(x+w-r,y+h-r,0);
+      p.push.apply(p, sLine(x+w-r,y+h,x+r,y+h)); c(x+r,y+h-r,Math.PI/2);
+      p.push.apply(p, sLine(x,y+h-r,x,y+r)); c(x+r,y+r,Math.PI);
+      return p;
+    }
+    function sCircle(cx, cy, r) {
+      var p = []; for(var i=0;i<=24;i++){var a=(Math.PI*2*i)/24;p.push(wb(cx+Math.cos(a)*r,cy+Math.sin(a)*r));} return p;
+    }
+    function sTick(cx, cy, s) {
+      return sLine(cx-s*0.3,cy+0.05*s,cx-s*0.05,cy+s*0.3).concat(sLine(cx-s*0.05,cy+s*0.3,cx+s*0.4,cy-s*0.25));
+    }
+    function sArrow(x1,y1,x2,y2) {
+      var a=Math.atan2(y2-y1,x2-x1),hl=10;
+      return [sLine(x1,y1,x2,y2),sLine(x2,y2,x2-Math.cos(a-0.4)*hl,y2-Math.sin(a-0.4)*hl),sLine(x2,y2,x2-Math.cos(a+0.4)*hl,y2-Math.sin(a+0.4)*hl)];
+    }
+
+    // Build scenes
+    function build() {
+      seed = 42;
+      var cx = W / 2, cy = H / 2 - 10;
+      var S = [];
+
+      // SCENE 1: Phone rings, EVE answers
+      (function(){
+        var p = [], l = [];
+        var px = cx-180, py = cy-80, pw = 55, ph = 100;
+        p.push({pts:sRR(px,py,pw,ph,8),color:COL.line,w:1.5});
+        p.push({pts:sRR(px+5,py+16,pw-10,ph-28,3),color:COL.lineDim,w:1});
+        p.push({pts:sLine(px+pw/2-8,py+8,px+pw/2+8,py+8),color:COL.lineDim,w:1});
+        p.push({pts:sLine(px-8,py+20,px-14,py+12),color:COL.accent,w:1.5});
+        p.push({pts:sLine(px+pw+8,py+20,px+pw+14,py+12),color:COL.accent,w:1.5});
+        l.push({t:'Incoming',x:px+pw/2,y:py+38,c:COL.accent,s:9,f:'m'});
+        l.push({t:'Guest',x:px+pw/2,y:py+52,c:COL.dark,s:12,f:'h',b:true});
+        p.push({pts:sCircle(px+pw/2,py+72,8),color:COL.green,w:1.5});
+        l.push({t:'Front desk busy',x:px+pw/2,y:py+ph+16,c:COL.red,s:10,f:'m'});
+        sArrow(px+pw+30,cy,cx+20,cy).forEach(function(a){p.push({pts:a,color:COL.lineDim,w:1.5});});
+        p.push({pts:sCircle(cx+100,cy-8,42),color:COL.line,w:2});
+        p.push({pts:sCircle(cx+100,cy-8,32),color:COL.lineDim,w:1});
+        l.push({t:'EVE',x:cx+100,y:cy-8,c:COL.dark,s:18,f:'h',b:true});
+        for(var i=0;i<3;i++){var r=18+i*12;p.push({pts:sLine(cx+145+r*0.7,cy-8-r*0.3,cx+145+r*0.7,cy-8+r*0.3),color:COL.lineDim,w:1});}
+        p.push({pts:sRR(cx+40,cy+42,120,38,6),color:COL.lineDim,w:1});
+        l.push({t:'\u201cGood evening,',x:cx+100,y:cy+53,c:COL.muted,s:10,f:'m'});
+        l.push({t:'your hotel...\u201d',x:cx+100,y:cy+68,c:COL.muted,s:10,f:'m'});
+        p.push({pts:sCircle(cx-200,cy+135,13),color:COL.line,w:1.5});
+        l.push({t:'1',x:cx-200,y:cy+135,c:COL.line,s:15,f:'h',b:true});
+        l.push({t:'The phone rings. EVE answers.',x:cx,y:cy+135,c:COL.dark,s:18,f:'h',b:true});
+        l.push({t:'Every call picked up \u2014 24/7, even when the desk is busy',x:cx,y:cy+158,c:COL.muted,s:12,f:'m'});
+        S.push({paths:p,labels:l});
+      })();
+
+      // SCENE 2: We set it up
+      (function(){
+        var p = [], l = [];
+        var fx=cx-170,fy=cy-110,fw=340,fh=210;
+        p.push({pts:sRR(fx,fy,fw,fh,8),color:COL.line,w:1.5});
+        l.push({t:'We Train EVE On Your Hotel',x:cx,y:fy+22,c:COL.dark,s:15,f:'h',b:true});
+        p.push({pts:sLine(fx+20,fy+38,fx+fw-20,fy+38),color:COL.soft,w:1});
+        var items = ['Hotel name & brand voice','Room types & rates','Guest services & FAQs','Booking system link'];
+        items.forEach(function(t,i){var iy=fy+50+i*36;p.push({pts:sRR(fx+18,iy,fw-36,28,4),color:COL.lineDim,w:1});l.push({t:t,x:fx+36,y:iy+14,c:COL.dark,s:11,f:'m',a:'left'});p.push({pts:sTick(fx+fw-38,iy+11,12),color:COL.green,w:2});});
+        p.push({pts:sCircle(cx-160,cy+135,13),color:COL.line,w:1.5});
+        l.push({t:'2',x:cx-160,y:cy+135,c:COL.line,s:15,f:'h',b:true});
+        l.push({t:'We handle the entire setup',x:cx,y:cy+135,c:COL.dark,s:18,f:'h',b:true});
+        l.push({t:'Your services, your tone \u2014 nothing generic',x:cx,y:cy+158,c:COL.muted,s:12,f:'m'});
+        S.push({paths:p,labels:l});
+      })();
+
+      // SCENE 3: Dashboard
+      (function(){
+        var p = [], l = [];
+        var dx=cx-220,dy=cy-115,dw=440,dh=220,sw=75;
+        p.push({pts:sRR(dx,dy,dw,dh,8),color:COL.line,w:1.5});
+        p.push({pts:sLine(dx+sw,dy,dx+sw,dy+dh),color:COL.lineDim,w:1});
+        l.push({t:'EVE',x:dx+sw/2,y:dy+14,c:COL.line,s:11,f:'h',b:true});
+        ['Calls','Bookings','Leads'].forEach(function(t,i){l.push({t:t,x:dx+sw/2,y:dy+35+i*24,c:i===0?COL.dark:COL.muted,s:10,f:'m'});});
+        var cX=dx+sw+18;
+        [{l:'Calls',v:'312',c:COL.line},{l:'Bookings',v:'47',c:COL.green},{l:'Revenue',v:'\u00A311k',c:COL.accent}].forEach(function(s,i){
+          var sx=cX+i*118,sy=dy+14;
+          p.push({pts:sRR(sx,sy,108,52,5),color:COL.lineDim,w:1});
+          l.push({t:s.v,x:sx+54,y:sy+20,c:s.c,s:20,f:'h',b:true});
+          l.push({t:s.l,x:sx+54,y:sy+40,c:COL.muted,s:9,f:'m'});
+        });
+        var activities = ['Booking: 2 nights double \u2014 guest enquiry','Spa availability question \u2014 answered','After-hours: directions & check-in','Wedding enquiry \u2014 lead saved'];
+        activities.forEach(function(t,i){var ay=dy+82+i*26;p.push({pts:sCircle(cX+6,ay,3),color:COL.line,w:1.5});l.push({t:t,x:cX+16,y:ay,c:COL.muted,s:10,f:'m',a:'left'});});
+        p.push({pts:sCircle(cx-210,cy+135,13),color:COL.line,w:1.5});
+        l.push({t:'3',x:cx-210,y:cy+135,c:COL.line,s:15,f:'h',b:true});
+        l.push({t:'You see every call, booking, and lead',x:cx,y:cy+135,c:COL.dark,s:18,f:'h',b:true});
+        l.push({t:'Nothing falls through the cracks',x:cx,y:cy+158,c:COL.muted,s:12,f:'m'});
+        S.push({paths:p,labels:l});
+      })();
+
+      // SCENE 4: Revenue + CTA
+      (function(){
+        var p = [], l = [];
+        var bx=cx-155,by=cy-70;
+        p.push({pts:sRR(bx,by,105,38,6),color:COL.red,w:1});
+        l.push({t:'1 missed call/day',x:bx+52,y:by+19,c:COL.red,s:11,f:'m'});
+        l.push({t:'\u00D7',x:bx+122,y:by+19,c:COL.muted,s:16,f:'m'});
+        p.push({pts:sRR(bx+138,by,85,38,6),color:COL.accent,w:1});
+        l.push({t:'\u00A3240',x:bx+180,y:by+19,c:COL.accent,s:13,f:'h',b:true});
+        l.push({t:'\u00D7',x:bx+238,y:by+19,c:COL.muted,s:16,f:'m'});
+        p.push({pts:sRR(bx+252,by,55,38,6),color:COL.line,w:1});
+        l.push({t:'30d',x:bx+280,y:by+19,c:COL.line,s:13,f:'h',b:true});
+        p.push({pts:sLine(bx+20,by+50,bx+290,by+50),color:COL.lineDim,w:1});
+        l.push({t:'\u00A37,200/month lost',x:cx,y:by+75,c:COL.dark,s:28,f:'h',b:true});
+        p.push({pts:sTick(cx-60,by+108,18),color:COL.green,w:2.5});
+        l.push({t:'Protected by EVE',x:cx+5,y:by+110,c:COL.green,s:16,f:'h',b:true});
+        l.push({t:'Most hotels go live within 48 hours',x:cx,y:cy+135,c:COL.dark,s:18,f:'h',b:true});
+        p.push({pts:sRR(cx-80,cy+152,160,36,6),color:COL.line,w:1.5});
+        l.push({t:'Book a Call',x:cx,y:cy+170,c:COL.line,s:14,f:'h',b:true});
+        S.push({paths:p,labels:l});
+      })();
+
+      return S;
+    }
+
+    // Renderer
+    var scenes = build();
+
+    function drawPath(pts, progress, color, width) {
+      var n = Math.floor(pts.length * progress);
+      if (n < 2) return;
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (var i = 1; i < n; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+    }
+
+    function drawLabel(lb, op) {
+      ctx.save();
+      ctx.globalAlpha = op;
+      var fam = lb.f === 'h' ? "'Cormorant Garamond',Georgia,serif" : "'Manrope',-apple-system,sans-serif";
+      ctx.font = (lb.b?'600':'400') + ' ' + (lb.s||14) + 'px ' + fam;
+      ctx.fillStyle = lb.c || COL.dark;
+      ctx.textAlign = lb.a || 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(lb.t, lb.x, lb.y);
+      ctx.restore();
+    }
+
+    var DRAW = 5500, HOLD = 3500, FADE = 700;
+    var SCENE = DRAW + HOLD + FADE;
+    var LOOP = SCENE * scenes.length + 1200;
+    var t0 = performance.now();
+
+    function easeIO(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+    function frame(now) {
+      var el = (now - t0) % LOOP;
+      var si = Math.min(Math.floor(el / SCENE), scenes.length - 1);
+      var se = el - si * SCENE;
+
+      ctx.fillStyle = '#f5f0e8';
+      ctx.fillRect(0, 0, W, H);
+
+      var scene = scenes[si];
+      var raw = Math.min(se / DRAW, 1);
+      var dp = easeIO(raw);
+      var op = Math.min(se / 300, 1);
+      if (se > DRAW + HOLD) op = 1 - Math.min((se - DRAW - HOLD) / FADE, 1);
+
+      ctx.save();
+      ctx.globalAlpha = op;
+
+      var total = scene.paths.reduce(function(s, p) { return s + p.pts.length; }, 0);
+      var drawn = 0;
+      var target = total * dp;
+      var nibX = 0, nibY = 0, hasNib = false;
+      for (var i = 0; i < scene.paths.length; i++) {
+        var path = scene.paths[i];
+        var len = path.pts.length;
+        if (drawn >= target) break;
+        var prog = Math.min((target - drawn) / len, 1);
+        drawPath(path.pts, prog, path.color, path.w);
+        // Track nib position — tip of the currently drawing path
+        if (drawn + len > target) {
+          var nibIdx = Math.floor(prog * (len - 1));
+          nibX = path.pts[nibIdx][0];
+          nibY = path.pts[nibIdx][1];
+          hasNib = true;
+        }
+        drawn += len;
+      }
+
+      for (var j = 0; j < scene.labels.length; j++) {
+        var start = 0.3 + (j / scene.labels.length) * 0.45;
+        var lo = Math.max(0, Math.min(1, (dp - start) / 0.12));
+        drawLabel(scene.labels[j], lo);
+      }
+
+      // Glowing nib — only while actively drawing
+      if (hasNib && dp < 1 && op > 0.3) {
+        ctx.save();
+        ctx.globalAlpha = op * (1 - dp * 0.6);
+        // Outer glow
+        var grd = ctx.createRadialGradient(nibX, nibY, 0, nibX, nibY, 14);
+        grd.addColorStop(0, 'rgba(200,120,10,0.5)');
+        grd.addColorStop(1, 'rgba(200,120,10,0)');
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(nibX, nibY, 14, 0, Math.PI * 2);
+        ctx.fill();
+        // Inner dot
+        ctx.globalAlpha = op;
+        ctx.fillStyle = '#c8780a';
+        ctx.shadowColor = '#c8780a';
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(nibX, nibY, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.restore();
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+  </script>
+</body>
+</html>

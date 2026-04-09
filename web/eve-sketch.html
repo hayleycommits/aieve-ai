@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVE — How It Works</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+  body { background:#f5f0e8; display:flex; align-items:center; justify-content:center; }
+  canvas { display:block; max-width:100%; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const C = document.getElementById('c');
+const ctx = C.getContext('2d');
+const DPR = window.devicePixelRatio || 1;
+
+const COL = {
+  line:    '#111111',
+  lineDim: '#11111160',
+  dark:    '#000000',
+  muted:   '#444444',
+  soft:    '#0088ff',
+  accent:  '#ffbb00',
+  green:   '#00bb44',
+  red:     '#ff2200',
+  blue:    '#0055ff',
+  bg:      '#f5f0e8',
+};
+
+let W, H;
+function resize() {
+  W = Math.min(window.innerWidth || 1200, 1200);
+  H = 520;
+  C.width = W * DPR; C.height = H * DPR;
+  C.style.width = W + 'px'; C.style.height = H + 'px';
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+resize();
+window.addEventListener('resize', () => { resize(); scenes = build(); });
+// Re-measure after iframe is fully laid out
+setTimeout(() => { resize(); scenes = build(); }, 100);
+
+// ── Artistic helpers ────────────────────────────────────────────────────────
+function drawWash(x, y, w, h, r, color, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  const rx = x+2, ry = y+2, rw = w-4, rh = h-4;
+  ctx.moveTo(rx+r, ry);
+  ctx.lineTo(rx+rw-r, ry);
+  ctx.quadraticCurveTo(rx+rw, ry, rx+rw, ry+r);
+  ctx.lineTo(rx+rw, ry+rh-r);
+  ctx.quadraticCurveTo(rx+rw, ry+rh, rx+rw-r, ry+rh);
+  ctx.lineTo(rx+r, ry+rh);
+  ctx.quadraticCurveTo(rx, ry+rh, rx, ry+rh-r);
+  ctx.lineTo(rx, ry+r);
+  ctx.quadraticCurveTo(rx, ry, rx+r, ry);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawCircleWash(cx, cy, r, color, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+  grad.addColorStop(0, color);
+  grad.addColorStop(1, color.slice(0,7) + '00');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawVignette() {
+  ctx.save();
+  const grad = ctx.createRadialGradient(W/2, H/2, H*0.3, W/2, H/2, H*0.85);
+  grad.addColorStop(0, 'transparent');
+  grad.addColorStop(1, 'rgba(30,20,10,0.08)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+  ctx.restore();
+}
+
+// ── Sketch primitives ──────────────────────────────────────────────────────
+let seed = 0;
+function sr() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+function wb(x, y, a = 1.8) { return [x + (sr() - 0.5) * a, y + (sr() - 0.5) * a]; }
+
+function sLine(x1, y1, x2, y2) {
+  const s = Math.max(3, Math.floor(Math.hypot(x2-x1, y2-y1) / 7));
+  const p = [];
+  for (let i = 0; i <= s; i++) { const t = i/s; p.push(wb(x1+(x2-x1)*t, y1+(y2-y1)*t)); }
+  return p;
+}
+function sRR(x, y, w, h, r) {
+  const p = [];
+  const c = (cx,cy,sa) => { for(let i=0;i<=5;i++){const a=sa+(Math.PI/2)*(i/5);p.push(wb(cx+Math.cos(a)*r,cy+Math.sin(a)*r,0.8));} };
+  p.push(...sLine(x+r,y,x+w-r,y)); c(x+w-r,y+r,-Math.PI/2);
+  p.push(...sLine(x+w,y+r,x+w,y+h-r)); c(x+w-r,y+h-r,0);
+  p.push(...sLine(x+w-r,y+h,x+r,y+h)); c(x+r,y+h-r,Math.PI/2);
+  p.push(...sLine(x,y+h-r,x,y+r)); c(x+r,y+r,Math.PI);
+  return p;
+}
+function sCircle(cx, cy, r) {
+  const p = []; for(let i=0;i<=24;i++){const a=(Math.PI*2*i)/24;p.push(wb(cx+Math.cos(a)*r,cy+Math.sin(a)*r));} return p;
+}
+function sTick(cx, cy, s) {
+  return [...sLine(cx-s*0.3,cy+0.05*s,cx-s*0.05,cy+s*0.3),...sLine(cx-s*0.05,cy+s*0.3,cx+s*0.4,cy-s*0.25)];
+}
+function sArrow(x1,y1,x2,y2) {
+  const a=Math.atan2(y2-y1,x2-x1),hl=10;
+  return [sLine(x1,y1,x2,y2),sLine(x2,y2,x2-Math.cos(a-0.4)*hl,y2-Math.sin(a-0.4)*hl),sLine(x2,y2,x2-Math.cos(a+0.4)*hl,y2-Math.sin(a+0.4)*hl)];
+}
+
+// ── Build scenes ───────────────────────────────────────────────────────────
+function build() {
+  seed = 42;
+  const cx = W / 2, cy = H / 2 - 10;
+  const S = [];
+
+  // SCENE 1: Phone rings, EVE answers
+  {
+    const p = [], l = [];
+    const px = cx-180, py = cy-80, pw = 55, ph = 100;
+    p.push({pts:sRR(px,py,pw,ph,8),color:COL.line,w:2});
+    p.push({pts:sRR(px+5,py+16,pw-10,ph-28,3),color:COL.lineDim,w:1});
+    p.push({pts:sLine(px+pw/2-8,py+8,px+pw/2+8,py+8),color:COL.lineDim,w:1});
+    p.push({pts:sLine(px-8,py+20,px-14,py+12),color:COL.accent,w:1.5});
+    p.push({pts:sLine(px+pw+8,py+20,px+pw+14,py+12),color:COL.accent,w:1.5});
+    l.push({t:'Incoming',x:px+pw/2,y:py+38,c:COL.accent,s:9,f:'m'});
+    l.push({t:'Guest',x:px+pw/2,y:py+52,c:COL.dark,s:12,f:'h',b:true});
+    p.push({pts:sCircle(px+pw/2,py+72,8),color:COL.green,w:1.5});
+    l.push({t:'Front desk busy',x:px+pw/2,y:py+ph+16,c:COL.red,s:10,f:'m'});
+    sArrow(px+pw+30,cy,cx+20,cy).forEach(a=>p.push({pts:a,color:COL.lineDim,w:1.5}));
+    p.push({pts:sCircle(cx+100,cy-8,42),color:COL.line,w:2.5});
+    p.push({pts:sCircle(cx+100,cy-8,32),color:COL.lineDim,w:1});
+    l.push({t:'EVE',x:cx+100,y:cy-8,c:COL.dark,s:18,f:'h',b:true});
+    for(let i=0;i<3;i++){const r=18+i*12;p.push({pts:sLine(cx+145+r*0.7,cy-8-r*0.3,cx+145+r*0.7,cy-8+r*0.3),color:COL.lineDim,w:1});}
+    p.push({pts:sRR(cx+40,cy+42,120,38,6),color:COL.lineDim,w:1});
+    l.push({t:'"Good evening,',x:cx+100,y:cy+53,c:COL.muted,s:10,f:'m'});
+    l.push({t:'your hotel..."',x:cx+100,y:cy+68,c:COL.muted,s:10,f:'m'});
+    p.push({pts:sCircle(cx-200,cy+135,13),color:COL.line,w:2});
+    l.push({t:'1',x:cx-200,y:cy+135,c:COL.line,s:15,f:'h',b:true});
+    l.push({t:'The phone rings. EVE answers.',x:cx,y:cy+135,c:COL.dark,s:20,f:'h',b:true});
+    l.push({t:'Every call picked up \u2014 24/7, even when the desk is busy',x:cx,y:cy+160,c:COL.muted,s:13,f:'m'});
+    S.push({paths:p,labels:l});
+  }
+
+  // SCENE 2: We set it up
+  {
+    const p = [], l = [];
+    const fx=cx-170,fy=cy-110,fw=340,fh=210;
+    p.push({pts:sRR(fx,fy,fw,fh,8),color:COL.line,w:2});
+    l.push({t:'We Train EVE On Your Hotel',x:cx,y:fy+22,c:COL.dark,s:15,f:'h',b:true});
+    p.push({pts:sLine(fx+20,fy+38,fx+fw-20,fy+38),color:COL.soft,w:1});
+    const items = ['Hotel name & brand voice','Room types & rates','Guest services & FAQs','Booking system link'];
+    items.forEach((t,i)=>{const iy=fy+50+i*36;p.push({pts:sRR(fx+18,iy,fw-36,28,4),color:COL.lineDim,w:1});l.push({t:t,x:fx+36,y:iy+14,c:COL.dark,s:11,f:'m',a:'left'});p.push({pts:sTick(fx+fw-38,iy+11,12),color:COL.green,w:2});});
+    p.push({pts:sCircle(cx-160,cy+135,13),color:COL.line,w:2});
+    l.push({t:'2',x:cx-160,y:cy+135,c:COL.line,s:15,f:'h',b:true});
+    l.push({t:'We handle the entire setup',x:cx,y:cy+135,c:COL.dark,s:20,f:'h',b:true});
+    l.push({t:'Your services, your tone \u2014 nothing generic',x:cx,y:cy+160,c:COL.muted,s:13,f:'m'});
+    S.push({paths:p,labels:l});
+  }
+
+  // SCENE 3: Dashboard
+  {
+    const p = [], l = [];
+    const dx=cx-220,dy=cy-115,dw=440,dh=220,sw=75;
+    p.push({pts:sRR(dx,dy,dw,dh,8),color:COL.line,w:2});
+    p.push({pts:sLine(dx+sw,dy,dx+sw,dy+dh),color:COL.lineDim,w:1});
+    l.push({t:'EVE',x:dx+sw/2,y:dy+14,c:COL.line,s:11,f:'h',b:true});
+    ['Calls','Bookings','Leads'].forEach((t,i)=>{l.push({t:t,x:dx+sw/2,y:dy+35+i*24,c:i===0?COL.dark:COL.muted,s:10,f:'m'});});
+    const cX=dx+sw+18;
+    [{l:'Calls',v:'312',c:COL.line},{l:'Bookings',v:'47',c:COL.green},{l:'Revenue',v:'\u00A311k',c:COL.accent}].forEach((s,i)=>{
+      const sx=cX+i*118,sy=dy+14;
+      p.push({pts:sRR(sx,sy,108,52,5),color:COL.lineDim,w:1});
+      l.push({t:s.v,x:sx+54,y:sy+20,c:s.c,s:20,f:'h',b:true});
+      l.push({t:s.l,x:sx+54,y:sy+40,c:COL.muted,s:9,f:'m'});
+    });
+    const activities = ['Booking: 2 nights double \u2014 guest enquiry','Spa availability question \u2014 answered','After-hours: directions & check-in','Wedding enquiry \u2014 lead saved'];
+    activities.forEach((t,i)=>{const ay=dy+82+i*26;p.push({pts:sCircle(cX+6,ay,3),color:COL.line,w:2});l.push({t:t,x:cX+16,y:ay,c:COL.muted,s:10,f:'m',a:'left'});});
+    p.push({pts:sCircle(cx-210,cy+135,13),color:COL.line,w:2});
+    l.push({t:'3',x:cx-210,y:cy+135,c:COL.line,s:15,f:'h',b:true});
+    l.push({t:'You see every call, booking, and lead',x:cx,y:cy+135,c:COL.dark,s:20,f:'h',b:true});
+    l.push({t:'Nothing falls through the cracks',x:cx,y:cy+160,c:COL.muted,s:13,f:'m'});
+    S.push({paths:p,labels:l});
+  }
+
+  // SCENE 4: Revenue + CTA
+  {
+    const p = [], l = [];
+    const bx=cx-155,by=cy-70;
+    p.push({pts:sRR(bx,by,105,38,6),color:COL.red,w:1});
+    l.push({t:'1 missed call/day',x:bx+52,y:by+19,c:COL.red,s:11,f:'m'});
+    l.push({t:'\u00D7',x:bx+122,y:by+19,c:COL.muted,s:16,f:'m'});
+    p.push({pts:sRR(bx+138,by,85,38,6),color:COL.accent,w:1});
+    l.push({t:'\u00A3240',x:bx+180,y:by+19,c:COL.accent,s:13,f:'h',b:true});
+    l.push({t:'\u00D7',x:bx+238,y:by+19,c:COL.muted,s:16,f:'m'});
+    p.push({pts:sRR(bx+252,by,55,38,6),color:COL.line,w:1});
+    l.push({t:'30d',x:bx+280,y:by+19,c:COL.line,s:13,f:'h',b:true});
+    p.push({pts:sLine(bx+20,by+50,bx+290,by+50),color:COL.lineDim,w:1});
+    l.push({t:'\u00A37,200/month lost',x:cx,y:by+75,c:COL.dark,s:28,f:'h',b:true});
+    p.push({pts:sTick(cx-60,by+108,18),color:COL.green,w:2.5});
+    l.push({t:'Protected by EVE',x:cx+5,y:by+110,c:COL.green,s:16,f:'h',b:true});
+    l.push({t:'Most hotels go live within 48 hours',x:cx,y:cy+135,c:COL.dark,s:18,f:'h',b:true});
+    p.push({pts:sRR(cx-80,cy+152,160,36,6),color:COL.line,w:2});
+    l.push({t:'Book a Call',x:cx,y:cy+170,c:COL.line,s:14,f:'h',b:true});
+    S.push({paths:p,labels:l});
+  }
+
+  // SCENE 5: EVE IS LIVE
+  {
+    const p = [], l = [];
+    // Big outer ring with tick marks (like a clock/dial)
+    p.push({pts:sCircle(cx,cy-30,90),color:COL.line,w:2.5});
+    p.push({pts:sCircle(cx,cy-30,70),color:COL.lineDim,w:1});
+    // Radiating lines around the circle
+    for(let i=0;i<12;i++){
+      const a=(Math.PI*2*i)/12;
+      const r1=94, r2=i%3===0?108:100;
+      p.push({pts:sLine(cx+Math.cos(a)*r1,cy-30+Math.sin(a)*r1,cx+Math.cos(a)*r2,cy-30+Math.sin(a)*r2),color:COL.line,w:i%3===0?2:1});
+    }
+    // Big tick inside circle
+    p.push({pts:sTick(cx,cy-30,38),color:COL.green,w:4});
+    // Labels
+    l.push({t:'EVE IS LIVE',x:cx,y:cy+85,c:COL.green,s:32,f:'h',b:true});
+    l.push({t:'Your hotel never misses a call again',x:cx,y:cy+118,c:COL.dark,s:14,f:'m'});
+    l.push({t:'24/7  \u00B7  Every channel  \u00B7  Your voice',x:cx,y:cy+140,c:COL.muted,s:12,f:'m'});
+    S.push({paths:p,labels:l});
+  }
+
+  return S;
+}
+
+// ── Renderer ───────────────────────────────────────────────────────────────
+let scenes = build();
+
+function drawPath(pts, progress, color, width) {
+  const n = Math.floor(pts.length * progress);
+  if (n < 2) return;
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < n; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+}
+
+function drawLabel(lb, op) {
+  ctx.save();
+  ctx.globalAlpha = op;
+  const fam = lb.f === 'h' ? "'Cormorant Garamond',Georgia,serif" : "'Manrope',-apple-system,sans-serif";
+  ctx.font = `${lb.b?'600':'400'} ${lb.s||14}px ${fam}`;
+  ctx.fillStyle = lb.c || COL.dark;
+  ctx.textAlign = lb.a || 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(lb.t, lb.x, lb.y);
+  ctx.restore();
+}
+
+const DRAW = 5500, HOLD = 3500, FADE = 700;
+const SCENE = DRAW + HOLD + FADE;
+const LOOP = SCENE * scenes.length + 1200;
+let t0 = performance.now();
+
+window.addEventListener('message', function(e) {
+  if (e.data === 'reset') { t0 = performance.now(); scenes = build(); }
+});
+
+function easeIO(t) { return Math.min(t < 0.5 ? 2*t*t : -1+(4-2*t)*t, 1); }
+
+function frame(now) {
+  const el = (now - t0) % LOOP;
+  const si = Math.min(Math.floor(el / SCENE), scenes.length - 1);
+  const se = el - si * SCENE;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Paper texture — very faint warm grain
+  ctx.save();
+  ctx.globalAlpha = 0.018;
+  for (let py = 0; py < H; py += 2) {
+    ctx.fillStyle = (py % 4 === 0) ? '#7a5a30' : '#c8a878';
+    ctx.fillRect(0, py, W, 1);
+  }
+  ctx.restore();
+
+  const scene = scenes[si];
+  const raw = Math.min(se / DRAW, 1);
+  const dp = easeIO(raw);
+  let op = Math.min(se / 300, 1);
+  if (se > DRAW + HOLD) op = 1 - Math.min((se - DRAW - HOLD) / FADE, 1);
+
+  const cx = W / 2, cy = H / 2 - 10;
+  const washOp = op * Math.min(dp * 3, 1);
+
+  // Scene colour fills
+  if (si === 0) {
+    drawWash(cx - 207, cy - 88, 55, 100, 10, '#ffbb00', washOp * 0.55);
+    drawCircleWash(cx + 100, cy - 8, 58, '#0055ff', washOp * 0.45);
+    drawWash(cx + 40, cy + 38, 124, 46, 8, '#0055ff', washOp * 0.35);
+  } else if (si === 1) {
+    drawWash(cx - 170, cy - 110, 340, 210, 10, '#0055ff', washOp * 0.08);
+    drawWash(cx - 152, cy - 64, 304, 28, 4, '#00bb44', washOp * 0.45);
+    drawWash(cx - 152, cy - 28, 304, 28, 4, '#00bb44', washOp * 0.40);
+    drawWash(cx - 152,  cy + 8, 304, 28, 4, '#00bb44', washOp * 0.35);
+    drawWash(cx - 152,  cy + 44, 304, 28, 4, '#00bb44', washOp * 0.30);
+  } else if (si === 2) {
+    drawWash(cx - 127, cy - 101, 108, 52, 6, '#0088ff', washOp * 0.50);
+    drawWash(cx - 9,   cy - 101, 108, 52, 6, '#00bb44', washOp * 0.50);
+    drawWash(cx + 109, cy - 101, 108, 52, 6, '#ffbb00', washOp * 0.55);
+  } else if (si === 3) {
+    drawWash(cx - 207, cy - 70, 105, 38, 6, '#ff2200', washOp * 0.50);
+    drawWash(cx - 69,  cy - 70,  85, 38, 6, '#ffbb00', washOp * 0.55);
+    drawWash(cx - 84,  cy + 148, 168, 40, 8, '#0055ff', washOp * 0.45);
+  } else if (si === 4) {
+    drawCircleWash(cx, cy - 30, 96, '#00bb44', washOp * 0.40);
+  }
+
+  ctx.save();
+  ctx.globalAlpha = op;
+
+  const total = scene.paths.reduce((s, p) => s + p.pts.length, 0);
+  let drawn = 0;
+  const target = total * dp;
+  for (const path of scene.paths) {
+    const len = path.pts.length;
+    if (drawn >= target) break;
+    const prog = Math.min((target - drawn) / len, 1);
+    drawPath(path.pts, prog, path.color, path.w);
+    drawn += len;
+  }
+
+  for (let i = 0; i < scene.labels.length; i++) {
+    const start = 0.3 + (i / scene.labels.length) * 0.45;
+    const lo = Math.max(0, Math.min(1, (dp - start) / 0.12));
+    drawLabel(scene.labels[i], lo);
+  }
+
+  ctx.restore();
+
+  drawVignette();
+
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
