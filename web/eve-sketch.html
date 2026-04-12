@@ -35,7 +35,7 @@ const COL = {
 let W, H;
 function resize() {
   W = Math.min(window.innerWidth || 1200, 1200);
-  H = 520;
+  H = window.innerHeight || 520;
   C.width = W * DPR; C.height = H * DPR;
   C.style.width = W + 'px'; C.style.height = H + 'px';
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -268,7 +268,7 @@ function drawLabel(lb, op) {
   ctx.restore();
 }
 
-const DRAW = 5500, HOLD = 3500, FADE = 700;
+const DRAW = 2200, HOLD = 3000, FADE = 500;
 const SCENE = DRAW + HOLD + FADE;
 const LOOP = SCENE * scenes.length + 1200;
 let t0 = performance.now();

@@ -1374,7 +1374,9 @@
               <h3>Prefer a direct callback?</h3>
               <p>Send a short enquiry and it can land straight inside AI EVE Control CRM for follow-up.</p>
 
-              <form id="leadForm" class="intake-form">
+              <form id="leadForm" class="intake-form" name="lead" data-netlify="true" data-netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="lead" />
+                <input type="hidden" name="bot-field" style="display:none" />
                 <div class="intake-row">
                   <div class="intake-field">
                     <label for="leadName">Name</label>
@@ -1628,7 +1630,6 @@
 
   <script>
     (function () {
-      const CRM_LEAD_ENDPOINT = "https://replace-with-your-control-crm-domain/api/public/website-leads";
       const leadForm = document.getElementById("leadForm");
       const leadSubmit = document.getElementById("leadSubmit");
       const leadStatus = document.getElementById("leadStatus");
@@ -1637,46 +1638,31 @@
         leadForm.addEventListener("submit", async (event) => {
           event.preventDefault();
 
-          if (CRM_LEAD_ENDPOINT.includes("replace-with-your-control-crm-domain")) {
-            leadStatus.textContent = "Set your live AI EVE Control CRM URL to turn this form on.";
-            return;
-          }
-
           const form = new FormData(leadForm);
-          const payload = {
-            name: String(form.get("name") || "").trim(),
-            company: String(form.get("company") || "").trim(),
-            email: String(form.get("email") || "").trim(),
-            phone: String(form.get("phone") || "").trim(),
-            website: String(form.get("website") || "").trim(),
-            notes: String(form.get("notes") || "").trim(),
-            nextAction: "Respond to website enquiry",
-          };
+          const name = String(form.get("name") || "").trim();
 
-          if (!payload.name) {
+          if (!name) {
             leadStatus.textContent = "Please add a name.";
             return;
           }
 
           leadSubmit.disabled = true;
-          leadStatus.textContent = "Sending to AI EVE Control CRM...";
+          leadStatus.textContent = "Sending…";
 
           try {
-            const response = await fetch(CRM_LEAD_ENDPOINT, {
+            const body = new URLSearchParams(form).toString();
+            const response = await fetch("/", {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body,
             });
 
-            if (!response.ok) {
-              throw new Error(`Request failed with ${response.status}`);
-            }
-
+            if (!response.ok) throw new Error(response.status);
             leadForm.reset();
-            leadStatus.textContent = "Enquiry sent. It should now be in AI EVE Control CRM.";
+            leadStatus.textContent = "Thanks — we'll be in touch soon.";
           } catch (error) {
             console.error("Lead intake failed", error);
-            leadStatus.textContent = "Could not send the enquiry. Check the CRM endpoint and try again.";
+            leadStatus.textContent = "Something went wrong. Please try again.";
           } finally {
             leadSubmit.disabled = false;
           }
