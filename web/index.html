@@ -1049,8 +1049,21 @@
       display: flex;
       justify-content: space-between;
       gap: 20px;
+      flex-wrap: wrap;
       padding-top: 20px;
       border-top: 1px solid rgba(63, 47, 31, 0.08);
+    }
+
+    .footer-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: rgba(83, 64, 46, 0.86);
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
     }
 
     @media (max-width: 1080px) {
@@ -1454,6 +1467,9 @@
       <div class="container footer-row">
         <span>AI EVE</span>
         <span>Direct revenue protection for independent hotels.</span>
+        <div class="footer-links">
+          <a href="/privacy-policy.html">Privacy Policy</a>
+        </div>
       </div>
     </footer>
   </div>
