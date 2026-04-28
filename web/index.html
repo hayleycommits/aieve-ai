@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI EVE | Direct Revenue Protection for Independent Hotels</title>
+  <title>AI EVE | Call Coverage for Independent Hotels — Cover, Overflow, Full-Time</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -1138,6 +1138,169 @@
         font-size: 12px;
       }
     }
+
+    .hero-bullets {
+      list-style: none;
+      margin: 18px 0 28px;
+      padding: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+    .hero-bullets li {
+      position: relative;
+      padding-left: 18px;
+    }
+    .hero-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .trust-strip {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .trust-card {
+      padding: 28px;
+      border-radius: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .trust-card h3 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .trust-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 42px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 42px;
+    }
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      border-radius: 24px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .pricing-card-feature {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(232, 215, 192, 0.55));
+      border-color: rgba(142, 106, 66, 0.28);
+    }
+    .pricing-tier {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .pricing-price {
+      margin: 0 0 12px;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--muted);
+    }
+    .pricing-price span {
+      display: inline-block;
+      margin-right: 4px;
+      font-size: 44px;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .pricing-description {
+      margin: 0 0 24px;
+      flex: 1;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .pricing-card .btn-main,
+    .pricing-card .btn-secondary {
+      align-self: flex-start;
+      font-size: 13px;
+      padding: 10px 18px;
+    }
+
+    .cover-mode-block {
+      padding-top: 24px;
+    }
+    .cover-mode-card {
+      padding: 56px;
+      border-radius: 32px;
+      background:
+        linear-gradient(180deg, rgba(255, 252, 247, 0.92), rgba(247, 236, 220, 0.78)),
+        radial-gradient(circle at top right, rgba(228, 212, 190, 0.7), transparent 50%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .cover-mode-card .section-heading {
+      max-width: 720px;
+    }
+    .cover-mode-label {
+      margin: 26px 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cover-mode-bullets {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px 32px;
+      margin-bottom: 28px;
+    }
+    .cover-mode-tagline {
+      margin: 0 0 28px;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    @media (max-width: 880px) {
+      .trust-grid,
+      .modes-grid,
+      .pricing-grid,
+      .cover-mode-bullets {
+        grid-template-columns: 1fr;
+      }
+      .cover-mode-card {
+        padding: 32px 24px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1149,12 +1312,12 @@
           <span>AI EVE</span>
         </a>
         <nav class="nav-links">
-          <a href="#story">Why Eve</a>
-          <a href="#capabilities">Capabilities</a>
-          <a href="#economics">Economics</a>
-          <a href="#book">Book a call</a>
+          <a href="#modes">Modes</a>
+          <a href="#capabilities">What Eve Handles</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#book">Book a demo</a>
         </nav>
-        <a class="nav-cta" href="#book">Book a call</a>
+        <a class="nav-cta" href="#book">Book a demo</a>
       </div>
     </header>
 
@@ -1164,21 +1327,27 @@
           <div class="hero-panel">
             <div class="hero-kicker reveal is-visible">
               <span class="hero-kicker-dot"></span>
-              Direct revenue protection for independent hotels
+              Call coverage for independent hotels
             </div>
             <h1 class="hero-title reveal is-visible reveal-delay-1">
-              Capture the enquiries
-              <span>your team misses.</span>
+              Never miss revenue
+              <span>when your team is stretched.</span>
             </h1>
             <p class="hero-copy reveal is-visible reveal-delay-2">
-              AI EVE answers direct booking enquiries, after-hours calls, and routine guest questions with the calm consistency your property needs, before guests drift to OTAs or competitors.
+              AI EVE answers calls when you're short-staffed, overloaded, closed, or ready for full-time support.
             </p>
+            <ul class="hero-bullets reveal is-visible reveal-delay-3">
+              <li>short-staffed shifts</li>
+              <li>nights and weekends</li>
+              <li>after-hours cover</li>
+              <li>peak-time overflow</li>
+              <li>full-time call handling</li>
+            </ul>
             <div class="hero-actions reveal is-visible reveal-delay-3">
-              <button id="eveButton" class="btn-main" type="button">Speak to Eve live</button>
+              <a class="btn-main" href="#book">Book a 15-Minute Demo</a>
+              <a class="btn-secondary" href="#cover-mode">See Cover Mode</a>
+              <button id="eveButton" class="btn-secondary" type="button">Speak to Eve Live</button>
             </div>
-            <p class="hero-note reveal is-visible reveal-delay-4">
-              Hotels lose revenue in the gap between intent and response. Eve closes that gap.
-            </p>
           </div>
 
           <aside class="hero-aside reveal is-visible">
@@ -1228,62 +1397,48 @@
 <canvas id="sketchCanvas" style="display:block;width:100%;"></canvas>
       </div>
 
-      <section class="marquee-section reveal">
+      <section class="section trust-strip">
         <div class="container">
-          <p class="marquee-label">Built for the moments hotels usually lose</p>
-        </div>
-        <div class="marquee-shell">
-          <div class="marquee">
-            <span>Direct booking enquiries</span>
-            <span>After-hours guest calls</span>
-            <span>OTA deflection</span>
-            <span>WhatsApp and SMS replies</span>
-            <span>Group and event enquiries</span>
-            <span>Overflow call coverage</span>
-            <span>Direct booking enquiries</span>
-            <span>After-hours guest calls</span>
-            <span>OTA deflection</span>
-            <span>WhatsApp and SMS replies</span>
-            <span>Group and event enquiries</span>
-            <span>Overflow call coverage</span>
+          <div class="trust-grid">
+            <article class="trust-card reveal">
+              <h3>Always Available</h3>
+              <p>Never miss a booking opportunity. Eve answers instantly during evenings, weekends, after-hours, and the busiest parts of the day.</p>
+            </article>
+            <article class="trust-card reveal">
+              <h3>Brand Consistent</h3>
+              <p>Every interaction follows your tone, policies, and service standards.</p>
+            </article>
+            <article class="trust-card reveal">
+              <h3>Faster Response, More Direct Revenue</h3>
+              <p>Speed matters. Eve responds before guests drift to an OTA or a competitor.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="story" class="section split-section">
-        <div class="container split-grid">
-          <div class="story-card reveal">
-            <p class="eyebrow">Why Eve</p>
-            <h2 class="section-heading">A quieter, stronger front line.</h2>
-            <p>
-              Your guests do not experience your staffing schedule. They experience response time. Eve is built for the exact moments when independent hotels leak intent, miss calls, and watch direct revenue slip into third-party channels.
-            </p>
-            <p>
-              She responds instantly, stays consistent across channels, and gives your team clean information to work from when human attention is needed.
-            </p>
-          </div>
+      <section id="modes" class="section modes">
+        <div class="container">
+          <p class="eyebrow reveal">Use Eve Your Way</p>
+          <h2 class="section-heading reveal">Three modes. One assistant.</h2>
+          <p class="section-copy reveal">
+            Start where your team is weakest. Expand when you're ready.
+          </p>
 
-          <div class="proof-stack">
-            <article class="proof-card reveal">
-              <div class="proof-index">1</div>
-              <div>
-                <h3>Faster first response</h3>
-                <p>Guests stay engaged when someone answers immediately. Eve covers the delay that costs hotels the most.</p>
-              </div>
+          <div class="modes-grid">
+            <article class="capability-card reveal">
+              <span class="capability-no">Cover Mode</span>
+              <h3>Cover</h3>
+              <p>For short-staffed hours, sick days, nights, weekends, and temporary gaps. Eve picks up the calls your team can't reach.</p>
             </article>
-            <article class="proof-card reveal">
-              <div class="proof-index">2</div>
-              <div>
-                <h3>Less OTA leakage</h3>
-                <p>When direct questions are handled properly, fewer guests need to leave your site and search elsewhere.</p>
-              </div>
+            <article class="capability-card reveal">
+              <span class="capability-no">Overflow Mode</span>
+              <h3>Overflow</h3>
+              <p>For busy periods when your team is on site but cannot keep up with calls and messages. Eve handles the spillover.</p>
             </article>
-            <article class="proof-card reveal">
-              <div class="proof-index">3</div>
-              <div>
-                <h3>Cleaner handoff to staff</h3>
-                <p>Eve captures context, not chaos, so your team sees what matters and steps in only when necessary.</p>
-              </div>
+            <article class="capability-card reveal">
+              <span class="capability-no">Full-Time Mode</span>
+              <h3>Full-Time</h3>
+              <p>For businesses that want always-on call handling, enquiry capture, and consistent guest response. Eve is the front line.</p>
             </article>
           </div>
         </div>
@@ -1300,23 +1455,23 @@
           <div class="capability-grid">
             <article class="capability-card reveal">
               <span class="capability-no">01</span>
-              <h3>Direct booking enquiries</h3>
-              <p>Answer availability, rates, and booking intent before guests leave the conversation and open an OTA tab.</p>
+              <h3>Capture direct booking enquiries</h3>
+              <p>Answer every incoming enquiry instantly, guiding guests through rates, availability, and next steps before they look elsewhere.</p>
             </article>
             <article class="capability-card reveal">
               <span class="capability-no">02</span>
-              <h3>After-hours guest questions</h3>
-              <p>Cover routine calls about check-in, parking, breakfast, pets, and room details when your front desk is stretched.</p>
+              <h3>After-hours calls & guest FAQs</h3>
+              <p>Handle check-in times, parking, breakfast, pet policies, upgrades, and routine guest questions when your team is off.</p>
             </article>
             <article class="capability-card reveal">
               <span class="capability-no">03</span>
-              <h3>Group and event capture</h3>
-              <p>Collect the right detail for weddings, group stays, and corporate enquiries so your team can follow up with context.</p>
+              <h3>Group & event enquiries</h3>
+              <p>Capture wedding, group, and corporate enquiries with the details your team needs to follow up and convert.</p>
             </article>
             <article class="capability-card reveal">
               <span class="capability-no">04</span>
-              <h3>Overflow and missed-call recovery</h3>
-              <p>Give your property a consistent response layer when the desk is busy, unavailable, or juggling multiple channels at once.</p>
+              <h3>Overflow & missed-call protection</h3>
+              <p>Answer the calls and messages your team cannot get to during busy periods, protecting direct revenue.</p>
             </article>
           </div>
         </div>
@@ -1324,21 +1479,22 @@
 
       <section id="economics" class="section economics">
         <div class="container">
-          <p class="eyebrow reveal">Economics</p>
-          <h2 class="section-heading reveal">Turn response gaps into measurable revenue.</h2>
+          <p class="eyebrow reveal">Revenue</p>
+          <h2 class="section-heading reveal">Turn missed calls into measurable revenue.</h2>
 
           <div class="economics-grid">
             <div class="economics-copy reveal">
               <p>
-                Eve is not just about saving staff time. She helps protect the revenue attached to enquiries your team cannot reach quickly enough.
+                Eve does not just save time. She protects the revenue that would otherwise be lost when your team is busy, short-staffed, or closed.
               </p>
               <p>
-                If even one meaningful booking call goes unanswered each day, the cost compounds fast. Eve is designed to catch that demand before it disappears.
+                If even one meaningful booking enquiry goes unanswered each day, the cost compounds fast. Eve is designed to catch that demand before it disappears.
               </p>
 
               <div class="loss-card">
                 <h3>The cost of a missed call.</h3>
-                <p><strong>Example:</strong> 1 missed call per day × £240 average booking × 30 days = <strong>£7,200 per month lost</strong>.</p>
+                <p><strong>Example:</strong> 1 missed booking enquiry per day × £240 average booking × 30 days = <strong>£7,200 per month lost</strong>.</p>
+                <p style="margin-top:8px;font-size:13px;opacity:0.7;">Small example only. Actual results vary by property size, average booking value, and enquiry volume.</p>
               </div>
 
             </div>
@@ -1384,6 +1540,70 @@
                 <div id="result" class="calc-result"></div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cover-mode" class="section cover-mode-block">
+        <div class="container cover-mode-card reveal">
+          <p class="eyebrow">Cover Mode</p>
+          <h2 class="section-heading">Short-staffed? Eve covers the calls your team can't.</h2>
+          <p class="section-copy">
+            When reception is stretched, the phone does not stop costing you money.
+          </p>
+
+          <p class="cover-mode-label">Use AI EVE for:</p>
+          <ul class="hero-bullets cover-mode-bullets">
+            <li>weekend cover</li>
+            <li>night cover</li>
+            <li>lunch and peak-time gaps</li>
+            <li>sickness cover</li>
+            <li>after-hours enquiries</li>
+            <li>overflow when the desk is busy</li>
+          </ul>
+
+          <p class="cover-mode-tagline">Start with the hours you are weakest. Expand when you are ready.</p>
+
+          <div class="hero-actions">
+            <a class="btn-main" href="#book">Book a 15-Minute Demo</a>
+            <button class="btn-secondary" type="button" onclick="document.getElementById('eveButton').click()">Speak to Eve Live</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section pricing">
+        <div class="container">
+          <p class="eyebrow reveal">Pricing</p>
+          <h2 class="section-heading reveal">Start with the hours you're weakest.</h2>
+          <p class="section-copy reveal">
+            Begin small, scale when you're ready. Every plan includes setup, brand-aligned voice, and integration with your existing channels.
+          </p>
+
+          <div class="pricing-grid">
+            <article class="pricing-card reveal">
+              <p class="pricing-tier">Pilot / Starter Cover</p>
+              <p class="pricing-price"><span>£195</span> / month</p>
+              <p class="pricing-description">Try Eve on a few specific hours per week. The easiest way to start.</p>
+              <a class="btn-secondary" href="#book">Book a demo</a>
+            </article>
+            <article class="pricing-card reveal">
+              <p class="pricing-tier">Weekend Cover</p>
+              <p class="pricing-price"><span>£295</span> / month</p>
+              <p class="pricing-description">Saturdays, Sundays, and the weeks that need extra hands.</p>
+              <a class="btn-secondary" href="#book">Book a demo</a>
+            </article>
+            <article class="pricing-card reveal">
+              <p class="pricing-tier">Extended Cover</p>
+              <p class="pricing-price"><span>£395</span> / month</p>
+              <p class="pricing-description">Longer shifts and busier hours. For properties leaning in.</p>
+              <a class="btn-secondary" href="#book">Book a demo</a>
+            </article>
+            <article class="pricing-card pricing-card-feature reveal">
+              <p class="pricing-tier">24/7 Full-Time</p>
+              <p class="pricing-price"><span>£695</span> / month</p>
+              <p class="pricing-description">Always-on call handling. Eve is the front line.</p>
+              <a class="btn-main" href="#book">Book a demo</a>
+            </article>
           </div>
         </div>
       </section>
@@ -1452,12 +1672,12 @@
       <section class="section final-cta">
         <div class="container final-cta-card reveal">
           <div>
-            <h2>Hear Eve live. Then decide.</h2>
-            <p>No long deck. No heavy sales process. Just a direct look at how AI EVE handles the conversations independent hotels lose most often.</p>
+            <h2>Start with the hours you're weakest. Expand when you're ready.</h2>
+            <p>AI EVE covers the calls your team can't — whether you need short-staffed cover, overflow support, after-hours handling, or full-time coverage.</p>
           </div>
           <div class="hero-actions">
-            <button class="btn-main" type="button" onclick="document.getElementById('eveButton').click()">Speak to Eve</button>
-            <a class="btn-secondary" href="#book">Book a call</a>
+            <button class="btn-main" type="button" onclick="document.getElementById('eveButton').click()">Speak to Eve Live</button>
+            <a class="btn-secondary" href="#book">Book a 15-Minute Demo</a>
           </div>
         </div>
       </section>
@@ -1466,7 +1686,7 @@
     <footer class="footer">
       <div class="container footer-row">
         <span>AI EVE</span>
-        <span>Direct revenue protection for independent hotels.</span>
+        <span>Call coverage for independent hotels.</span>
         <div class="footer-links">
           <a href="/privacy-policy.html">Privacy Policy</a>
         </div>

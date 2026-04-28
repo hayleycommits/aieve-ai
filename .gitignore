@@ -1,0 +1,67 @@
+# Build / deploy outputs
+.vercel
+.netlify
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Internal workspaces / nested repos
+.openclaw/
+memory/
+ai-eve-control/
+lead-engine/
+workers/
+
+# Database / data files
+*.sqlite
+*.sqlite-journal
+*.db
+
+# Internal agent + strategy docs (kept private on disk)
+AGENTS.md
+AI_EVE_CLIENT_ONBOARDING_FORM.md
+AI_EVE_DELIVERY_CHECKLIST.md
+AI_EVE_DELIVERY_WORKFLOW.md
+CEO_ORCHESTRATOR.md
+CLAUDE.md
+CLIENT_DELIVERY_AGENT.md
+CONTENT_STUDIO_SPEC.md
+CUSTOMER_SUPPORT_AGENT.md
+DELIVERY_OPS_SPEC.md
+EVE_CHIEF_SPEC.md
+FINANCE_ADMIN_AGENT.md
+HEARTBEAT.md
+IDENTITY.md
+MARKETING_CONTENT_AGENT.md
+MARKET_RESEARCH_AGENT.md
+MEMORY_SUPABASE.md
+MISSION_CONTROL.md
+OPS_AUTOMATION_AGENT.md
+SALES_AGENT.md
+SALES_HUNTER_SPEC.md
+SOUL.md
+SYSTEMS_OPS_SPEC.md
+TECHNICAL_SCOUT_AGENT.md
+TOOLS.md
+USER.md
+agent_deployment_plan.md
+*_SPEC.md
+*_AGENT.md
+
+# Sales / outreach docs (sensitive)
+ai-eve-content-angles.md
+ai-eve-hotel-outreach-messages.md
+ai-eve-hotel-posts.md
+bnb-outreach-london-5.md
+custom-outreach-top-priority-hotels.md
+decision-maker-research-strategy.md
+draft-*.md
+hotel-email-database.md
+hotel-lead-*.md
+hotel-outreach-*.md
+leads-north-england-hotels.md
+realtime-*.md
+soughton-hall-*.md
+top-5-hotel-campaign.md
+import_leads.sh
