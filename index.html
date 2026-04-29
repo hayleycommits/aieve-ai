@@ -17,8 +17,8 @@
       --line-strong: rgba(63, 47, 31, 0.22);
       --text: #201814;
       --muted: #6f6257;
-      --accent: #8e6a42;
-      --accent-soft: #e7d8c7;
+      --accent: #B87333;
+      --accent-soft: #f0e0cc;
       --shadow: 0 24px 80px rgba(58, 42, 27, 0.08);
       --max: 1220px;
       --serif: "Cormorant Garamond", Georgia, serif;
@@ -161,27 +161,69 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      font-size: 15px;
+      gap: 13px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .brand-wordmark {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1;
+      gap: 2px;
+    }
+
+    .brand-wordmark-ai {
+      font-family: var(--sans);
+      font-size: 7.5px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
+      color: rgba(111, 87, 60, 0.45);
+    }
+
+    .brand-wordmark-eve {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      line-height: 1;
     }
 
     .brand-mark {
-      width: 34px;
-      height: 34px;
+      width: 38px;
+      height: 38px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      border: 1px solid rgba(63, 47, 31, 0.16);
-      background: rgba(255, 255, 255, 0.4);
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent);
+      background: linear-gradient(145deg, #d4924a 0%, #b5621a 55%, #7a3a0c 100%);
+      box-shadow:
+        0 4px 20px rgba(184, 115, 51, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
     }
+
+    @keyframes voice-wave {
+      0%, 100% { transform: scaleY(0.55); opacity: 0.75; }
+      50%       { transform: scaleY(1);    opacity: 1; }
+    }
+
+    .brand-mark-svg rect {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: voice-wave 1.6s ease-in-out infinite;
+    }
+    .brand-mark-svg rect:nth-child(1) { animation-delay: 0.48s; }
+    .brand-mark-svg rect:nth-child(2) { animation-delay: 0.32s; }
+    .brand-mark-svg rect:nth-child(3) { animation-delay: 0.16s; }
+    .brand-mark-svg rect:nth-child(4) { animation-delay: 0s; }
+    .brand-mark-svg rect:nth-child(5) { animation-delay: 0.16s; }
+    .brand-mark-svg rect:nth-child(6) { animation-delay: 0.32s; }
+    .brand-mark-svg rect:nth-child(7) { animation-delay: 0.48s; }
 
     .nav-links {
       display: flex;
@@ -308,12 +350,18 @@
       text-transform: uppercase;
     }
 
+    @keyframes kicker-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(184, 115, 51, 0.7); }
+      70% { box-shadow: 0 0 0 12px rgba(184, 115, 51, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(184, 115, 51, 0); }
+    }
+
     .hero-kicker-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: #97714a;
-      box-shadow: 0 0 0 8px rgba(151, 113, 74, 0.12);
+      background: #B87333;
+      animation: kicker-pulse 1.8s ease-out infinite;
     }
 
     .hero-title {
@@ -325,9 +373,19 @@
       font-weight: 600;
     }
 
+    @keyframes copper-shimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
     .hero-title span {
       display: block;
-      color: rgba(126, 96, 64, 0.92);
+      background: linear-gradient(90deg, #7e6040, #B87333, #e0a456, #c8843a, #8e5a28, #c8843a, #e0a456, #B87333, #7e6040);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: copper-shimmer 5s linear infinite;
     }
 
     .hero-copy {
@@ -354,64 +412,69 @@
 
     .hero-aside {
       position: relative;
-      min-height: 620px;
-      padding: 34px;
+      padding: 36px 28px;
       border: 1px solid rgba(63, 47, 31, 0.1);
-      border-radius: 32px;
+      border-radius: 28px;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 248, 240, 0.88)),
-        radial-gradient(circle at top right, rgba(226, 207, 182, 0.5), transparent 38%);
+        linear-gradient(160deg, rgba(255, 255, 255, 0.82), rgba(255, 245, 232, 0.92)),
+        radial-gradient(circle at 60% 20%, rgba(226, 207, 182, 0.5), transparent 55%);
       box-shadow: var(--shadow);
       overflow: hidden;
+      display: flex;
+      align-items: center;
     }
 
     .hero-aside::before {
       content: "";
       position: absolute;
-      top: 26px;
-      right: 28px;
-      width: 180px;
-      height: 180px;
+      bottom: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      border: 1px solid rgba(141, 108, 72, 0.14);
-      background: radial-gradient(circle, rgba(233, 221, 206, 0.5), rgba(255, 255, 255, 0));
+      background: radial-gradient(circle, rgba(184, 115, 51, 0.08), transparent 70%);
+      pointer-events: none;
     }
 
     .voice-card {
       position: relative;
       z-index: 1;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 100%;
+      align-items: center;
+      gap: 0;
     }
 
     .voice-card-header {
-      max-width: 20rem;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 28px;
     }
 
     .voice-card-header h2 {
       margin: 8px 0 0;
       font-family: var(--serif);
-      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
-      line-height: 0.92;
-      letter-spacing: -0.04em;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
       font-weight: 600;
     }
 
     .voice-card-header p {
-      margin: 18px 0 0;
+      margin: 10px 0 0;
       color: var(--muted);
-      line-height: 1.8;
-      font-size: 16px;
+      line-height: 1.65;
+      font-size: 13.5px;
+      max-width: 22rem;
     }
 
     .voice-card-body {
-      margin-top: 36px;
-      padding: 26px;
-      border: 1px solid rgba(63, 47, 31, 0.12);
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.52);
+      width: 100%;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
@@ -419,56 +482,67 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 22px;
-      color: rgba(83, 64, 46, 0.72);
-      font-size: 12px;
+      width: 100%;
+      margin-bottom: 24px;
+      color: rgba(83, 64, 46, 0.6);
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
     .eve-control {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
     }
 
     .eve-row {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
+      width: 100%;
+    }
+
+    @keyframes mic-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(184,115,51,0.45), 0 12px 40px rgba(184,115,51,0.35); }
+      70%  { box-shadow: 0 0 0 18px rgba(184,115,51,0), 0 12px 40px rgba(184,115,51,0.35); }
+      100% { box-shadow: 0 0 0 0 rgba(184,115,51,0), 0 12px 40px rgba(184,115,51,0.35); }
     }
 
     .eve-button {
-      width: 74px;
-      height: 74px;
-      border-radius: 24px;
-      border: 1px solid rgba(63, 47, 31, 0.12);
-      background: var(--text);
-      color: #f5efe7;
+      width: 88px;
+      height: 88px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(145deg, #d4924a 0%, #b5621a 55%, #7a3a0c 100%);
+      color: white;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition:
-        transform 0.32s var(--ease),
-        background 0.32s var(--ease),
-        box-shadow 0.32s var(--ease);
-      box-shadow: 0 18px 36px rgba(32, 24, 20, 0.16);
+      transition: transform 0.32s var(--ease);
+      box-shadow: 0 12px 40px rgba(184, 115, 51, 0.35);
+      animation: mic-ring 2.6s ease-out infinite;
+      position: relative;
     }
 
     .eve-button:hover {
-      transform: translateY(-2px);
+      transform: scale(1.06);
     }
 
     .eve-button.call-active {
-      background: #8e6a42;
+      background: linear-gradient(145deg, #c0392b, #922b21);
+      animation: none;
+      box-shadow: 0 12px 40px rgba(192, 57, 43, 0.4);
     }
 
     .eve-button svg {
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
       display: block;
     }
 
@@ -486,18 +560,22 @@
       to { transform: rotate(360deg); }
     }
 
+    .eve-copy {
+      text-align: center;
+    }
+
     .eve-copy strong {
       display: block;
-      font-size: 18px;
+      font-size: 15px;
       color: var(--text);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .eve-copy p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.75;
-      font-size: 14px;
+      line-height: 1.65;
+      font-size: 13px;
     }
 
     .eve-timer {
@@ -514,8 +592,10 @@
     .eve-visualizer {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 4px;
       height: 34px;
+      width: 100%;
     }
 
     .eve-bar {
@@ -534,6 +614,9 @@
       margin: 0;
       color: rgba(83, 64, 46, 0.7);
       font-size: 13px;
+      text-align: center;
+      width: 100%;
+      letter-spacing: 0.02em;
     }
 
     .sketch-section {
@@ -1212,8 +1295,9 @@
       box-shadow: var(--shadow);
     }
     .pricing-card-feature {
-      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(232, 215, 192, 0.55));
-      border-color: rgba(142, 106, 66, 0.28);
+      background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(240, 224, 204, 0.65));
+      border-color: rgba(184, 115, 51, 0.42);
+      box-shadow: 0 24px 80px rgba(58, 42, 27, 0.08), 0 0 0 1px rgba(184, 115, 51, 0.18), 0 4px 24px rgba(184, 115, 51, 0.14);
     }
     .pricing-tier {
       margin: 0 0 8px;
@@ -1308,8 +1392,21 @@
     <header>
       <div class="container nav">
         <a class="brand" href="#">
-          <span class="brand-mark">E</span>
-          <span>AI EVE</span>
+          <span class="brand-mark">
+            <svg class="brand-mark-svg" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="0.5"  y="9.5" width="2" height="5"  rx="1" fill="rgba(255,245,235,0.55)"/>
+              <rect x="4"    y="7"   width="2" height="10" rx="1" fill="rgba(255,245,235,0.75)"/>
+              <rect x="7.5"  y="5"   width="2" height="14" rx="1" fill="rgba(255,255,255,0.9)"/>
+              <rect x="11"   y="3.5" width="2" height="17" rx="1" fill="white"/>
+              <rect x="14.5" y="5"   width="2" height="14" rx="1" fill="rgba(255,255,255,0.9)"/>
+              <rect x="18"   y="7"   width="2" height="10" rx="1" fill="rgba(255,245,235,0.75)"/>
+              <rect x="21.5" y="9.5" width="2" height="5"  rx="1" fill="rgba(255,245,235,0.55)"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-ai">AI</span>
+            <span class="brand-wordmark-eve">Eve</span>
+          </span>
         </a>
         <nav class="nav-links">
           <a href="#modes">Modes</a>
