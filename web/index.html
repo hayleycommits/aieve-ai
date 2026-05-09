@@ -1955,23 +1955,6 @@
         if (!node.classList.contains("is-visible")) io.observe(node);
       });
 
-      // Sketch canvas IntersectionObserver — reset animation when scrolled into view
-      (function() {
-        var sketchCanvas = document.getElementById('sketchCanvas');
-        if (!sketchCanvas) return;
-        var sketchVisible = false;
-        var sketchIO = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting && !sketchVisible) {
-              sketchVisible = true;
-if (typeof window.__sketchReset === 'function') window.__sketchReset();
-            } else if (!entry.isIntersecting) {
-              sketchVisible = false;
-            }
-          });
-        }, { threshold: 0.15 });
-        sketchIO.observe(sketchCanvas);
-      })();
     })();
   </script>
 
@@ -2037,12 +2020,29 @@ if (typeof window.__sketchReset === 'function') window.__sketchReset();
       function showResult() {
         const savedMinutes = parseFloat(q1.value) * parseFloat(q2.value) * 0.7;
         const yearlySave = (savedMinutes / 60) * parseFloat(q3.value) * parseFloat(q4.value);
-        result.innerHTML = `Potential annual efficiency gain: <strong>£${Math.round(yearlySave).toLocaleString()}</strong>. Based on routine enquiry and guest communication automation.`;
+        result.innerHTML = `Potential annual efficiency gain: <strong>$${Math.round(yearlySave).toLocaleString()}</strong>. Based on routine guest call and message automation across your portfolio.`;
       }
 
       [q1, q2, q3, q4].forEach((input) => input.addEventListener("input", sync));
       btn.addEventListener("click", showResult);
       sync();
+      // Sketch canvas IntersectionObserver — reset animation when scrolled into view
+      (function() {
+        var sketchCanvas = document.getElementById('sketchCanvas');
+        if (!sketchCanvas) return;
+        var sketchVisible = false;
+        var sketchIO = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !sketchVisible) {
+              sketchVisible = true;
+              if (typeof window.__sketchReset === 'function') window.__sketchReset();
+            } else if (!entry.isIntersecting) {
+              sketchVisible = false;
+            }
+          });
+        }, { threshold: 0.15 });
+        sketchIO.observe(sketchCanvas);
+      })();
     })();
   </script>
 
@@ -2204,7 +2204,7 @@ if (typeof window.__sketchReset === 'function') window.__sketchReset();
           l.push({t:s.v,x:sx+54,y:sy+20,c:s.c,s:20,f:'h',b:true});
           l.push({t:s.l,x:sx+54,y:sy+40,c:COL.muted,s:9,f:'m'});
         });
-        var activities = ['Booking: 2 nights double \u2014 guest enquiry','Spa availability question \u2014 answered','After-hours: directions & check-in','Wedding enquiry \u2014 lead saved'];
+        var activities = ['Booking: 5 nights, beach house \u2014 enquiry captured','Lockbox issue at unit 14B \u2014 resolved','After-hours: door code & wifi password','Owner check-in \u2014 relayed to maintenance'];
         activities.forEach(function(t,i){var ay=dy+82+i*26;p.push({pts:sCircle(cX+6,ay,3),color:COL.line,w:1.5});l.push({t:t,x:cX+16,y:ay,c:COL.muted,s:10,f:'m',a:'left'});});
         p.push({pts:sCircle(cx-210,cy+135,13),color:COL.line,w:1.5});
         l.push({t:'3',x:cx-210,y:cy+135,c:COL.line,s:15,f:'h',b:true});
