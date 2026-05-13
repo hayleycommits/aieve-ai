@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy | AI EVE</title>
+  <meta name="description" content="Privacy Policy for AI EVE, including how we handle website enquiries, booking requests, and voice demo interactions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --panel: rgba(255, 252, 247, 0.82);
+      --text: #201814;
+      --muted: #6f6257;
+      --accent: #8e6a42;
+      --shadow: 0 24px 80px rgba(58, 42, 27, 0.08);
+      --max: 1080px;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: var(--sans);
+      background:
+        radial-gradient(circle at top left, rgba(232, 219, 202, 0.8), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8), transparent 30%),
+        linear-gradient(180deg, #f7f2ea 0%, #f3ede4 46%, #efe7dd 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(53, 38, 24, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(53, 38, 24, 0.02) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      opacity: 0.45;
+      z-index: -2;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .shell::before,
+    .shell::after {
+      content: "";
+      position: fixed;
+      width: 34rem;
+      height: 34rem;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .shell::before {
+      top: -10rem;
+      right: -8rem;
+      background: rgba(211, 190, 164, 0.7);
+    }
+
+    .shell::after {
+      bottom: -16rem;
+      left: -10rem;
+      background: rgba(233, 221, 206, 0.9);
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(20px);
+      background: rgba(247, 242, 234, 0.72);
+      border-bottom: 1px solid rgba(63, 47, 31, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 47, 31, 0.16);
+      background: rgba(255, 255, 255, 0.4);
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .nav-link {
+      font-size: 14px;
+      color: rgba(32, 24, 20, 0.72);
+      text-decoration: none;
+    }
+
+    .hero {
+      padding: 96px 0 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(102, 82, 61, 0.75);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 7vw, 6rem);
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      font-weight: 600;
+    }
+
+    .lead {
+      max-width: 42rem;
+      margin: 22px 0 0;
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    .policy-card {
+      margin: 34px 0 80px;
+      padding: 34px;
+      border: 1px solid rgba(63, 47, 31, 0.1);
+      border-radius: 32px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .policy-meta {
+      margin: 0 0 24px;
+      color: rgba(83, 64, 46, 0.78);
+      font-size: 14px;
+    }
+
+    .policy-section + .policy-section {
+      margin-top: 32px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(63, 47, 31, 0.08);
+    }
+
+    .policy-section h2 {
+      margin: 0 0 14px;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .policy-section p,
+    .policy-section li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .policy-section p + p,
+    .policy-section ul + p,
+    .policy-section p + ul {
+      margin-top: 14px;
+    }
+
+    .policy-section ul {
+      margin: 16px 0 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer {
+      padding: 0 0 44px;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 22px;
+      border-top: 1px solid rgba(63, 47, 31, 0.08);
+      color: rgba(83, 64, 46, 0.74);
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding-top: 72px;
+      }
+
+      .policy-card {
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .nav {
+        min-height: 72px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="/index.html">
+          <span class="brand-mark">E</span>
+          <span>AI EVE</span>
+        </a>
+        <a class="nav-link" href="/index.html">Back to home</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">Privacy Policy</p>
+          <h1>How AI EVE handles website and enquiry data.</h1>
+          <p class="lead">
+            This Privacy Policy explains what information we collect through <strong>aieve.ai</strong>, how we use it, and how to contact us if you have questions or want us to update or delete your information.
+          </p>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="policy-card">
+          <p class="policy-meta"><strong>Effective date:</strong> April 21, 2026</p>
+
+          <section class="policy-section">
+            <h2>Who we are</h2>
+            <p>
+              AI EVE provides AI voice and enquiry-handling services for independent hotels and hospitality businesses. If you have questions about this policy or want to make a privacy request, you can contact us at <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>What we collect</h2>
+            <p>Depending on how you use the site, we may collect:</p>
+            <ul>
+              <li>Your name, company, email address, phone number, website, and message content when you submit an enquiry form.</li>
+              <li>Booking information you choose to provide when you schedule a call through our calendar link.</li>
+              <li>Audio, microphone access, and call interaction data if you choose to use the live voice demo on the website.</li>
+              <li>Basic technical information such as browser type, device information, and server or request logs created when you visit the site.</li>
+            </ul>
+          </section>
+
+          <section class="policy-section">
+            <h2>How we use information</h2>
+            <p>We use information collected through the site to:</p>
+            <ul>
+              <li>Respond to enquiries and booking requests.</li>
+              <li>Arrange and deliver demos, callbacks, or follow-up conversations.</li>
+              <li>Understand how prospects want to use AI EVE and tailor our response.</li>
+              <li>Operate, secure, and improve the website and our lead-handling process.</li>
+            </ul>
+          </section>
+
+          <section class="policy-section">
+            <h2>Third-party services used on this site</h2>
+            <p>
+              Some actions on the site are provided by third-party services rather than being handled entirely on our own servers.
+            </p>
+            <ul>
+              <li><strong>Web3Forms</strong> is used to process website enquiry form submissions.</li>
+              <li><strong>Cal.com</strong> is used to display and manage call booking availability.</li>
+              <li><strong>Vapi</strong> is used to power the live voice demo and microphone-based interaction.</li>
+              <li><strong>Google Fonts</strong> is used to load the fonts displayed on the site.</li>
+            </ul>
+            <p>
+              When you use these parts of the site, your information may be processed by those providers under their own terms and privacy policies as well as ours.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>How long we keep information</h2>
+            <p>
+              We keep enquiry and booking information for as long as reasonably needed to respond to your request, manage our relationship with you, and maintain basic business records. If you ask us to delete your information, we will review that request and remove data where we are not required to keep it.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>How we share information</h2>
+            <p>
+              We do not sell personal information collected through this site. We may share information with service providers that help us operate the website, manage enquiries, run demos, or schedule calls. We may also disclose information where required by law or to protect our rights and systems.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Your choices</h2>
+            <p>You can choose not to use the enquiry form, booking form, or live voice demo. You can also contact us to:</p>
+            <ul>
+              <li>request a copy of the information we hold about you,</li>
+              <li>ask us to correct inaccurate information, or</li>
+              <li>ask us to delete information where we no longer need it.</li>
+            </ul>
+            <p>
+              To make a request, email <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Changes to this policy</h2>
+            <p>
+              We may update this Privacy Policy from time to time. When we do, we will update the effective date on this page.
+            </p>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-row">
+        <span>AI EVE</span>
+        <span>Direct revenue protection for independent hotels.</span>
+        <a href="/index.html">Return to homepage</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
