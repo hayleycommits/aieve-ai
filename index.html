@@ -243,16 +243,54 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .reveal.in { opacity: 1; }
 
 /* ── VOICE WIDGET ── */
+/* Collapsed pill — default state */
+.vw-pill {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  display: flex; align-items: center; gap: 10px;
+  background: #2563eb; color: #fff;
+  padding: 12px 18px 12px 12px; border-radius: 999px;
+  font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px;
+  cursor: pointer; border: none;
+  box-shadow: 0 8px 24px rgba(29,107,243,.45), 0 0 0 4px rgba(29,107,243,.12);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  animation: pillPulse 2.4s ease-in-out infinite;
+}
+.vw-pill:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(29,107,243,.55), 0 0 0 6px rgba(29,107,243,.15); }
+.vw-pill-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #fff; color: #2563eb;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; letter-spacing: .02em;
+}
+@keyframes pillPulse {
+  0%,100%{box-shadow:0 8px 24px rgba(29,107,243,.45), 0 0 0 4px rgba(29,107,243,.12)}
+  50%{box-shadow:0 8px 24px rgba(29,107,243,.55), 0 0 0 10px rgba(29,107,243,.06)}
+}
+.vw-pill.hidden { display: none; }
+
+/* Expanded widget */
 .vw {
-  position: fixed; bottom: 28px; right: 28px; z-index: 200;
-  width: 272px;
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  width: 290px;
   border-radius: 22px;
   background: #0f1117;
   border: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 24px 60px rgba(0,0,0,.38), 0 0 0 1px rgba(255,255,255,.04) inset;
-  padding: 20px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04) inset;
+  padding: 18px;
   font-family: 'Inter', sans-serif;
+  display: none;
 }
+.vw.open { display: block; animation: vwIn .25s ease; }
+@keyframes vwIn { from { opacity:0; transform: translateY(8px) scale(.96); } to { opacity:1; transform: translateY(0) scale(1); } }
+.vw-close {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(255,255,255,.06); border: none;
+  width: 26px; height: 26px; border-radius: 50%;
+  color: rgba(255,255,255,.6); font-size: 16px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.vw-close:hover { background: rgba(255,255,255,.12); color: #fff; }
 .vw-header {
   display: flex; align-items: center; gap: 11px; margin-bottom: 16px;
 }
@@ -317,7 +355,11 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .vw-btn-start:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(29,107,243,.45); }
 .vw-btn-end { background: #ef4444; color: #fff; box-shadow: 0 6px 20px rgba(239,68,68,.4); }
 .vw-btn-end:hover { background: #dc2626; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(239,68,68,.55); }
-@media (max-width: 480px) { .vw { width: calc(100vw - 40px); right: 20px; bottom: 20px; } }
+@media (max-width: 480px) {
+  .vw { width: calc(100vw - 32px); right: 16px; bottom: 16px; left: 16px; }
+  .vw-pill { right: 16px; bottom: 16px; padding: 10px 16px 10px 10px; font-size: 13px; }
+  .vw-pill-dot { width: 24px; height: 24px; font-size: 10px; }
+}
 
 /* ── MARCELO MOTION: cursor light orb (mouse-following ambient glow) ── */
 .cursor-orb {
@@ -497,7 +539,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
     <span class="blob blob-3"></span>
   </div>
   <div class="wrap">
-    <div class="hero-badge reveal">0.4s answer · 24/7 coverage · 5 days to go live · £0 setup</div>
+    <div class="hero-badge reveal">0.4s answer · 24/7 coverage · 5 days to go live</div>
     <h1 class="reveal">Your phone is ringing.<br><span class="blue">EVE answers every call.</span></h1>
     <p class="hero-sub reveal">AI EVE qualifies every lead and books the job directly into your calendar — while you focus on the work.</p>
     <div class="hero-btns reveal">
@@ -660,7 +702,12 @@ document.querySelectorAll('.stat-cell .v').forEach(el => statObs.observe(el));
 </script>
 
 <!-- VOICE WIDGET -->
+<button class="vw-pill" id="vwPill" type="button">
+  <span class="vw-pill-dot">EVE</span>
+  <span>Talk to EVE</span>
+</button>
 <div class="vw" id="vw">
+  <button class="vw-close" id="vwClose" type="button" aria-label="Close">×</button>
   <div class="vw-header">
     <div class="vw-ava" id="vwAva">EVE</div>
     <div>
@@ -706,6 +753,9 @@ import Vapi from 'https://esm.sh/@vapi-ai/web';
 
 const vapi = new Vapi(VAPI_PUBLIC_KEY);
 
+const vwPill       = document.getElementById('vwPill');
+const vw           = document.getElementById('vw');
+const vwClose      = document.getElementById('vwClose');
 const vwAva        = document.getElementById('vwAva');
 const vwSub        = document.getElementById('vwSub');
 const vwBarUser    = document.getElementById('vwBarUser');
@@ -714,6 +764,20 @@ const vwTranscript = document.getElementById('vwTranscript');
 const vwTimer      = document.getElementById('vwTimer');
 const vwStart = document.getElementById('vwStart');
 const vwEnd   = document.getElementById('vwEnd');
+
+function openWidget() {
+  vwPill.classList.add('hidden');
+  vw.classList.add('open');
+}
+function closeWidget() {
+  if (vw.classList.contains('open')) {
+    vapi.stop();
+  }
+  vw.classList.remove('open');
+  vwPill.classList.remove('hidden');
+}
+vwPill.addEventListener('click', openWidget);
+vwClose.addEventListener('click', closeWidget);
 
 let timerInterval = null, secs = 0, timedOut = false;
 const MAX_SECS = 120;
@@ -831,8 +895,8 @@ vwStart.addEventListener('click', startCall);
 vwEnd.addEventListener('click', () => vapi.stop());
 
 document.getElementById('heroTalkBtn').addEventListener('click', () => {
-  document.querySelector('.vw').scrollIntoView({ behavior: 'smooth', block: 'end' });
-  setTimeout(startCall, 400);
+  openWidget();
+  setTimeout(startCall, 300);
 });
 
 vapi.on('call-start',   () => setState('active'));
