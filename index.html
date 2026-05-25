@@ -499,6 +499,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   .how-steps { grid-template-columns: 1fr; gap: 14px; }
   .how-title { margin-bottom: 36px; }
   .how { padding: 70px 0 90px; }
+  .nav-dash { display: none !important; }
 }
 
 /* ── DASHBOARD PREVIEW ── */
@@ -593,7 +594,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
       AI EVE
     </a>
     <div style="display:flex; gap:8px; align-items:center;">
-      <a class="btn btn-ghost" href="/dashboard.html" style="padding:9px 18px;font-size:13px;display:inline-flex;align-items:center;gap:6px">
+      <a class="btn btn-ghost nav-dash" href="/dashboard.html" style="padding:9px 18px;font-size:13px;display:inline-flex;align-items:center;gap:6px">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
         See the dashboard
       </a>
@@ -662,11 +663,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
         </a>
       </div>
       <a href="/dashboard.html" class="dash-img-wrap">
-        <img src="/media/aieve_interface.jpg" alt="AI EVE Dashboard" onerror="this.style.display='none'" />
-        <div class="dash-img-fallback">
-          <div class="dash-fallback-orb"></div>
-          <div class="dash-fallback-text">Click to open the live dashboard demo →</div>
-        </div>
+        <img src="/media/aieve_interface.jpg" alt="AI EVE Dashboard" />
       </a>
     </div>
   </div>
