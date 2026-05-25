@@ -501,6 +501,77 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   .how { padding: 70px 0 90px; }
 }
 
+/* ── DASHBOARD PREVIEW ── */
+.dash-preview { padding: 80px 0 100px; background: #fafafa; }
+.dash-card {
+  background: linear-gradient(135deg, #0a0f1d 0%, #060912 100%);
+  border-radius: 24px; padding: 56px;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px;
+  align-items: center; overflow: hidden; position: relative;
+  box-shadow: 0 30px 70px rgba(15,17,23,.18);
+}
+.dash-card::before {
+  content:''; position:absolute; inset:0;
+  background: radial-gradient(ellipse 600px 400px at 80% 20%, rgba(59,130,246,.15) 0%, transparent 60%);
+  pointer-events:none;
+}
+.dash-text { position: relative; z-index: 1; }
+.dash-eyebrow {
+  font-family: 'Space Grotesk'; font-size: 11px; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase; color: #60a5fa;
+  margin-bottom: 16px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.dash-eyebrow::before {
+  content:''; width: 6px; height: 6px; border-radius: 50%;
+  background: #22c55e; box-shadow: 0 0 8px #22c55e;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.dash-card h2 {
+  font-family: 'Space Grotesk'; font-weight: 700;
+  font-size: clamp(26px, 2.8vw, 38px);
+  letter-spacing: -.02em; line-height: 1.15;
+  color: #fff; margin-bottom: 16px;
+}
+.dash-card h2 .blue { color: #60a5fa; }
+.dash-card p {
+  font-size: 15px; color: rgba(255,255,255,.65); line-height: 1.6;
+  margin-bottom: 28px; max-width: 38ch;
+}
+.dash-img-wrap {
+  position: relative; z-index: 1;
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  background: #06080f;
+  aspect-ratio: 16/10;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.dash-img-wrap:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(59,130,246,.25); }
+.dash-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dash-img-fallback {
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  text-align: center; padding: 30px;
+}
+.dash-fallback-orb {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: radial-gradient(circle, #1a2440 0%, #0a0f1d 100%);
+  border: 1px solid rgba(96,165,250,.4);
+  box-shadow: 0 0 40px rgba(59,130,246,.4);
+  animation: orbPulse 3s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%,100% { box-shadow: 0 0 40px rgba(59,130,246,.4); }
+  50%     { box-shadow: 0 0 60px rgba(59,130,246,.6); }
+}
+.dash-fallback-text { color: #60a5fa; font-size: 13px; font-weight: 600; }
+@media (max-width: 880px) {
+  .dash-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
+  .dash-preview { padding: 60px 0 80px; }
+}
+
 </style>
 </head>
 <body>
@@ -521,7 +592,13 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
       <span class="logo-mark"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M13 3 5 14h6l-2 7 8-11h-6l2-7Z" fill="currentColor"/></svg></span>
       AI EVE
     </a>
-    <a class="btn btn-ghost" href="mailto:hello@aieve.ai" style="padding:9px 18px;font-size:13px">Contact us</a>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <a class="btn btn-ghost" href="/dashboard.html" style="padding:9px 18px;font-size:13px;display:inline-flex;align-items:center;gap:6px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        See the dashboard
+      </a>
+      <a class="btn btn-ghost" href="mailto:hello@aieve.ai" style="padding:9px 18px;font-size:13px">Contact us</a>
+    </div>
   </div>
 </nav>
 
@@ -567,6 +644,30 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
         <p>Real bookings arrive ready to go. The time-wasters never make it through.</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="dash-preview">
+  <div class="wrap">
+    <div class="dash-card reveal">
+      <div class="dash-text">
+        <div class="dash-eyebrow">Live dashboard</div>
+        <h2>Watch every call, lead, and booking in <span class="blue">real time.</span></h2>
+        <p>You don't just hand calls to EVE — you see them happen. Every qualified lead, every appointment, every conversion live as it lands.</p>
+        <a href="/dashboard.html" class="btn btn-primary" style="padding:13px 24px;font-size:14px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;width:fit-content;">
+          See the live dashboard
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <a href="/dashboard.html" class="dash-img-wrap">
+        <img src="/media/aieve_interface.jpg" alt="AI EVE Dashboard" onerror="this.style.display='none'" />
+        <div class="dash-img-fallback">
+          <div class="dash-fallback-orb"></div>
+          <div class="dash-fallback-text">Click to open the live dashboard demo →</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
