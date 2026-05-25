@@ -678,7 +678,7 @@ const vwTimer = document.getElementById('vwTimer');
 const vwStart = document.getElementById('vwStart');
 const vwEnd   = document.getElementById('vwEnd');
 
-let timerInterval = null, secs = 0;
+let timerInterval = null, secs = 0, timedOut = false;
 const MAX_SECS = 240;
 const fmt = s => String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
 
@@ -710,9 +710,8 @@ function setState(state) {
     timerInterval = setInterval(() => {
       vwTimer.textContent = fmt(++secs);
       if (secs >= MAX_SECS) {
+        timedOut = true;
         vapi.stop();
-        vwSub.textContent = 'Demo ended — visit aieve.ai to learn more';
-        vwSub.className = 'vw-sub';
       }
     }, 1000);
   }
@@ -735,7 +734,17 @@ document.getElementById('heroTalkBtn').addEventListener('click', () => {
 });
 
 vapi.on('call-start',   () => setState('active'));
-vapi.on('call-end',     () => { clearInterval(timerInterval); timerInterval = null; setState('idle'); });
+vapi.on('call-end',     () => {
+  clearInterval(timerInterval); timerInterval = null;
+  if (timedOut) {
+    setState('idle');
+    vwSub.textContent = 'Demo ended — book a call at aieve.ai';
+    vwSub.className = 'vw-sub';
+    timedOut = false;
+  } else {
+    setState('idle');
+  }
+});
 vapi.on('speech-start', () => setState('speaking'));
 vapi.on('speech-end',   () => { vwWave.className = 'vw-wave'; });
 vapi.on('volume-level', vol => {
