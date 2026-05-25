@@ -187,7 +187,14 @@ nav .wrap { height: 100%; display: flex; align-items: center; justify-content: s
   background: radial-gradient(ellipse, rgba(29,107,243,.28) 0%, transparent 68%);
   pointer-events: none;
 }
-.cta-inner { position: relative; max-width: 620px; margin: 0 auto; }
+.cta-inner { position: relative; max-width: 820px; margin: 0 auto; }
+.cta-calendar {
+  margin-top: 48px; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 24px 60px rgba(0,0,0,.4);
+  background: #fff;
+  min-height: 700px;
+}
 .cta h2 {
   font-family: 'Space Grotesk'; font-weight: 700;
   font-size: clamp(32px, 3.8vw, 56px);
@@ -263,28 +270,42 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .vw-name { font-family: 'Space Grotesk'; font-weight: 600; font-size: 14.5px; color: #fff; }
 .vw-sub { font-size: 11.5px; color: rgba(255,255,255,.38); margin-top: 2px; }
 .vw-sub.live { color: #4ade80; }
-.vw-wave {
-  height: 54px; border-radius: 12px;
+.vw-bars {
   background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
-  display: flex; align-items: center; justify-content: center; gap: 4px;
-  margin-bottom: 14px; overflow: hidden;
+  border-radius: 12px; padding: 10px 12px; margin-bottom: 14px;
+  display: flex; flex-direction: column; gap: 7px;
 }
-.vw-wave span {
-  width: 3px; border-radius: 99px;
-  background: #2563eb;
-  height: 8px;
-  transition: height .14s ease;
+.vw-bar-row { display: flex; align-items: center; gap: 8px; }
+.vw-bar-label {
+  font-size: 9px; font-family: 'Space Grotesk'; font-weight: 700;
+  letter-spacing: .07em; width: 22px; flex-shrink: 0;
 }
-.vw-wave.active span { animation: vapiBar 1.1s ease-in-out infinite; }
-.vw-wave.active span:nth-child(1){animation-delay:.00s}
-.vw-wave.active span:nth-child(2){animation-delay:.10s}
-.vw-wave.active span:nth-child(3){animation-delay:.20s}
-.vw-wave.active span:nth-child(4){animation-delay:.30s}
-.vw-wave.active span:nth-child(5){animation-delay:.20s}
-.vw-wave.active span:nth-child(6){animation-delay:.10s}
-.vw-wave.active span:nth-child(7){animation-delay:.00s}
-.vw-wave.active span:nth-child(8){animation-delay:.10s}
-@keyframes vapiBar { 0%,100%{height:8px} 50%{height:36px} }
+.vw-bar-label.you { color: #4ade80; }
+.vw-bar-label.eve { color: #60a5fa; }
+.vw-bar-track {
+  display: flex; align-items: center; gap: 3px; flex: 1; height: 28px;
+}
+.vw-bar-track span {
+  flex: 1; border-radius: 99px; height: 3px;
+  transition: height .08s ease;
+}
+.vw-bar-track.you span { background: #4ade80; }
+.vw-bar-track.eve span { background: #2563eb; }
+.vw-transcript {
+  height: 110px; overflow-y: auto; border-radius: 10px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  padding: 8px 10px; margin-bottom: 12px;
+  display: none; flex-direction: column; gap: 5px;
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.1) transparent;
+}
+.vw-transcript.visible { display: flex; }
+.vw-tx-line { font-size: 11px; line-height: 1.45; display: flex; gap: 5px; }
+.vw-tx-who { font-family: 'Space Grotesk'; font-weight: 700; font-size: 9px;
+  letter-spacing: .06em; flex-shrink: 0; padding-top: 1px; }
+.vw-tx-who.you { color: #4ade80; }
+.vw-tx-who.eve { color: #60a5fa; }
+.vw-tx-text { color: rgba(255,255,255,.65); }
+.vw-tx-text.partial { color: rgba(255,255,255,.32); font-style: italic; }
 .vw-timer { font-size: 12px; color: rgba(255,255,255,.35); text-align: center; margin-bottom: 12px; font-variant-numeric: tabular-nums; letter-spacing: .04em; min-height: 18px; }
 .vw-btn {
   width: 100%; padding: 12px; border-radius: 999px;
@@ -517,15 +538,16 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 <section class="cta" id="cta">
   <div class="wrap">
     <div class="cta-inner">
-      <h2 class="reveal">Stop losing jobs to a <span class="blue">missed call.</span></h2>
-      <p class="reveal">Book a 15-minute demo. We'll plug EVE into a test line and you'll hear her qualify and book a job live on the call.</p>
-      <div class="cta-btns reveal">
-        <a class="btn btn-white" href="mailto:hello@aieve.ai?subject=Install%20my%20AI%20voice%20agent" style="padding:14px 26px">Book a demo →</a>
+      <h2 class="reveal">Book a <span class="blue">free demo.</span></h2>
+      <p class="reveal">Pick a time below. We'll plug EVE into a test line and you'll hear her qualify and book a job live on the call.</p>
+      <div class="cta-note reveal" style="margin-bottom:0">Live in 5 days &nbsp;·&nbsp; No long contracts</div>
+      <div class="cta-calendar reveal">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/bADszpd1744iWi1zvqPT" style="width:100%;min-height:700px;border:none;overflow:hidden;" scrolling="no" id="bADszpd1744iWi1zvqPT_1779712694658"></iframe>
       </div>
-      <div class="cta-note reveal">Live in 5 days</div>
     </div>
   </div>
 </section>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
 
 <!-- FOOTER -->
 <footer>
@@ -646,10 +668,23 @@ document.querySelectorAll('.stat-cell .v').forEach(el => statObs.observe(el));
       <div class="vw-sub" id="vwSub">Live AI voice demo</div>
     </div>
   </div>
-  <div class="vw-wave" id="vwWave">
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
+  <div class="vw-bars" id="vwBars">
+    <div class="vw-bar-row">
+      <span class="vw-bar-label you">YOU</span>
+      <div class="vw-bar-track you" id="vwBarUser">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="vw-bar-row">
+      <span class="vw-bar-label eve">EVE</span>
+      <div class="vw-bar-track eve" id="vwBarEve">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
   </div>
+  <div class="vw-transcript" id="vwTranscript"></div>
   <div class="vw-timer" id="vwTimer"></div>
   <button class="vw-btn vw-btn-start" id="vwStart">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
@@ -671,19 +706,57 @@ import Vapi from 'https://esm.sh/@vapi-ai/web';
 
 const vapi = new Vapi(VAPI_PUBLIC_KEY);
 
-const vwAva   = document.getElementById('vwAva');
-const vwSub   = document.getElementById('vwSub');
-const vwWave  = document.getElementById('vwWave');
-const vwTimer = document.getElementById('vwTimer');
+const vwAva        = document.getElementById('vwAva');
+const vwSub        = document.getElementById('vwSub');
+const vwBarUser    = document.getElementById('vwBarUser');
+const vwBarEve     = document.getElementById('vwBarEve');
+const vwTranscript = document.getElementById('vwTranscript');
+const vwTimer      = document.getElementById('vwTimer');
 const vwStart = document.getElementById('vwStart');
 const vwEnd   = document.getElementById('vwEnd');
 
 let timerInterval = null, secs = 0, timedOut = false;
-const MAX_SECS = 240;
+const MAX_SECS = 120;
 const fmt = s => String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
 
+// ── Mic visualiser ──────────────────────────────────────────────
+let audioCtx = null, analyser = null, micStream = null, rafId = null;
+
+function resetBars() {
+  vwBarUser.querySelectorAll('span').forEach(b => b.style.height = '3px');
+  vwBarEve.querySelectorAll('span').forEach(b => b.style.height = '3px');
+}
+
+async function startMicViz() {
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    audioCtx  = new AudioContext();
+    analyser  = audioCtx.createAnalyser();
+    analyser.fftSize = 32;
+    audioCtx.createMediaStreamSource(micStream).connect(analyser);
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    const bars = vwBarUser.querySelectorAll('span');
+    (function tick() {
+      analyser.getByteFrequencyData(data);
+      bars.forEach((b, i) => {
+        const v = data[Math.floor(i * data.length / bars.length)] || 0;
+        b.style.height = Math.max(3, Math.round((v / 255) * 24)) + 'px';
+      });
+      rafId = requestAnimationFrame(tick);
+    })();
+  } catch(e) { /* mic denied — silently skip */ }
+}
+
+function stopMicViz() {
+  if (rafId)     { cancelAnimationFrame(rafId); rafId = null; }
+  if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+  if (audioCtx)  { audioCtx.close(); audioCtx = null; }
+  analyser = null;
+  resetBars();
+}
+// ────────────────────────────────────────────────────────────────
+
 function setState(state) {
-  vwWave.className = 'vw-wave';
   vwAva.className = 'vw-ava';
 
   if (state === 'idle') {
@@ -693,6 +766,9 @@ function setState(state) {
     vwEnd.style.display = 'none';
     vwTimer.textContent = '';
     clearInterval(timerInterval); secs = 0;
+    stopMicViz();
+    vwTranscript.innerHTML = '';
+    vwTranscript.classList.remove('visible');
   }
   if (state === 'connecting') {
     vwSub.textContent = 'Connecting...';
@@ -709,16 +785,42 @@ function setState(state) {
     secs = 0;
     timerInterval = setInterval(() => {
       vwTimer.textContent = fmt(++secs);
-      if (secs >= MAX_SECS) {
-        timedOut = true;
-        vapi.stop();
-      }
+      if (secs >= MAX_SECS) { timedOut = true; vapi.stop(); }
     }, 1000);
-  }
-  if (state === 'speaking') {
-    vwWave.className = 'vw-wave active';
+    startMicViz();
+    vwTranscript.classList.add('visible');
   }
 }
+
+// ── Transcript ───────────────────────────────────────────────────
+let partialLine = null;
+
+function addLine(role, text, partial) {
+  if (partial) {
+    if (!partialLine) {
+      partialLine = document.createElement('div');
+      partialLine.className = 'vw-tx-line';
+      partialLine.innerHTML = `<span class="vw-tx-who ${role}">${role.toUpperCase()}</span><span class="vw-tx-text partial"></span>`;
+      vwTranscript.appendChild(partialLine);
+    }
+    partialLine.querySelector('.vw-tx-text').textContent = text;
+  } else {
+    if (partialLine) { partialLine.remove(); partialLine = null; }
+    const line = document.createElement('div');
+    line.className = 'vw-tx-line';
+    line.innerHTML = `<span class="vw-tx-who ${role}">${role.toUpperCase()}</span><span class="vw-tx-text">${text}</span>`;
+    vwTranscript.appendChild(line);
+  }
+  vwTranscript.scrollTop = vwTranscript.scrollHeight;
+}
+
+vapi.on('message', msg => {
+  console.log('[vapi msg]', JSON.stringify(msg).slice(0, 200));
+  if (msg.type !== 'transcript') return;
+  const role = msg.role === 'assistant' ? 'eve' : 'you';
+  addLine(role, msg.transcript, msg.transcriptType === 'partial');
+});
+// ────────────────────────────────────────────────────────────────
 
 function startCall() {
   setState('connecting');
@@ -745,12 +847,11 @@ vapi.on('call-end',     () => {
     setState('idle');
   }
 });
-vapi.on('speech-start', () => setState('speaking'));
-vapi.on('speech-end',   () => { vwWave.className = 'vw-wave'; });
 vapi.on('volume-level', vol => {
-  const h = Math.max(8, Math.round(vol * 52));
-  vwWave.querySelectorAll('span').forEach((s, i) => {
-    s.style.height = Math.max(6, h * (0.5 + 0.5 * Math.sin(i * 0.9))) + 'px';
+  const bars = vwBarEve.querySelectorAll('span');
+  bars.forEach((b, i) => {
+    const h = Math.max(3, Math.round(vol * 26 * (0.5 + 0.5 * Math.sin(i * 0.9))));
+    b.style.height = h + 'px';
   });
 });
 vapi.on('error', err => { console.error('Vapi:', err); setState('idle'); });
