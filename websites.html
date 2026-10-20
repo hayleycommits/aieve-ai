@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Websites and apps | AI EVE</title>
+<meta name="description" content="Websites and phone apps for businesses, designed with you, tested on every screen and built by AI EVE.">
+<link rel="canonical" href="https://aieve.ai/websites.html">
+<meta property="og:title" content="Websites and apps | AI EVE">
+<meta property="og:description" content="Websites and phone apps for businesses, designed with you, tested on every screen and built by AI EVE.">
+<meta property="og:url" content="https://aieve.ai/websites.html">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23b5621a'/%3E%3Crect x='29.5' y='10' width='3' height='40' rx='1.5' fill='white'/%3E%3Crect x='24' y='14' width='3' height='32' rx='1.5' fill='white'/%3E%3Crect x='35' y='14' width='3' height='32' rx='1.5' fill='white'/%3E%3Crect x='18.5' y='18' width='3' height='24' rx='1.5' fill='white'/%3E%3Crect x='40.5' y='18' width='3' height='24' rx='1.5' fill='white'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a working portfolio page. Dark hero with the real site on a laptop and a phone, then the case study,
+   what's included, the four steps, the apps, and one way to get in touch. Copper from the AI EVE mark is the only accent. */
+:root {
+  --bg: #fbfaf8;
+  --surface: #f2eee9;
+  --ink: #1d1712;
+  --muted: #6b6058;
+  --line: rgba(29, 23, 18, 0.12);
+  --copper: #a8561a;
+  --copper-soft: rgba(168, 86, 26, 0.10);
+  --night: #15110e;
+  --night-ink: #f3ede6;
+  --night-muted: #b4a89c;
+  --night-line: rgba(243, 237, 230, 0.14);
+  --display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius: 10px;
+  --wrap: 1160px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14100d; --surface: #1d1814; --ink: #f3ede6; --muted: #b4a89c; --line: rgba(243, 237, 230, 0.13);
+    --copper: #d4924a; --copper-soft: rgba(212, 146, 74, 0.12); --night: #0e0b09; --night-line: rgba(243, 237, 230, 0.12);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14100d; --surface: #1d1814; --ink: #f3ede6; --muted: #b4a89c; --line: rgba(243, 237, 230, 0.13);
+  --copper: #d4924a; --copper-soft: rgba(212, 146, 74, 0.12); --night: #0e0b09; --night-line: rgba(243, 237, 230, 0.12);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--copper); }
+.lede { font-size: 1.12rem; color: var(--muted); max-width: 58ch; }
+.btn { display: inline-flex; align-items: center; gap: 10px; font: 600 0.95rem var(--body); text-decoration: none; padding: 14px 22px; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.btn:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+.btn-copper { background: var(--copper); color: #fff; }
+.btn-copper:hover { transform: translateY(-1px); }
+.btn-line { border-color: currentColor; background: transparent; }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn-copper:hover { transform: none; } }
+
+/* Top bar */
+.top { background: var(--night); color: var(--night-ink); border-bottom: 1px solid var(--night-line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand svg { width: 38px; height: 38px; flex: none; }
+.brand-name { display: grid; line-height: 1; }
+.brand-name small { font: 700 0.6rem var(--body); letter-spacing: 0.32em; color: var(--night-muted); }
+.brand-name span { font: 600 1.55rem var(--display); letter-spacing: 0.06em; }
+.top nav { display: flex; gap: 22px; font-size: 0.9rem; }
+.top nav a { text-decoration: none; color: var(--night-muted); }
+.top nav a:hover, .top nav a[aria-current] { color: var(--night-ink); }
+.top nav { align-items: center; }
+.top nav .btn { color: #fff; padding: 9px 16px; font-size: 0.86rem; }
+
+/* Hero */
+.hero { background: var(--night); color: var(--night-ink); overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: center; padding-block: 72px 88px; }
+.hero h1 { font-size: clamp(2.6rem, 5.4vw, 4.4rem); margin: 16px 0 22px; }
+.hero h1 em { font-style: italic; color: var(--copper); font-weight: 500; }
+.hero .lede { color: var(--night-muted); }
+.hero .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero .btn-line { color: var(--night-ink); }
+.devices { position: relative; padding-bottom: 40px; }
+.laptop { border-radius: 12px; overflow: hidden; border: 1px solid var(--night-line); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45); background: #000; }
+.laptop .bar { height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #24201c; }
+.laptop .bar i { width: 9px; height: 9px; border-radius: 50%; background: #4a433d; }
+.laptop .bar span { margin-left: 10px; font-size: 0.68rem; color: #9b9087; }
+.phone { position: absolute; right: -6px; bottom: 0; width: 27%; border-radius: 22px; overflow: hidden; border: 5px solid #2a2520; box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5); }
+
+/* Sections */
+section { padding-block: 96px; }
+.section-head { display: grid; gap: 14px; max-width: 760px; margin-bottom: 48px; }
+.section-head h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
+
+/* Case study */
+.case { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.case-shots { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 16px; align-items: end; }
+.case-shots img { border-radius: var(--radius); border: 1px solid var(--line); }
+.case-copy { display: grid; gap: 22px; }
+.case-copy h3 { font-size: 2rem; }
+.client { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 0.86rem; color: var(--muted); }
+.chip { display: inline-flex; align-items: center; gap: 7px; font-size: 0.78rem; font-weight: 600; color: var(--copper); background: var(--copper-soft); padding: 4px 11px; border-radius: 999px; }
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.facts li { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.facts b { font: 600 1.7rem var(--display); color: var(--copper); font-variant-numeric: tabular-nums; }
+.facts span { font-size: 0.95rem; }
+.quote { font: italic 500 1.35rem/1.4 var(--display); padding-left: 18px; border-left: 2px solid var(--copper); }
+
+/* Included */
+.included { background: var(--surface); }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.grid3 > div { background: var(--surface); padding: 28px; display: grid; gap: 8px; align-content: start; }
+.grid3 h3 { font-size: 1.45rem; }
+.grid3 p { color: var(--muted); font-size: 0.95rem; }
+
+/* Steps */
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; counter-reset: step; }
+.steps li { counter-increment: step; display: grid; gap: 10px; align-content: start; padding-top: 18px; border-top: 2px solid var(--ink); }
+.steps li::before { content: "Step " counter(step); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); }
+.steps h3 { font-size: 1.5rem; }
+.steps p { color: var(--muted); font-size: 0.95rem; }
+
+/* Maker */
+.maker { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.maker blockquote { margin: 0; font: 500 clamp(1.6rem, 2.8vw, 2.2rem)/1.25 var(--display); }
+.maker blockquote em { color: var(--copper); }
+.maker .who { display: grid; gap: 16px; color: var(--muted); }
+.maker .who strong { color: var(--ink); }
+.app-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 460px; }
+.app-shots img { border-radius: 22px; border: 5px solid #2a2520; box-shadow: 0 20px 44px rgba(29, 23, 18, 0.2); }
+.app-shots img:last-child { margin-top: 40px; }
+.app-h { font-size: clamp(2rem, 3.4vw, 2.8rem); color: var(--ink); }
+.ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; color: var(--ink); }
+.ticks li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; }
+.ticks li::before { content: ""; width: 8px; height: 8px; margin: 9px 0 0 4px; border-radius: 50%; background: var(--copper); }
+
+/* Voice band */
+.voice { background: var(--night); color: var(--night-ink); padding-block: 56px; }
+.voice .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.voice h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
+.voice p { color: var(--night-muted); margin-top: 6px; }
+.voice .btn-line { color: var(--night-ink); }
+
+/* Contact */
+.contact { text-align: left; }
+.contact .wrap { display: grid; gap: 18px; justify-items: start; }
+.contact h2 { font-size: clamp(2.2rem, 4.4vw, 3.6rem); max-width: 16ch; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 10px; }
+.mail code { font: 600 1.15rem var(--body); user-select: all; padding: 12px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.mail button { font: 600 0.9rem var(--body); padding: 12px 18px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+.copied { font-size: 0.86rem; color: var(--copper); }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; font-size: 0.82rem; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .hero .wrap, .case, .maker { grid-template-columns: 1fr; gap: 40px; }
+  .grid3 { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  section { padding-block: 72px; }
+}
+@media (max-width: 600px) {
+  .top nav { display: none; }
+  .grid3, .steps { grid-template-columns: 1fr; }
+  .hero .wrap { padding-block: 48px 64px; }
+  .phone { width: 32%; }
+  .facts li { grid-template-columns: 4.2rem minmax(0, 1fr); }
+}
+
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="AI EVE home">
+      <svg viewBox="0 0 60 60" aria-hidden="true">
+        <defs><linearGradient id="cu" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4924a"/><stop offset="55%" stop-color="#b5621a"/><stop offset="100%" stop-color="#7a3a0c"/></linearGradient></defs>
+        <circle cx="30" cy="30" r="28" fill="url(#cu)"/>
+        <rect x="13" y="22.5" width="3" height="15" rx="1.5" fill="rgba(255,245,235,0.55)"/>
+        <rect x="18.5" y="17.5" width="3" height="25" rx="1.5" fill="rgba(255,245,235,0.75)"/>
+        <rect x="24" y="13.5" width="3" height="33" rx="1.5" fill="rgba(255,255,255,0.9)"/>
+        <rect x="29.5" y="10" width="3" height="40" rx="1.5" fill="#fff"/>
+        <rect x="35" y="13.5" width="3" height="33" rx="1.5" fill="rgba(255,255,255,0.9)"/>
+        <rect x="40.5" y="17.5" width="3" height="25" rx="1.5" fill="rgba(255,245,235,0.75)"/>
+        <rect x="46" y="22.5" width="3" height="15" rx="1.5" fill="rgba(255,245,235,0.55)"/>
+      </svg>
+      <span class="brand-name"><small>AI</small><span>Eve</span></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="/">AI receptionist</a>
+      <a href="#work" aria-current="page">Websites and apps</a>
+      <a href="/dashboard.html">Dashboard</a>
+      <a class="btn btn-copper" href="#contact">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Websites and apps by AI EVE</span>
+        <h1>Websites and apps, <em>designed with you.</em></h1>
+        <p class="lede">We design and build websites and phone apps for businesses that need them to work hard: clear pages, forms that land in your inbox, apps your customers actually use, and everything tested on the phone they're holding.</p>
+        <div class="btns">
+          <a class="btn btn-copper" href="#contact">Talk about your website</a>
+          <a class="btn btn-line" href="#work">See the work</a>
+        </div>
+      </div>
+      <div class="devices">
+        <div class="laptop">
+          <div class="bar"><i></i><i></i><i></i><span>reliefchefs.co.uk</span></div>
+          <img src="/media/home/rc-laptop-home.jpg" alt="The new Relief Chefs UK home page on a laptop: a kitchen video behind the headline Find chefs. Fill shifts. Keep service moving." width="1440" height="900">
+        </div>
+        <div class="phone"><img src="/media/home/rc-app.jpg" alt="The Relief Chefs UK app on a phone, confirming a shift is live" width="416" height="900"></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Recent work</span>
+        <h2>Relief Chefs UK</h2>
+      </div>
+      <div class="case">
+        <div class="case-shots">
+          <img src="/media/home/rc-laptop-services.jpg" alt="The Recruitment Services page, with six services on dark cards" width="1440" height="900" loading="lazy">
+          <img src="/media/home/rc-phone-private.jpg" alt="The Private and Yacht Chefs page on a phone" width="780" height="1688" loading="lazy">
+        </div>
+        <div class="case-copy">
+          <div class="client">
+            <span class="chip">Launching soon</span>
+            <span>Chef recruitment agency</span>
+            <span>Nationwide since 2013</span>
+          </div>
+          <h3>A new website and an app for a national chef agency.</h3>
+          <p>The old site had grown piece by piece and its forms had stopped sending. We redesigned every page, rewrote the copy and rebuilt it inside the client's existing WordPress, so the blog, jobs board and Google rankings carry on. Alongside it, we built the agency's own app.</p>
+          <ul class="facts">
+            <li><b>12</b><span>pages redesigned, including three new ones: Recruitment Services, Private &amp; Yacht Chefs and Our App</span></li>
+            <li><b>6</b><span>forms rebuilt and tested on laptop and phone: hire a chef, emergency cover, chef registration with CV upload, and contact</span></li>
+            <li><b>1</b><span>app for iPhone and Android, where venues post shifts and chefs apply, check in and get paid</span></li>
+            <li><b>0</b><span>broken links or lost pages: every existing address still works</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="included">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What you get</span>
+        <h2>Everything your website or app needs, and nothing it doesn't.</h2>
+      </div>
+      <div class="grid3">
+        <div><h3>A design you see first</h3><p>You approve the look before a single page goes live. Changes are part of the job.</p></div>
+        <div><h3>Words that sound like you</h3><p>Copy written for your customers, in plain language they understand at a glance.</p></div>
+        <div><h3>Forms that arrive</h3><p>Enquiries, bookings and job applications go straight to your inbox, and every one is tested before launch.</p></div>
+        <div><h3>Apps on the App Store</h3><p>iPhone and Android apps built, tested and taken through App Store and Google Play review for you.</p></div>
+        <div><h3>Found on Google</h3><p>Page titles and descriptions written for the searches that matter, with your existing links kept.</p></div>
+        <div><h3>Yours to keep</h3><p>Works on every screen, full access and ownership at the end, and a plain summary of what changed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>From first chat to launch.</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>We talk</h3><p>What your business does, who you want to reach, and what the current site gets wrong.</p></li>
+        <li><h3>You see the design</h3><p>A private preview of the new site or app. You say what you like and what to change.</p></li>
+        <li><h3>We build and test</h3><p>Every screen on laptop, tablet and phone, and a real test through every form and booking.</p></li>
+        <li><h3>We launch</h3><p>A full backup first, then the switch or the store release, then checks on the live version the same day.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="included">
+    <div class="wrap maker">
+      <div class="app-shots"><img src="/media/home/rc-app-shifts.jpg" alt="The Find Shifts screen in the Relief Chefs UK app" width="416" height="900" loading="lazy"><img src="/media/home/rc-app.jpg" alt="The app confirming a client's shift is live" width="416" height="900" loading="lazy"></div>
+      <div class="who">
+        <span class="eyebrow">Apps</span>
+        <h2 class="app-h">An app your customers keep on their phone.</h2>
+        <p>Booking apps, marketplaces and member apps for iPhone and Android, with sign-in, payments and notifications built in. We handle the App Store and Google Play submissions too.</p>
+        <ul class="ticks"><li>iPhone and Android from one build</li><li>Card payments and payouts</li><li>Notifications and messaging</li><li>A web dashboard to run it</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="voice">
+    <div class="wrap">
+      <div>
+        <h2>Missing calls while you're busy?</h2>
+        <p>EVE, our AI receptionist, answers, qualifies and books every call, day and night.</p>
+      </div>
+      <a class="btn btn-line" href="/">Meet EVE</a>
+    </div>
+  </div>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Tell us about your website or app.</h2>
+      <p class="lede">Send a few lines about your business and what you need. We'll reply with honest thoughts and a fixed quote.</p>
+      <div class="mail">
+        <code id="email">hello@aieve.ai</code>
+        <button type="button" id="copy">Copy email</button>
+        <a class="btn btn-copper" href="mailto:hello@aieve.ai?subject=Website%20or%20app">Email us</a>
+        <span class="copied" id="copied" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 AI EVE</span>
+    <span>AI receptionist · Websites and apps · Marketing · Email</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById("copy").addEventListener("click", () => {
+  const out = document.getElementById("copied");
+  const text = "hello@aieve.ai";
+  const done = () => { out.textContent = "Copied"; };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r); out.textContent = "Selected: press copy";
+    });
+  }
+});
+</script>
+
+
+</body>
+</html>
