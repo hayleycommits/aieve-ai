@@ -168,6 +168,7 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .logoF svg { width: 56px; height: 26px; }
 .logoF b { font: 400 2.3rem/0.95 var(--serif); letter-spacing: -0.03em; margin-top: -12px; }
 .logoF span { font: 500 0.52rem var(--mono); letter-spacing: 0.3em; text-transform: uppercase; opacity: .8; margin-right: -0.3em; }
+.logoF span { border-top: 1px solid currentColor; padding-top: 4px; margin-top: 3px; }
 .foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; font: 500 0.7rem var(--mono); letter-spacing: 0.14em; text-transform: uppercase; }
 .foot nav a { text-decoration: none; }
 .foot .fine { font: 400 0.72rem var(--mono); opacity: .75; text-align: right; }
