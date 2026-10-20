@@ -54,8 +54,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--moss); outline-
 
 /* Header logo F, compact */
 .top-logo { color: var(--ink); gap: 0; }
-.top-logo svg { width: 58px; height: 30px; }
-.top-logo b { font-size: 1.75rem; margin-top: -7px; }
+.top-logo svg { width: 44px; height: 20px; }
+.top-logo b { font-size: 1.75rem; margin-top: -10px; }
 .top-logo span { font-size: 0.46rem; letter-spacing: 0.28em; margin-right: -0.28em; margin-top: 1px; }
 
 /* Hero: EVE at the centre */
@@ -165,8 +165,8 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 /* Footer with logo F */
 .foot { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; margin-top: var(--gap); padding: 30px 28px; background: var(--moss); color: var(--paper); }
 .logoF { display: inline-grid; justify-items: center; gap: 2px; text-decoration: none; }
-.logoF svg { width: 74px; height: 40px; }
-.logoF b { font: 400 2.3rem/0.95 var(--serif); letter-spacing: -0.03em; margin-top: -8px; }
+.logoF svg { width: 56px; height: 26px; }
+.logoF b { font: 400 2.3rem/0.95 var(--serif); letter-spacing: -0.03em; margin-top: -12px; }
 .logoF span { font: 500 0.52rem var(--mono); letter-spacing: 0.3em; text-transform: uppercase; opacity: .8; margin-right: -0.3em; }
 .foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; font: 500 0.7rem var(--mono); letter-spacing: 0.14em; text-transform: uppercase; }
 .foot nav a { text-decoration: none; }
