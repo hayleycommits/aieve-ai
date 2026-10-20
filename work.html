@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work | AI EVE</title>
+<meta name="description" content="Client builds and our own products from the AI EVE studio, all ready and completed.">
+<link rel="canonical" href="https://aieve.ai/work.html">
+<meta property="og:title" content="Work | AI EVE">
+<meta property="og:description" content="Client builds and our own products from the AI EVE studio, all ready and completed.">
+<meta property="og:url" content="https://aieve.ai/work.html">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e6c84a'/%3E%3Cpath d='M8 38c8 0 15-3 15-9s-6-8-10-5c-6 4-4 14 4 16 6 2 11-1 14-5 2-3 3-8 5-8s2 15 5 15 3-22 6-22 3 20 6 20' fill='none' stroke='%231f2e1b' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap">
+<link rel="stylesheet" href="/v2/style.css">
+<style>
+/* ── VOICE WIDGET ── */
+/* Collapsed pill — default state */
+.vw-pill {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  display: flex; align-items: center; gap: 10px;
+  background: #344a2e; color: #fff;
+  padding: 12px 18px 12px 12px; border-radius: 999px;
+  font-family: 'DM Sans'; font-weight: 700; font-size: 14px;
+  cursor: pointer; border: none;
+  box-shadow: 0 8px 24px rgba(52,74,46,.45), 0 0 0 4px rgba(52,74,46,.12);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  animation: pillPulse 2.4s ease-in-out infinite;
+}
+.vw-pill:hover { background: #263a22; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(52,74,46,.55), 0 0 0 6px rgba(52,74,46,.15); }
+.vw-pill-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #fff; color: #344a2e;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; letter-spacing: .02em;
+}
+@keyframes pillPulse {
+  0%,100%{box-shadow:0 8px 24px rgba(52,74,46,.45), 0 0 0 4px rgba(52,74,46,.12)}
+  50%{box-shadow:0 8px 24px rgba(52,74,46,.55), 0 0 0 10px rgba(52,74,46,.06)}
+}
+.vw-pill.hidden { display: none; }
+
+/* Expanded widget */
+.vw {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  width: 290px;
+  border-radius: 22px;
+  background: #1f2e1b;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04) inset;
+  padding: 18px;
+  font-family: 'DM Sans', sans-serif;
+  display: none;
+}
+.vw.open { display: block; animation: vwIn .25s ease; }
+@keyframes vwIn { from { opacity:0; transform: translateY(8px) scale(.96); } to { opacity:1; transform: translateY(0) scale(1); } }
+.vw-close {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(255,255,255,.06); border: none;
+  width: 26px; height: 26px; border-radius: 50%;
+  color: rgba(255,255,255,.6); font-size: 16px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.vw-close:hover { background: rgba(255,255,255,.12); color: #fff; }
+.vw-header {
+  display: flex; align-items: center; gap: 11px; margin-bottom: 16px;
+}
+.vw-ava {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: #344a2e;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Sans'; font-weight: 700; font-size: 12px;
+  color: #fff; letter-spacing: .04em;
+  box-shadow: 0 0 20px rgba(52,74,46,.45);
+  position: relative;
+}
+.vw-ava.ringing { animation: vapiRing 1.2s ease-in-out infinite; }
+@keyframes vapiRing { 0%,100%{box-shadow:0 0 20px rgba(52,74,46,.45)} 50%{box-shadow:0 0 34px rgba(52,74,46,.85)} }
+.vw-name { font-family: 'DM Sans'; font-weight: 600; font-size: 14.5px; color: #fff; }
+.vw-sub { font-size: 11.5px; color: rgba(255,255,255,.38); margin-top: 2px; }
+.vw-sub.live { color: #4ade80; }
+.vw-bars {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 12px; padding: 10px 12px; margin-bottom: 14px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.vw-bar-row { display: flex; align-items: center; gap: 8px; }
+.vw-bar-label {
+  font-size: 9px; font-family: 'DM Sans'; font-weight: 700;
+  letter-spacing: .07em; width: 22px; flex-shrink: 0;
+}
+.vw-bar-label.you { color: #4ade80; }
+.vw-bar-label.eve { color: #f5df7a; }
+.vw-bar-track {
+  display: flex; align-items: center; gap: 3px; flex: 1; height: 28px;
+}
+.vw-bar-track span {
+  flex: 1; border-radius: 99px; height: 3px;
+  transition: height .08s ease;
+}
+.vw-bar-track.you span { background: #4ade80; }
+.vw-bar-track.eve span { background: #344a2e; }
+.vw-transcript {
+  height: 110px; overflow-y: auto; border-radius: 10px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  padding: 8px 10px; margin-bottom: 12px;
+  display: none; flex-direction: column; gap: 5px;
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.1) transparent;
+}
+.vw-transcript.visible { display: flex; }
+.vw-tx-line { font-size: 11px; line-height: 1.45; display: flex; gap: 5px; }
+.vw-tx-who { font-family: 'DM Sans'; font-weight: 700; font-size: 9px;
+  letter-spacing: .06em; flex-shrink: 0; padding-top: 1px; }
+.vw-tx-who.you { color: #4ade80; }
+.vw-tx-who.eve { color: #60a5fa; }
+.vw-tx-text { color: rgba(255,255,255,.65); }
+.vw-tx-text.partial { color: rgba(255,255,255,.32); font-style: italic; }
+.vw-timer { font-size: 12px; color: rgba(255,255,255,.35); text-align: center; margin-bottom: 12px; font-variant-numeric: tabular-nums; letter-spacing: .04em; min-height: 18px; }
+.vw-btn {
+  width: 100%; padding: 12px; border-radius: 999px;
+  font-family: 'DM Sans'; font-weight: 700; font-size: 14px;
+  cursor: pointer; transition: background .18s, transform .18s, box-shadow .18s;
+  border: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.vw-btn-start { background: #344a2e; color: #fff; box-shadow: 0 6px 20px rgba(52,74,46,.35); }
+.vw-btn-start:hover { background: #263a22; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(52,74,46,.45); }
+.vw-btn-end { background: #ef4444; color: #fff; box-shadow: 0 6px 20px rgba(239,68,68,.4); }
+.vw-btn-end:hover { background: #dc2626; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(239,68,68,.55); }
+@media (max-width: 480px) {
+  .vw { width: calc(100vw - 32px); right: 16px; bottom: 16px; left: 16px; }
+  .vw-pill { right: 16px; bottom: 16px; padding: 10px 16px 10px 10px; font-size: 13px; }
+  .vw-pill-dot { width: 24px; height: 24px; font-size: 10px; }
+}
+
+.vw-pill { color: #fff; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough" x="-10%" y="-20%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="page">
+  <header class="top">
+    <a class="brand" href="/" aria-label="ai eve, home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>ai eve<i>.</i></b></a>
+    <nav aria-label="Main">
+      <a href="/">Meet EVE</a>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/services.html">Services</a>
+      <a href="/work.html" aria-current="page">Work</a>
+      <a class="cta" href="/book.html">Book a demo</a>
+    </nav>
+  </header>
+  <main>
+    <section class="pagehead"><span class="label" style="color:var(--pop)">Work</span><h1>Ideas don&rsquo;t have to <em>stay on paper.</em></h1><p>Client builds and our own products, all designed, built and finished.</p></section>
+    <div class="board"><section class="tile t-linen s6"><div class="card"><div class="shot"><img src="/media/home/rc-laptop-home.jpg" alt="The Relief Chefs UK website" loading="lazy"></div><span class="label">Client &middot; website + app &middot; &#10003; Ready and completed</span><h3 style="font-size:1.7rem">Relief Chefs UK</h3><p class="muted">A premium chef staffing marketplace app and a new agency website: venues post shifts, chefs apply, check in and get paid.</p></div></section><section class="tile t-linen s6"><div class="card"><div class="shot"><img src="/media/home/eve-dashboard.jpg" alt="The AI EVE dashboard" loading="lazy"></div><span class="label">Own product &middot; &#10003; Ready and completed</span><h3 style="font-size:1.7rem">AI EVE Voice</h3><p class="muted">Our AI receptionist: answers calls, takes bookings and reports everything to a live dashboard. Talk to her on the home page.</p></div></section><section class="tile t-linen s6"><div class="card"><div class="shot"><img src="/media/v2/splat.jpg" alt="Splat, a daily creativity app" loading="lazy"></div><span class="label">Own product &middot; app &middot; &#10003; Ready and completed</span><h3 style="font-size:1.7rem">Splat</h3><p class="muted">A tiny creative explosion every day: one weird three-minute idea to make, with zero pressure to be good.</p></div></section><section class="tile t-linen s6"><div class="card"><div class="shot"><img src="/media/v2/ideaforge.jpg" alt="Idea Forge app screens" loading="lazy"></div><span class="label">Own product &middot; app &middot; &#10003; Ready and completed</span><h3 style="font-size:1.7rem">Idea Forge</h3><p class="muted">An AI-agent workspace that researches your idea and plans the next steps with you.</p></div></section><section class="tile t-linen s6"><div class="card"><div class="shot"><img src="/media/v2/wedding.jpg" alt="The Wedding Cost Cutter" loading="lazy"></div><span class="label">Own product &middot; web app &middot; &#10003; Ready and completed</span><h3 style="font-size:1.7rem">Wedding Budget Planner</h3><p class="muted">The beautiful way to spend less: couples see what their wedding really costs and where to save.</p></div></section><section class="tile t-linen s6"><div class="card"><div class="shot"><img src="/media/v2/chef-planner.jpg" alt="The Chef Weekly Planner app" loading="lazy"></div><span class="label">Own product &middot; app &middot; &#10003; Ready and completed</span><h3 style="font-size:1.7rem">Chef Weekly Planner</h3><p class="muted">Plan, prep and plate like a pro: weekly menus, prep lists and shopping for yacht and private chefs.</p></div></section></div>
+  </main>
+  <footer class="foot">
+    <a class="logoF" href="/" aria-label="ai eve home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>eve</b><span>by ai eve</span></a>
+    <nav aria-label="Footer"><a href="/">Meet EVE</a><a href="/dashboard.html">Dashboard</a><a href="/services.html">Services</a><a href="/work.html">Work</a><a href="/book.html">Book a demo</a><a href="/privacy-policy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="fine">&copy; 2026 AI EVE<br>hello@aieve.ai</p>
+  </footer>
+</div>
+<!-- VOICE WIDGET -->
+<button class="vw-pill" id="vwPill" type="button">
+  <span class="vw-pill-dot">EVE</span>
+  <span>Talk to EVE</span>
+</button>
+<div class="vw" id="vw">
+  <button class="vw-close" id="vwClose" type="button" aria-label="Close">×</button>
+  <div class="vw-header">
+    <div class="vw-ava" id="vwAva">EVE</div>
+    <div>
+      <div class="vw-name">Talk to EVE</div>
+      <div class="vw-sub" id="vwSub">Live AI voice demo</div>
+    </div>
+  </div>
+  <div class="vw-bars" id="vwBars">
+    <div class="vw-bar-row">
+      <span class="vw-bar-label you">YOU</span>
+      <div class="vw-bar-track you" id="vwBarUser">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="vw-bar-row">
+      <span class="vw-bar-label eve">EVE</span>
+      <div class="vw-bar-track eve" id="vwBarEve">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <div class="vw-transcript" id="vwTranscript"></div>
+  <div class="vw-timer" id="vwTimer"></div>
+  <button class="vw-btn vw-btn-start" id="vwStart">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+    Start call
+  </button>
+  <button class="vw-btn vw-btn-end" id="vwEnd" style="display:none">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+    End call
+  </button>
+</div>
+
+
+<script type="module">
+// ─── VAPI CONFIG ───
+const VAPI_PUBLIC_KEY   = '3d943765-7118-405d-b24e-505a7a79f07c';
+const VAPI_ASSISTANT_ID = 'b24725a8-f5f5-4664-b292-185e2e4c0cd2';
+// ───────────────────
+
+import Vapi from 'https://esm.sh/@vapi-ai/web';
+
+const vapi = new Vapi(VAPI_PUBLIC_KEY);
+
+const vwPill       = document.getElementById('vwPill');
+const vw           = document.getElementById('vw');
+const vwClose      = document.getElementById('vwClose');
+const vwAva        = document.getElementById('vwAva');
+const vwSub        = document.getElementById('vwSub');
+const vwBarUser    = document.getElementById('vwBarUser');
+const vwBarEve     = document.getElementById('vwBarEve');
+const vwTranscript = document.getElementById('vwTranscript');
+const vwTimer      = document.getElementById('vwTimer');
+const vwStart = document.getElementById('vwStart');
+const vwEnd   = document.getElementById('vwEnd');
+
+function openWidget() {
+  vwPill.classList.add('hidden');
+  vw.classList.add('open');
+}
+function closeWidget() {
+  if (vw.classList.contains('open')) {
+    vapi.stop();
+  }
+  vw.classList.remove('open');
+  vwPill.classList.remove('hidden');
+}
+vwPill.addEventListener('click', openWidget);
+vwClose.addEventListener('click', closeWidget);
+
+let timerInterval = null, secs = 0, timedOut = false;
+const MAX_SECS = 120;
+const fmt = s => String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+
+// ── Mic visualiser ──────────────────────────────────────────────
+let audioCtx = null, analyser = null, micStream = null, rafId = null;
+
+function resetBars() {
+  vwBarUser.querySelectorAll('span').forEach(b => b.style.height = '3px');
+  vwBarEve.querySelectorAll('span').forEach(b => b.style.height = '3px');
+}
+
+async function startMicViz() {
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    audioCtx  = new AudioContext();
+    analyser  = audioCtx.createAnalyser();
+    analyser.fftSize = 32;
+    audioCtx.createMediaStreamSource(micStream).connect(analyser);
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    const bars = vwBarUser.querySelectorAll('span');
+    (function tick() {
+      analyser.getByteFrequencyData(data);
+      bars.forEach((b, i) => {
+        const v = data[Math.floor(i * data.length / bars.length)] || 0;
+        b.style.height = Math.max(3, Math.round((v / 255) * 24)) + 'px';
+      });
+      rafId = requestAnimationFrame(tick);
+    })();
+  } catch(e) { /* mic denied — silently skip */ }
+}
+
+function stopMicViz() {
+  if (rafId)     { cancelAnimationFrame(rafId); rafId = null; }
+  if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+  if (audioCtx)  { audioCtx.close(); audioCtx = null; }
+  analyser = null;
+  resetBars();
+}
+// ────────────────────────────────────────────────────────────────
+
+function setState(state) {
+  vwAva.className = 'vw-ava';
+
+  if (state === 'idle') {
+    vwSub.textContent = 'Live AI voice demo';
+    vwSub.className = 'vw-sub';
+    vwStart.style.display = 'flex';
+    vwEnd.style.display = 'none';
+    vwTimer.textContent = '';
+    clearInterval(timerInterval); secs = 0;
+    stopMicViz();
+    vwTranscript.innerHTML = '';
+    vwTranscript.classList.remove('visible');
+  }
+  if (state === 'connecting') {
+    vwSub.textContent = 'Connecting...';
+    vwAva.className = 'vw-ava ringing';
+    vwStart.style.display = 'none';
+    vwEnd.style.display = 'flex';
+  }
+  if (state === 'active') {
+    vwSub.textContent = '● Live call';
+    vwSub.className = 'vw-sub live';
+    vwAva.className = 'vw-ava ringing';
+    vwStart.style.display = 'none';
+    vwEnd.style.display = 'flex';
+    secs = 0;
+    timerInterval = setInterval(() => {
+      vwTimer.textContent = fmt(++secs);
+      if (secs >= MAX_SECS) { timedOut = true; vapi.stop(); }
+    }, 1000);
+    startMicViz();
+    vwTranscript.classList.add('visible');
+  }
+}
+
+// ── Transcript ───────────────────────────────────────────────────
+let partialLine = null;
+
+function addLine(role, text, partial) {
+  if (partial) {
+    if (!partialLine) {
+      partialLine = document.createElement('div');
+      partialLine.className = 'vw-tx-line';
+      partialLine.innerHTML = `<span class="vw-tx-who ${role}">${role.toUpperCase()}</span><span class="vw-tx-text partial"></span>`;
+      vwTranscript.appendChild(partialLine);
+    }
+    partialLine.querySelector('.vw-tx-text').textContent = text;
+  } else {
+    if (partialLine) { partialLine.remove(); partialLine = null; }
+    const line = document.createElement('div');
+    line.className = 'vw-tx-line';
+    line.innerHTML = `<span class="vw-tx-who ${role}">${role.toUpperCase()}</span><span class="vw-tx-text">${text}</span>`;
+    vwTranscript.appendChild(line);
+  }
+  vwTranscript.scrollTop = vwTranscript.scrollHeight;
+}
+
+vapi.on('message', msg => {
+  console.log('[vapi msg]', JSON.stringify(msg).slice(0, 200));
+  if (msg.type !== 'transcript') return;
+  const role = msg.role === 'assistant' ? 'eve' : 'you';
+  addLine(role, msg.transcript, msg.transcriptType === 'partial');
+});
+// ────────────────────────────────────────────────────────────────
+
+function startCall() {
+  setState('connecting');
+  vapi.start(VAPI_ASSISTANT_ID);
+}
+
+vwStart.addEventListener('click', startCall);
+vwEnd.addEventListener('click', () => vapi.stop());
+
+document.querySelectorAll('[data-talk]').forEach((b) => b.addEventListener('click', () => {
+  openWidget();
+  setTimeout(startCall, 300);
+}));
+
+vapi.on('call-start',   () => setState('active'));
+vapi.on('call-end',     () => {
+  clearInterval(timerInterval); timerInterval = null;
+  if (timedOut) {
+    setState('idle');
+    vwSub.textContent = 'Demo ended — book a call at aieve.ai';
+    vwSub.className = 'vw-sub';
+    timedOut = false;
+  } else {
+    setState('idle');
+  }
+});
+vapi.on('volume-level', vol => {
+  const bars = vwBarEve.querySelectorAll('span');
+  bars.forEach((b, i) => {
+    const h = Math.max(3, Math.round(vol * 26 * (0.5 + 0.5 * Math.sin(i * 0.9))));
+    b.style.height = h + 'px';
+  });
+});
+vapi.on('error', err => { console.error('Vapi:', err); setState('idle'); });
+</script>
+<script src="/v2/site.js"></script>
+
+</body>
+</html>

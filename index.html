@@ -1,270 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI EVE — Never miss a call. Never miss a job.</title>
-<meta name="description" content="AI EVE is a 24/7 AI voice agent that answers, qualifies and books every call for your business — whatever industry you're in. Live in 5 days." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI EVE | Your AI receptionist for hospitality</title>
+<meta name="description" content="EVE answers every call for your restaurant, hotel, pub or café, takes the booking and reports it to a live dashboard. Talk to her now.">
+<link rel="canonical" href="https://aieve.ai/">
+<meta property="og:title" content="AI EVE | Your AI receptionist for hospitality">
+<meta property="og:description" content="EVE answers every call for your restaurant, hotel, pub or café, takes the booking and reports it to a live dashboard. Talk to her now.">
+<meta property="og:url" content="https://aieve.ai/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e6c84a'/%3E%3Cpath d='M8 38c8 0 15-3 15-9s-6-8-10-5c-6 4-4 14 4 16 6 2 11-1 14-5 2-3 3-8 5-8s2 15 5 15 3-22 6-22 3 20 6 20' fill='none' stroke='%231f2e1b' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap">
+<link rel="stylesheet" href="/v2/style.css">
 <style>
-
-:root {
-  --bg:      #ffffff;
-  --bg-2:    #f7f8fa;
-  --ink:     #0f1117;
-  --ink-2:   #4b5563;
-  --ink-3:   #9ca3af;
-  --line:    rgba(0,0,0,.07);
-  --line-2:  rgba(0,0,0,.13);
-  --blue:    #2563eb;
-  --blue-lo: rgba(37,99,235,.07);
-  --blue-gl: rgba(37,99,235,.22);
-  --gold:    #b45309;
-  --gold-lo: rgba(180,83,9,.07);
-  --green:   #059669;
-  --green-lo:rgba(5,150,105,.07);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.05);
-  --shadow:    0 4px 18px rgba(0,0,0,.09), 0 0 0 1px rgba(0,0,0,.05);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
-button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
-@media (max-width: 600px) { .wrap { padding: 0 20px; } }
-
-/* ── BUTTONS ── */
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 22px; border-radius: 999px;
-  font-family: 'Space Grotesk'; font-size: 15px; font-weight: 600;
-  letter-spacing: -.01em; cursor: pointer; white-space: nowrap;
-  transition: transform .18s, box-shadow .18s, background .18s, border-color .18s;
-  border: none;
-}
-.btn-primary { background: var(--blue); color: #fff; box-shadow: 0 6px 22px -4px var(--blue-gl); }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 28px -4px var(--blue-gl); background: #1d4ed8; }
-.btn-ghost { background: transparent; border: 1.5px solid var(--line-2); color: var(--ink-2); }
-.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
-
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 62px;
-  background: rgba(15,17,23,.85);
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-nav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
-.logo {
-  display: flex; align-items: center; gap: 9px;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 16px;
-  letter-spacing: .14em; color: #fff;
-}
-.logo-mark {
-  width: 28px; height: 28px; border-radius: 7px;
-  background: var(--blue); display: flex; align-items: center; justify-content: center;
-  color: #fff;
-}
-
-/* ── HERO ── */
-.hero {
-  padding: 148px 0 96px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background: var(--ink);
-  color: #fff;
-}
-.hero .wrap { position: relative; z-index: 1; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 5px 14px; margin-bottom: 30px;
-  border: 1.5px solid rgba(37,99,235,.4); border-radius: 999px;
-  background: rgba(37,99,235,.15);
-  font-size: 12px; font-weight: 500; letter-spacing: .04em; color: var(--blue);
-}
-.hero-badge::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--blue); animation: blink 2s infinite;
-}
-@keyframes blink { 50% { opacity: .25; } }
-.hero h1 {
-  font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
-  font-size: clamp(42px, 5.4vw, 82px);
-  line-height: 1.04; letter-spacing: -.02em;
-  max-width: 14ch; margin: 0 auto 22px;
-}
-.hero h1 .blue { color: var(--blue); }
-.hero-sub {
-  font-size: clamp(16px, 1.7vw, 18px);
-  color: rgba(255,255,255,.65); max-width: 44ch;
-  margin: 0 auto 36px; line-height: 1.65;
-}
-.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
-
-.stats-row {
-  display: inline-flex;
-  border: 1.5px solid rgba(255,255,255,.12);
-  border-radius: 14px;
-  background: rgba(255,255,255,.06);
-  overflow: hidden;
-}
-.stat-cell { padding: 13px 22px; border-right: 1px solid rgba(255,255,255,.1); }
-.stat-cell:last-child { border-right: none; }
-.stat-cell .v {
-  font-family: 'Space Grotesk'; font-weight: 700;
-  font-size: 20px; letter-spacing: -.02em; color: #fff;
-}
-.stat-cell .v.blue { color: var(--blue); }
-.stat-cell .l { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 2px; }
-@media (max-width: 540px) {
-  .stats-row { flex-wrap: wrap; width: 100%; max-width: 360px; border-radius: 12px; }
-  .stat-cell { flex: 1; min-width: 80px; }
-}
-
-/* ── FEATURES ── */
-.features { padding: 80px 0 100px; }
-.feat-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-  margin-top: 12px;
-}
-@media (max-width: 760px) { .feat-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .feat-grid { grid-template-columns: 1fr; } }
-.feat {
-  padding: 30px 26px 26px; border-radius: 18px;
-  background: var(--bg); border: 1.5px solid var(--line);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow .2s, border-color .2s, transform .2s;
-}
-.feat:hover { box-shadow: var(--shadow); border-color: var(--line-2); transform: translateY(-2px); }
-.feat-ic {
-  width: 42px; height: 42px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
-}
-.feat-ic.blue  { background: var(--blue-lo);  color: var(--blue);  border: 1.5px solid rgba(29,107,243,.14); }
-.feat-ic.gold  { background: var(--gold-lo);  color: var(--gold);  border: 1.5px solid rgba(180,83,9,.14); }
-.feat-ic.green { background: var(--green-lo); color: var(--green); border: 1.5px solid rgba(5,150,105,.14); }
-.feat h4 {
-  font-family: 'Space Grotesk'; font-weight: 600; font-size: 16.5px;
-  letter-spacing: -.01em; margin-bottom: 8px; color: var(--ink);
-}
-.feat p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 20px; }
-.feat-num {
-  font-family: 'Space Grotesk'; font-weight: 700;
-  font-size: 32px; letter-spacing: -.03em; line-height: 1;
-}
-.feat-num.blue  { color: var(--blue); }
-.feat-num.gold  { color: var(--gold); }
-.feat-num.green { color: var(--green); }
-.feat-lbl { font-size: 11.5px; color: var(--ink-3); margin-top: 4px; }
-
-/* ── CTA ── */
-.cta {
-  background: var(--ink);
-  padding: 120px 0;
-  text-align: center;
-  position: relative; overflow: hidden;
-}
-.cta::before {
-  content: '';
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 700px; height: 360px; border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(29,107,243,.28) 0%, transparent 68%);
-  pointer-events: none;
-}
-.cta-inner { position: relative; max-width: 820px; margin: 0 auto; }
-.cta-calendar {
-  margin-top: 48px; border-radius: 16px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 24px 60px rgba(0,0,0,.4);
-  background: #fff;
-  min-height: 700px;
-}
-.cta h2 {
-  font-family: 'Space Grotesk'; font-weight: 700;
-  font-size: clamp(32px, 3.8vw, 56px);
-  letter-spacing: -.03em; line-height: 1.06;
-  color: #fff; margin-bottom: 18px;
-}
-.cta h2 .blue { color: #60a5fa; }
-.cta p { font-size: 17px; color: rgba(255,255,255,.6); max-width: 42ch; margin: 0 auto 36px; line-height: 1.65; }
-.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
-.btn-white {
-  background: #fff; color: var(--ink);
-  font-family: 'Space Grotesk'; font-size: 15px; font-weight: 700;
-  box-shadow: 0 6px 22px rgba(0,0,0,.22);
-}
-.btn-white:hover { background: #f1f5f9; transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.28); }
-.btn-outline-w {
-  border: 1.5px solid rgba(255,255,255,.18); color: rgba(255,255,255,.65);
-  background: transparent;
-  font-family: 'Space Grotesk'; font-size: 15px; font-weight: 600;
-}
-.btn-outline-w:hover { border-color: rgba(255,255,255,.45); color: #fff; }
-.cta-note { font-size: 11.5px; letter-spacing: .06em; color: rgba(255,255,255,.3); text-transform: uppercase; }
-
-/* ── FOOTER ── */
-footer {
-  background: var(--ink); border-top: 1px solid rgba(255,255,255,.06);
-  padding: 28px 0;
-}
-footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
-.f-logo {
-  display: flex; align-items: center; gap: 9px;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px;
-  letter-spacing: .14em; color: rgba(255,255,255,.55);
-}
-.f-logo-mark {
-  width: 26px; height: 26px; border-radius: 6px;
-  background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,.55);
-}
-.f-links { display: flex; gap: 20px; font-size: 13px; color: rgba(255,255,255,.3); }
-.f-links a:hover { color: rgba(255,255,255,.6); }
-.f-copy { font-size: 12px; color: rgba(255,255,255,.2); }
-
-/* ── REVEAL ── */
-.reveal { opacity: 0; transition: opacity .7s ease; }
-.reveal.in { opacity: 1; }
-
 /* ── VOICE WIDGET ── */
 /* Collapsed pill — default state */
 .vw-pill {
   position: fixed; bottom: 24px; right: 24px; z-index: 200;
   display: flex; align-items: center; gap: 10px;
-  background: #2563eb; color: #fff;
+  background: #344a2e; color: #fff;
   padding: 12px 18px 12px 12px; border-radius: 999px;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px;
+  font-family: 'DM Sans'; font-weight: 700; font-size: 14px;
   cursor: pointer; border: none;
-  box-shadow: 0 8px 24px rgba(29,107,243,.45), 0 0 0 4px rgba(29,107,243,.12);
+  box-shadow: 0 8px 24px rgba(52,74,46,.45), 0 0 0 4px rgba(52,74,46,.12);
   transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
   animation: pillPulse 2.4s ease-in-out infinite;
 }
-.vw-pill:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(29,107,243,.55), 0 0 0 6px rgba(29,107,243,.15); }
+.vw-pill:hover { background: #263a22; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(52,74,46,.55), 0 0 0 6px rgba(52,74,46,.15); }
 .vw-pill-dot {
   width: 28px; height: 28px; border-radius: 50%;
-  background: #fff; color: #2563eb;
+  background: #fff; color: #344a2e;
   display: flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 800; letter-spacing: .02em;
 }
 @keyframes pillPulse {
-  0%,100%{box-shadow:0 8px 24px rgba(29,107,243,.45), 0 0 0 4px rgba(29,107,243,.12)}
-  50%{box-shadow:0 8px 24px rgba(29,107,243,.55), 0 0 0 10px rgba(29,107,243,.06)}
+  0%,100%{box-shadow:0 8px 24px rgba(52,74,46,.45), 0 0 0 4px rgba(52,74,46,.12)}
+  50%{box-shadow:0 8px 24px rgba(52,74,46,.55), 0 0 0 10px rgba(52,74,46,.06)}
 }
 .vw-pill.hidden { display: none; }
 
@@ -273,11 +47,11 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   position: fixed; bottom: 24px; right: 24px; z-index: 200;
   width: 290px;
   border-radius: 22px;
-  background: #0f1117;
+  background: #1f2e1b;
   border: 1px solid rgba(255,255,255,.1);
   box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04) inset;
   padding: 18px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   display: none;
 }
 .vw.open { display: block; animation: vwIn .25s ease; }
@@ -296,16 +70,16 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 }
 .vw-ava {
   width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-  background: #2563eb;
+  background: #344a2e;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 12px;
+  font-family: 'DM Sans'; font-weight: 700; font-size: 12px;
   color: #fff; letter-spacing: .04em;
-  box-shadow: 0 0 20px rgba(29,107,243,.45);
+  box-shadow: 0 0 20px rgba(52,74,46,.45);
   position: relative;
 }
 .vw-ava.ringing { animation: vapiRing 1.2s ease-in-out infinite; }
-@keyframes vapiRing { 0%,100%{box-shadow:0 0 20px rgba(29,107,243,.45)} 50%{box-shadow:0 0 34px rgba(29,107,243,.85)} }
-.vw-name { font-family: 'Space Grotesk'; font-weight: 600; font-size: 14.5px; color: #fff; }
+@keyframes vapiRing { 0%,100%{box-shadow:0 0 20px rgba(52,74,46,.45)} 50%{box-shadow:0 0 34px rgba(52,74,46,.85)} }
+.vw-name { font-family: 'DM Sans'; font-weight: 600; font-size: 14.5px; color: #fff; }
 .vw-sub { font-size: 11.5px; color: rgba(255,255,255,.38); margin-top: 2px; }
 .vw-sub.live { color: #4ade80; }
 .vw-bars {
@@ -315,11 +89,11 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 }
 .vw-bar-row { display: flex; align-items: center; gap: 8px; }
 .vw-bar-label {
-  font-size: 9px; font-family: 'Space Grotesk'; font-weight: 700;
+  font-size: 9px; font-family: 'DM Sans'; font-weight: 700;
   letter-spacing: .07em; width: 22px; flex-shrink: 0;
 }
 .vw-bar-label.you { color: #4ade80; }
-.vw-bar-label.eve { color: #60a5fa; }
+.vw-bar-label.eve { color: #f5df7a; }
 .vw-bar-track {
   display: flex; align-items: center; gap: 3px; flex: 1; height: 28px;
 }
@@ -328,7 +102,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   transition: height .08s ease;
 }
 .vw-bar-track.you span { background: #4ade80; }
-.vw-bar-track.eve span { background: #2563eb; }
+.vw-bar-track.eve span { background: #344a2e; }
 .vw-transcript {
   height: 110px; overflow-y: auto; border-radius: 10px;
   background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
@@ -338,7 +112,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 }
 .vw-transcript.visible { display: flex; }
 .vw-tx-line { font-size: 11px; line-height: 1.45; display: flex; gap: 5px; }
-.vw-tx-who { font-family: 'Space Grotesk'; font-weight: 700; font-size: 9px;
+.vw-tx-who { font-family: 'DM Sans'; font-weight: 700; font-size: 9px;
   letter-spacing: .06em; flex-shrink: 0; padding-top: 1px; }
 .vw-tx-who.you { color: #4ade80; }
 .vw-tx-who.eve { color: #60a5fa; }
@@ -347,12 +121,12 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .vw-timer { font-size: 12px; color: rgba(255,255,255,.35); text-align: center; margin-bottom: 12px; font-variant-numeric: tabular-nums; letter-spacing: .04em; min-height: 18px; }
 .vw-btn {
   width: 100%; padding: 12px; border-radius: 999px;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px;
+  font-family: 'DM Sans'; font-weight: 700; font-size: 14px;
   cursor: pointer; transition: background .18s, transform .18s, box-shadow .18s;
   border: none; display: flex; align-items: center; justify-content: center; gap: 8px;
 }
-.vw-btn-start { background: #2563eb; color: #fff; box-shadow: 0 6px 20px rgba(29,107,243,.35); }
-.vw-btn-start:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(29,107,243,.45); }
+.vw-btn-start { background: #344a2e; color: #fff; box-shadow: 0 6px 20px rgba(52,74,46,.35); }
+.vw-btn-start:hover { background: #263a22; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(52,74,46,.45); }
 .vw-btn-end { background: #ef4444; color: #fff; box-shadow: 0 6px 20px rgba(239,68,68,.4); }
 .vw-btn-end:hover { background: #dc2626; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(239,68,68,.55); }
 @media (max-width: 480px) {
@@ -361,439 +135,112 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   .vw-pill-dot { width: 24px; height: 24px; font-size: 10px; }
 }
 
-/* ── MARCELO MOTION: cursor light orb (mouse-following ambient glow) ── */
-.cursor-orb {
-  position: fixed; top: 0; left: 0;
-  width: 540px; height: 540px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 5;
-  transform: translate3d(-9999px, -9999px, 0);
-  background: radial-gradient(circle, rgba(29,107,243,.14) 0%, rgba(29,107,243,0) 60%);
-  will-change: transform;
-}
-@media (max-width: 768px), (prefers-reduced-motion: reduce) {
-  .cursor-orb { display: none; }
-}
-
-/* ── MARCELO MOTION: animated hero gradient mesh ── */
-.hero-mesh {
-  position: absolute; inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.hero-mesh .blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: .55;
-  will-change: transform;
-}
-.hero-mesh .blob-1 {
-  width: 540px; height: 540px;
-  top: -120px; left: 50%; margin-left: -270px;
-  background: rgba(29,107,243,.22);
-  animation: meshDrift1 18s ease-in-out infinite;
-}
-.hero-mesh .blob-2 {
-  width: 420px; height: 420px;
-  top: 80px; right: -80px;
-  background: rgba(180,83,9,.14);
-  animation: meshDrift2 22s ease-in-out infinite -6s;
-}
-.hero-mesh .blob-3 {
-  width: 380px; height: 380px;
-  top: 240px; left: -80px;
-  background: rgba(5,150,105,.12);
-  animation: meshDrift3 26s ease-in-out infinite -12s;
-}
-/* mesh kept static — moving letters carry the motion */
-@keyframes meshDrift1 { 0%,100%{ transform:translate(0,0); } }
-@keyframes meshDrift2 { 0%,100%{ transform:translate(0,0); } }
-@keyframes meshDrift3 { 0%,100%{ transform:translate(0,0); } }
-@media (prefers-reduced-motion: reduce) {
-  .hero-mesh .blob { animation: none; }
-}
-
-/* ── MARCELO MOTION: per-letter wave in hero headline ── */
-.hero h1 .word { display: inline-block; }   /* keep each word unbreakable */
-.hero h1 .char {
-  display: inline-block;
-  will-change: auto;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero h1 .char { animation: none; }
-}
-
-/* ── HERO PROOF LINE (replaces boxed stats) ── */
-.hero-proof {
-  font-size: 13px;
-  color: var(--ink-3);
-  letter-spacing: 0.04em;
-  margin-top: 36px;
-}
-
-/* ── HOW IT WORKS ── */
-.how { padding: 110px 0 130px; background: #fafafa; }
-.how-label {
-  font-family: 'Space Grotesk';
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 16px;
-  text-align: center;
-}
-.how-title {
-  font-family: 'Space Grotesk'; font-weight: 700;
-  font-size: clamp(30px, 3.4vw, 44px);
-  letter-spacing: -.03em; line-height: 1.1;
-  color: var(--ink); margin: 0 auto 60px; text-align: center;
-  max-width: 560px;
-}
-.how-title .blue { color: var(--blue); }
-.how-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.how-step {
-  padding: 36px 32px 38px;
-  position: relative;
-  background: #fff;
-  border: 1px solid rgba(15,17,23,.06);
-  border-radius: 18px;
-  box-shadow: 0 1px 2px rgba(15,17,23,.04);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-.how-step:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(29,107,243,.12), 0 2px 8px rgba(15,17,23,.06);
-  border-color: rgba(29,107,243,.18);
-}
-.how-num {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--blue); color: #fff;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px;
-  margin-bottom: 22px;
-  box-shadow: 0 4px 12px rgba(29,107,243,.3);
-}
-.how-step h3 {
-  font-family: 'Space Grotesk';
-  font-weight: 700;
-  font-size: 19px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  margin-bottom: 12px;
-  color: var(--ink);
-}
-.how-step p {
-  font-size: 14.5px;
-  color: var(--ink-2);
-  line-height: 1.62;
-}
-@media (max-width: 760px) {
-  .how-steps { grid-template-columns: 1fr; gap: 14px; }
-  .how-title { margin-bottom: 36px; }
-  .how { padding: 70px 0 90px; }
-  .nav-dash { display: none !important; }
-}
-
-/* ── DASHBOARD PREVIEW ── */
-.dash-preview { padding: 80px 0 100px; background: #fafafa; }
-.dash-card {
-  background: linear-gradient(135deg, #0a0f1d 0%, #060912 100%);
-  border-radius: 24px; padding: 56px;
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px;
-  align-items: center; overflow: hidden; position: relative;
-  box-shadow: 0 30px 70px rgba(15,17,23,.18);
-}
-.dash-card::before {
-  content:''; position:absolute; inset:0;
-  background: radial-gradient(ellipse 600px 400px at 80% 20%, rgba(59,130,246,.15) 0%, transparent 60%);
-  pointer-events:none;
-}
-.dash-text { position: relative; z-index: 1; }
-.dash-eyebrow {
-  font-family: 'Space Grotesk'; font-size: 11px; font-weight: 700;
-  letter-spacing: .22em; text-transform: uppercase; color: #60a5fa;
-  margin-bottom: 16px;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.dash-eyebrow::before {
-  content:''; width: 6px; height: 6px; border-radius: 50%;
-  background: #22c55e; box-shadow: 0 0 8px #22c55e;
-  animation: pulse 1.5s ease-in-out infinite;
-}
-.dash-card h2 {
-  font-family: 'Space Grotesk'; font-weight: 700;
-  font-size: clamp(26px, 2.8vw, 38px);
-  letter-spacing: -.02em; line-height: 1.15;
-  color: #fff; margin-bottom: 16px;
-}
-.dash-card h2 .blue { color: #60a5fa; }
-.dash-card p {
-  font-size: 15px; color: rgba(255,255,255,.65); line-height: 1.6;
-  margin-bottom: 28px; max-width: 38ch;
-}
-.dash-img-wrap {
-  position: relative; z-index: 1;
-  border-radius: 14px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 20px 50px rgba(0,0,0,.4);
-  background: #06080f;
-  aspect-ratio: 16/10;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.dash-img-wrap:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(59,130,246,.25); }
-.dash-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.dash-img-fallback {
-  display: flex; flex-direction: column; align-items: center; gap: 18px;
-  text-align: center; padding: 30px;
-}
-.dash-fallback-orb {
-  width: 90px; height: 90px; border-radius: 50%;
-  background: radial-gradient(circle, #1a2440 0%, #0a0f1d 100%);
-  border: 1px solid rgba(96,165,250,.4);
-  box-shadow: 0 0 40px rgba(59,130,246,.4);
-  animation: orbPulse 3s ease-in-out infinite;
-}
-@keyframes orbPulse {
-  0%,100% { box-shadow: 0 0 40px rgba(59,130,246,.4); }
-  50%     { box-shadow: 0 0 60px rgba(59,130,246,.6); }
-}
-.dash-fallback-text { color: #60a5fa; font-size: 13px; font-weight: 600; }
-@media (max-width: 880px) {
-  .dash-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
-  .dash-preview { padding: 60px 0 80px; }
-}
-
+.vw-pill { color: #fff; }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough" x="-10%" y="-20%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="page">
+  <header class="top">
+    <a class="brand" href="/" aria-label="ai eve, home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>ai eve<i>.</i></b></a>
+    <nav aria-label="Main">
+      <a href="/" aria-current="page">Meet EVE</a>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/services.html">Services</a>
+      <a href="/work.html">Work</a>
+      <a class="cta" href="/book.html">Book a demo</a>
+    </nav>
+  </header>
+  <main>
+    <section class="stage" aria-label="Talk to EVE">
+      <div class="flapboard" id="flap" aria-label="EVE is answering your calls"></div>
+      <div class="evebox">
+        <span class="hand note">go on, she won&rsquo;t bite</span>
+        <div class="head">
+          <span class="orb" aria-hidden="true"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg></span>
+          <div>
+            <h1>Hi, I&rsquo;m EVE. Talk to me.</h1>
+            <p class="sub"><span class="dot" aria-hidden="true"></span>Online now &middot; your AI receptionist for hospitality</p>
+          </div>
+        </div>
+        <div class="chat" aria-live="polite"><span class="who" id="who">Incoming call &middot; The Olive Table</span><div id="chat" style="display:grid;gap:9px"></div></div>
+        <div class="chips" role="group" aria-label="Try asking EVE">
+          <button class="chip" type="button" data-talk>&ldquo;Table for six on Saturday?&rdquo;</button>
+          <button class="chip" type="button" data-talk>&ldquo;Do you have a room on Friday?&rdquo;</button>
+          <button class="chip" type="button" data-talk>&ldquo;Can I hire the function room?&rdquo;</button>
+        </div>
+        <button class="talk" type="button" id="heroTalkBtn" data-talk><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3Z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Talk to EVE now</button>
+        <div class="efoot"><span>Free &middot; no sign-up &middot; uses your microphone</span><span>2 minute live demo</span></div>
+      </div>
+      <div class="tagline">
+        <h2>Every call answered. <em>Every booking taken.</em></h2>
+        <p class="small">Built for restaurants, hotels, pubs and caf&eacute;s &middot; also answering for salons, clinics and trades</p>
+      </div>
+    </section>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <symbol id="i-bolt"   viewBox="0 0 24 24"><path d="M13 3 5 14h6l-2 7 8-11h-6l2-7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
-  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></symbol>
-  <symbol id="i-cal"    viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></symbol>
-</defs></svg>
+    <div class="board">
+      <section class="tile c t-ink s3" aria-label="EVE's shift right now">
+        <span class="pin" aria-hidden="true"></span>
+        <span class="label" style="display:flex;align-items:center;gap:8px"><span class="dot" aria-hidden="true"></span>EVE is on shift</span>
+        <div class="clock" id="clock">--:--</div>
+        <p id="clockline">Answering calls right now.</p>
+      </section>
+      <section class="tile t-linen s3" aria-label="Answer time">
+        <span class="label">Time to answer</span>
+        <div class="big">0.4<small>s</small></div>
+        <svg class="ring" viewBox="0 0 64 64" aria-hidden="true"><circle class="track" cx="32" cy="32" r="28"/><circle class="bar" cx="32" cy="32" r="28"/></svg>
+        <p class="muted" style="font-size:.9rem;max-width:16ch">Before the second ring.</p>
+      </section>
+      <section class="tile t-sage s6" aria-label="EVE's staff record">
+        <span class="pin" aria-hidden="true"></span>
+        <span class="label">EVE&rsquo;s staff record</span>
+        <div class="facts">
+          <div><span>Lunch breaks taken</span><b>0</b></div>
+          <div><span>Sick days</span><b>0</b></div>
+          <div><span>Calls answered at 3am</span><b>All</b></div>
+        </div>
+      </section>
 
-<!-- cursor light orb (Marcelo-style ambient) -->
-<div class="cursor-orb" id="cursorOrb" aria-hidden="true"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="wrap">
-    <a href="/" class="logo">
-      <span class="logo-mark"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M13 3 5 14h6l-2 7 8-11h-6l2-7Z" fill="currentColor"/></svg></span>
-      AI EVE
-    </a>
-    <div style="display:flex; gap:8px; align-items:center;">
-      <a class="btn btn-ghost nav-dash" href="/dashboard.html" style="padding:9px 18px;font-size:13px;display:inline-flex;align-items:center;gap:6px">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-        See the dashboard
+      <a class="tile t-paper s7 r3" href="/dashboard.html" aria-label="Open the live dashboard that comes with EVE">
+        <span class="stamp">Included with EVE</span>
+        <div><span class="label">Your dashboard</span><h2 style="margin-top:10px;font-size:clamp(1.9rem,2.8vw,2.6rem)">Every call, <em style="color:#8a7317">counted</em> for you.</h2></div>
+        <span class="live-dash"><iframe src="/dashboard.html" title="The live EVE dashboard" tabindex="-1" loading="lazy" scrolling="no"></iframe></span>
+        <p class="muted" style="font-size:.88rem">The real dashboard, running live. It comes with EVE: every call written down, every lead and booking counted.</p>
       </a>
-      <a class="btn btn-ghost" href="mailto:hello@aieve.ai" style="padding:9px 18px;font-size:13px">Contact us</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-mesh" aria-hidden="true">
-    <span class="blob blob-1"></span>
-    <span class="blob blob-2"></span>
-    <span class="blob blob-3"></span>
-  </div>
-  <div class="wrap">
-    <div class="hero-badge reveal">0.4s answer · 24/7 coverage · 5 days to go live</div>
-    <h1 class="reveal">Your phone is ringing.<br><span class="blue">EVE answers every call.</span></h1>
-    <p class="hero-sub reveal">AI EVE qualifies every lead and books the job directly into your calendar — while you focus on the work.</p>
-    <div class="hero-btns reveal">
-      <button class="btn btn-primary" id="heroTalkBtn" style="padding:14px 26px">Talk to Eve Live</button>
-    </div>
-  </div>
-</header>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="how">
-  <div class="wrap">
-    <div class="how-label reveal">How it works</div>
-    <h2 class="how-title reveal">From missed call to <span class="blue">booked job</span> in three steps.</h2>
-    <div class="how-steps">
-
-      <div class="how-step reveal">
-        <span class="how-num">1</span>
-        <h3>EVE answers in 0.4 seconds</h3>
-        <p>Every call, every form, every chat — picked up before a customer thinks twice.</p>
-      </div>
-
-      <div class="how-step reveal">
-        <span class="how-num">2</span>
-        <h3>Qualifies and books the job</h3>
-        <p>Asks the right questions, reads the urgency, and drops confirmed bookings straight into your calendar.</p>
-      </div>
-
-      <div class="how-step reveal">
-        <span class="how-num">3</span>
-        <h3>You see the work, not the noise</h3>
-        <p>Real bookings arrive ready to go. The time-wasters never make it through.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- DASHBOARD PREVIEW -->
-<section class="dash-preview">
-  <div class="wrap">
-    <div class="dash-card reveal">
-      <div class="dash-text">
-        <div class="dash-eyebrow">Live dashboard</div>
-        <h2>Watch every call, lead, and booking in <span class="blue">real time.</span></h2>
-        <p>You don't just hand calls to EVE — you see them happen. Every qualified lead, every appointment, every conversion live as it lands.</p>
-        <a href="/dashboard.html" class="btn btn-primary" style="padding:13px 24px;font-size:14px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;width:fit-content;">
-          See the live dashboard
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-      <a href="/dashboard.html" class="dash-img-wrap">
-        <img src="/media/aieve_interface.jpg" alt="AI EVE Dashboard" />
+      <a class="tile t-lemon s5" href="/book.html">
+        <span class="label">Book a free demo</span>
+        <h2 style="font-size:clamp(1.9rem,2.8vw,2.5rem)">Hear EVE answer <em>your</em> calls.</h2>
+        <span class="label">Live in 5 days &middot; no long contracts &rarr;</span>
       </a>
+      <a class="tile t-moss s5" href="/services.html">
+        <span class="label">What we do</span>
+        <h2 style="font-size:clamp(1.7rem,2.4vw,2.2rem)">AI reception, websites, apps, marketing and email.</h2>
+        <span class="label">See services &rarr;</span>
+      </a>
+      <a class="tile t-ink s5" href="mailto:hello@aieve.ai">
+        <span class="pin" aria-hidden="true"></span>
+        <span class="label">Have an idea?</span>
+        <h2 style="font-size:clamp(1.7rem,2.4vw,2.2rem)">Let&rsquo;s make it real. &#8599;</h2>
+        <span style="font:500 .95rem var(--mono)">hello@aieve.ai</span>
+      </a>
+
+      <section class="tile t-linen s12 r2" aria-label="Our work">
+        <div class="head-row"><div><span class="label">Out of the studio</span><h2 style="margin-top:8px;font-size:clamp(1.8rem,2.6vw,2.4rem)">The work.</h2></div><a class="label" href="/work.html" style="color:#4f7a57;opacity:1">&#10003; All ready and completed &rarr;</a></div>
+        <div class="strip"><a class="card" href="/work.html"><div class="shot"><img src="/media/home/rc-laptop-home.jpg" alt="The Relief Chefs UK website" loading="lazy"></div><span class="label">Client &middot; website + app &middot; &#10003; Ready</span><h3>Relief Chefs UK</h3></a>
+<a class="card" href="/work.html"><div class="shot"><img src="/media/home/eve-dashboard.jpg" alt="The AI EVE dashboard" loading="lazy"></div><span class="label">Own product &middot; &#10003; Ready</span><h3>AI EVE Voice</h3></a>
+<a class="card" href="/work.html"><div class="shot"><img src="/media/v2/splat.jpg" alt="Splat, a daily creativity app" loading="lazy"></div><span class="label">Own product &middot; app &middot; &#10003; Ready</span><h3>Splat</h3></a>
+<a class="card" href="/work.html"><div class="shot"><img src="/media/v2/ideaforge.jpg" alt="Idea Forge app screens" loading="lazy"></div><span class="label">Own product &middot; app &middot; &#10003; Ready</span><h3>Idea Forge</h3></a>
+<a class="card" href="/work.html"><div class="shot"><img src="/media/v2/wedding.jpg" alt="The Wedding Cost Cutter" loading="lazy"></div><span class="label">Own product &middot; web app &middot; &#10003; Ready</span><h3>Wedding Budget Planner</h3></a>
+<a class="card" href="/work.html"><div class="shot"><img src="/media/v2/chef-planner.jpg" alt="The Chef Weekly Planner app" loading="lazy"></div><span class="label">Own product &middot; app &middot; &#10003; Ready</span><h3>Chef Weekly Planner</h3></a></div>
+      </section>
     </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="cta">
-  <div class="wrap">
-    <div class="cta-inner">
-      <h2 class="reveal">Book a <span class="blue">free demo.</span></h2>
-      <p class="reveal">Pick a time below. We'll plug EVE into a test line and you'll hear her qualify and book a job live on the call.</p>
-      <div class="cta-note reveal" style="margin-bottom:0">Live in 5 days &nbsp;·&nbsp; No long contracts</div>
-      <div class="cta-calendar reveal">
-        <iframe src="https://api.leadconnectorhq.com/widget/booking/bADszpd1744iWi1zvqPT" style="width:100%;min-height:700px;border:none;overflow:hidden;" scrolling="no" id="bADszpd1744iWi1zvqPT_1779712694658"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <a href="/" class="f-logo">
-      <span class="f-logo-mark"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M13 3 5 14h6l-2 7 8-11h-6l2-7Z" fill="currentColor"/></svg></span>
-      AI EVE
-    </a>
-    <div class="f-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>
-    </div>
-    <div class="f-copy">© 2026 AI EVE</div>
-  </div>
-</footer>
-
-<script>
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: .12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// ── Marcelo motion: split hero headline into per-letter spans (wrapped per word so words don't break) ──
-(function splitHeroH1() {
-  const h1 = document.querySelector('.hero h1');
-  if (!h1) return;
-  let i = 0;
-  const splitTextNode = (textNode) => {
-    const text = textNode.textContent;
-    const frag = document.createDocumentFragment();
-    const parts = text.split(/(\s+)/);
-    for (const part of parts) {
-      if (part === '') continue;
-      if (/^\s+$/.test(part)) {
-        frag.appendChild(document.createTextNode(part));
-      } else {
-        const word = document.createElement('span');
-        word.className = 'word';
-        for (const c of part) {
-          const s = document.createElement('span');
-          s.className = 'char';
-          s.style.setProperty('--i', i++);
-          s.textContent = c;
-          word.appendChild(s);
-        }
-        frag.appendChild(word);
-      }
-    }
-    textNode.parentNode.replaceChild(frag, textNode);
-  };
-  const walk = (node) => {
-    if (node.nodeType === 3) splitTextNode(node);
-    else if (node.nodeType === 1) Array.from(node.childNodes).forEach(walk);
-  };
-  Array.from(h1.childNodes).forEach(walk);
-})();
-
-// ── Marcelo motion: cursor light orb ──
-const orb = document.getElementById('cursorOrb');
-if (orb && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  let tx = 0, ty = 0, x = 0, y = 0;
-  document.addEventListener('mousemove', evt => { tx = evt.clientX; ty = evt.clientY; });
-  (function loop() {
-    x += (tx - x) * 0.18;
-    y += (ty - y) * 0.18;
-    orb.style.transform = `translate3d(${x - 270}px, ${y - 270}px, 0)`;
-    requestAnimationFrame(loop);
-  })();
-}
-
-// ── Marcelo motion: stat counter animation ──
-const animateCount = (el) => {
-  const final = el.dataset.final;
-  if (!final) return;
-  const m = final.match(/(-?\d*\.?\d+)/);
-  if (!m) { el.textContent = final; return; }
-  const num = parseFloat(m[0]);
-  if (num === 0) { el.textContent = final; return; }
-  const decimals = (m[0].split('.')[1] || '').length;
-  const prefix = final.slice(0, m.index);
-  const suffix = final.slice(m.index + m[0].length);
-  const dur = 1400, t0 = performance.now();
-  const tick = (now) => {
-    const t = Math.min(1, (now - t0) / dur);
-    const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = prefix + (num * eased).toFixed(decimals) + suffix;
-    if (t < 1) requestAnimationFrame(tick);
-    else el.textContent = final;
-  };
-  requestAnimationFrame(tick);
-};
-document.querySelectorAll('.stat-cell .v').forEach(el => {
-  const final = el.textContent.trim();
-  el.dataset.final = final;
-  const m = final.match(/(-?\d*\.?\d+)/);
-  if (m) {
-    const decimals = (m[0].split('.')[1] || '').length;
-    const prefix = final.slice(0, m.index);
-    const suffix = final.slice(m.index + m[0].length);
-    el.textContent = prefix + (0).toFixed(decimals) + suffix;
-  }
-});
-const statObs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) { animateCount(entry.target); statObs.unobserve(entry.target); }
-  });
-}, { threshold: 0.4 });
-document.querySelectorAll('.stat-cell .v').forEach(el => statObs.observe(el));
-</script>
-
+  </main>
+  <footer class="foot">
+    <a class="logoF" href="/" aria-label="ai eve home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>eve</b><span>by ai eve</span></a>
+    <nav aria-label="Footer"><a href="/">Meet EVE</a><a href="/dashboard.html">Dashboard</a><a href="/services.html">Services</a><a href="/work.html">Work</a><a href="/book.html">Book a demo</a><a href="/privacy-policy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="fine">&copy; 2026 AI EVE<br>hello@aieve.ai</p>
+  </footer>
+</div>
 <!-- VOICE WIDGET -->
 <button class="vw-pill" id="vwPill" type="button">
   <span class="vw-pill-dot">EVE</span>
@@ -835,6 +282,7 @@ document.querySelectorAll('.stat-cell .v').forEach(el => statObs.observe(el));
     End call
   </button>
 </div>
+
 
 <script type="module">
 // ─── VAPI CONFIG ───
@@ -987,10 +435,10 @@ function startCall() {
 vwStart.addEventListener('click', startCall);
 vwEnd.addEventListener('click', () => vapi.stop());
 
-document.getElementById('heroTalkBtn').addEventListener('click', () => {
+document.querySelectorAll('[data-talk]').forEach((b) => b.addEventListener('click', () => {
   openWidget();
   setTimeout(startCall, 300);
-});
+}));
 
 vapi.on('call-start',   () => setState('active'));
 vapi.on('call-end',     () => {
@@ -1012,6 +460,35 @@ vapi.on('volume-level', vol => {
   });
 });
 vapi.on('error', err => { console.error('Vapi:', err); setState('idle'); });
+</script>
+<script src="/v2/site.js"></script>
+<script>
+(function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const COLS = 12, LINES = [["EVE IS", "TAKING", "BOOKINGS"], ["EVE IS", "AWAKE", "AT 3AM"], ["EVE IS", "ANSWERING", "YOUR CALLS"], ["EVE IS", "NEVER ON", "HER BREAK"]];
+  const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:", flap = document.getElementById("flap");
+  const rows = LINES[0].map(() => { const r = document.createElement("div"); r.className = "row"; const cells = Array.from({ length: COLS }, () => { const c = document.createElement("span"); c.className = "cell"; c.textContent = " "; r.appendChild(c); return c; }); flap.appendChild(r); return cells; });
+  function show(lines) {
+    lines.forEach((text, ri) => { const p = text.padEnd(COLS, " ").slice(0, COLS); rows[ri].forEach((cell, ci) => {
+      const t = p[ci]; cell.classList.toggle("hot", ri > 0); if (reduce) { cell.textContent = t; return; }
+      let i = CHARS.indexOf(cell.textContent); if (i < 0) i = 0; const steps = (CHARS.indexOf(t) - i + CHARS.length) % CHARS.length; let n = 0;
+      const tick = () => { if (n >= Math.min(steps, 5 + ci)) { cell.textContent = t; return; } i = (i + 1) % CHARS.length; cell.textContent = CHARS[i]; cell.classList.remove("flip"); void cell.offsetWidth; cell.classList.add("flip"); n++; setTimeout(tick, 55); };
+      setTimeout(tick, ci * 35 + ri * 90); }); });
+    flap.setAttribute("aria-label", lines.join(" "));
+  }
+  let li = 0; show(LINES[0]); if (!reduce) setInterval(() => { li = (li + 1) % LINES.length; show(LINES[li]); }, 4200);
+  const CALLS = [
+    { who: "The Olive Table", lines: [["e", "Good evening, The Olive Table. How can I help?"], ["u", "Have you got a table for six on Saturday?"], ["e", "We do, at 7:30pm. Can I take a name and a mobile number?"], ["ok", "\u2713 Table for 6 booked. Saturday, 7:30pm."]] },
+    { who: "The Harbour Hotel", lines: [["e", "Hello, The Harbour Hotel. How can I help?"], ["u", "Do you have a double room this Friday night?"], ["e", "We do, a sea-view double. Shall I hold it in your name?"], ["ok", "\u2713 Room held for Friday. Confirmation sent."]] },
+    { who: "The Red Lion", lines: [["e", "Hi, The Red Lion. What can I do for you?"], ["u", "Could we hire your function room for a 40th, about 40 people?"], ["e", "Lovely. The back room is free on the 14th. Shall I pencil it in?"], ["ok", "\u2713 Function room pencilled in. Manager to call back."]] },
+    { who: "Little Crumb Caf\u00e9", lines: [["e", "Morning, Little Crumb Caf\u00e9. How can I help?"], ["u", "Can I order sandwich platters for twelve on Thursday?"], ["e", "Of course. Any dietary needs I should note?"], ["ok", "\u2713 Catering order taken for Thursday."]] }
+  ];
+  const chat = document.getElementById("chat"), who = document.getElementById("who"); let ci = 0;
+  function play() { const c = CALLS[ci]; who.textContent = "Incoming call \u00b7 " + c.who; chat.innerHTML = "";
+    c.lines.forEach(([k, t], i) => setTimeout(() => { const m = document.createElement("div"); m.className = "msg " + k; m.textContent = t; chat.appendChild(m); }, reduce ? 0 : i * 1500));
+    ci = (ci + 1) % CALLS.length; }
+  play(); if (!reduce) setInterval(play, 8500);
+})();
 </script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2360a5fa' d='M13 3 5 14h6l-2 7 8-11h-6l2-7Z'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:        #06080f;
@@ -89,6 +89,8 @@ body::before {
   display: flex; align-items: center; gap: 12px;
   padding: 11px 14px; border-radius: 10px;
   color: var(--ink-2); font-weight: 500;
+  width: 100%; border: 1px solid transparent; background: transparent;
+  font: inherit; text-align: left;
   cursor: pointer; transition: background .15s, color .15s;
   user-select: none;
 }
@@ -172,7 +174,9 @@ body::before {
   background: rgba(255,255,255,.04); border: 1px solid var(--line);
   color: var(--ink-2); font-size: 11px; padding: 5px 10px; border-radius: 6px;
   display: flex; align-items: center; gap: 4px;
+  font-family: inherit; cursor: pointer;
 }
+.chart-select option { background: var(--panel); color: var(--ink-1); }
 .chart-area { height: 130px; margin-bottom: 14px; }
 .chart-totals { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 12px; border-top: 1px solid var(--line-2); }
 .chart-totals .row { font-size: 11px; color: var(--ink-3); margin-bottom: 4px; }
@@ -206,6 +210,14 @@ body::before {
   color: var(--green); text-transform: uppercase;
 }
 .call-status::before { content:''; width:6px; height:6px; border-radius:50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 1.5s ease-in-out infinite; }
+.call-status.hold {
+  color: #fbbf24; background: rgba(251,191,36,.1); border-color: rgba(251,191,36,.25);
+}
+.call-status.hold::before { background: #fbbf24; box-shadow: 0 0 8px #fbbf24; animation: none; }
+.call-status.ended {
+  color: var(--ink-2); background: rgba(255,255,255,.05); border-color: var(--line);
+}
+.call-status.ended::before { background: var(--ink-3); box-shadow: none; animation: none; }
 @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
 .call-timer {
   font-family: 'Space Grotesk'; font-variant-numeric: tabular-nums;
@@ -269,6 +281,8 @@ body::before {
 .waveform span:nth-child(odd) { animation-delay: -.7s; }
 .waveform span:nth-child(3n) { animation-delay: -.35s; }
 .waveform span:nth-child(5n) { animation-delay: -1.05s; }
+.waveform.paused span { animation-play-state: paused; opacity: .35; }
+.waveform.ended span { animation: none; height: 3px; opacity: .2; box-shadow: none; }
 @keyframes wave {
   0%,100% { height: 8%; opacity: .6; }
   50%     { height: 95%; opacity: 1; }
@@ -297,6 +311,13 @@ body::before {
   transition: color .15s;
 }
 .call-btn:hover { color: var(--ink-1); }
+.call-btn:disabled { opacity: .35; cursor: not-allowed; }
+.call-btn:disabled .call-btn-circle { transform: none; }
+.call-btn[aria-pressed="true"] { color: var(--blue-2); }
+.call-btn[aria-pressed="true"] .call-btn-circle {
+  background: rgba(59,130,246,.18); border-color: rgba(96,165,250,.5);
+  box-shadow: 0 0 20px rgba(59,130,246,.18);
+}
 .call-btn-circle {
   width: 50px; height: 50px; border-radius: 50%;
   background: rgba(255,255,255,.06);
@@ -321,6 +342,11 @@ body::before {
   background: var(--panel); border: 1px solid var(--line);
   border-radius: 12px; padding: 10px 14px;
 }
+.workspace-select {
+  flex: 1; min-width: 0; border: 0; outline: 0; cursor: pointer;
+  background: transparent; color: var(--ink-1); font: inherit; font-size: 13px; font-weight: 600;
+}
+.workspace-select option { background: var(--panel); color: var(--ink-1); }
 .workspace-name { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
 .workspace-name svg { width: 12px; height: 12px; color: var(--ink-3); }
 .workspace-avatar {
@@ -338,8 +364,15 @@ body::before {
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;
 }
 .summary-head h3, .activity-head h3 { font-size: 14px; font-weight: 600; }
-.summary-head svg { width: 16px; height: 16px; color: var(--ink-3); cursor: pointer; }
-.activity-head a { font-size: 11.5px; color: var(--blue-2); font-weight: 600; text-decoration: none; }
+.icon-button, .link-button {
+  border: 0; background: transparent; color: var(--ink-3); cursor: pointer;
+  font: inherit; border-radius: 7px;
+}
+.icon-button { width: 30px; height: 30px; display: grid; place-items: center; }
+.icon-button:hover { color: var(--ink-1); background: rgba(255,255,255,.05); }
+.icon-button svg { width: 16px; height: 16px; }
+.link-button { font-size: 11.5px; color: var(--blue-2); font-weight: 600; padding: 5px 7px; }
+.link-button:hover { background: rgba(59,130,246,.1); }
 
 .summary-row {
   display: flex; align-items: center; gap: 12px;
@@ -389,6 +422,76 @@ body::before {
 .back-bar:hover { background: rgba(15,17,23,.9); color: var(--ink-1); }
 .back-bar svg { width: 12px; height: 12px; }
 
+button:focus-visible, select:focus-visible, a:focus-visible {
+  outline: 2px solid var(--blue-2); outline-offset: 3px;
+}
+
+/* Interactive demo overlays */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 100;
+  display: none; align-items: center; justify-content: center;
+  padding: 24px; background: rgba(2,5,10,.76); backdrop-filter: blur(12px);
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  width: min(720px, 100%); max-height: min(760px, calc(100vh - 48px)); overflow: auto;
+  background: #0b101b; border: 1px solid rgba(96,165,250,.28); border-radius: 22px;
+  box-shadow: 0 30px 100px rgba(0,0,0,.55), 0 0 70px rgba(59,130,246,.12);
+}
+.modal-head {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 20px 22px; background: rgba(11,16,27,.96); border-bottom: 1px solid var(--line);
+}
+.modal-kicker { color: var(--blue-2); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+.modal-title { font-family: 'Space Grotesk'; font-size: 24px; }
+.modal-body { padding: 22px; }
+.modal-copy { color: var(--ink-2); line-height: 1.65; margin-bottom: 18px; }
+.data-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.data-card {
+  border: 1px solid var(--line); background: var(--panel-2); border-radius: 13px; padding: 15px;
+}
+.data-card strong { display: block; font-family: 'Space Grotesk'; font-size: 22px; margin-bottom: 5px; }
+.data-card span { color: var(--ink-3); font-size: 11px; }
+.data-table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+.data-table th, .data-table td { padding: 11px 8px; text-align: left; border-bottom: 1px solid var(--line-2); font-size: 12px; }
+.data-table th { color: var(--ink-3); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
+.status-pill { display: inline-flex; padding: 4px 8px; border-radius: 999px; color: var(--green); background: rgba(34,197,94,.1); font-size: 10px; font-weight: 700; }
+
+.keypad-display {
+  min-height: 54px; padding: 13px 16px; border-radius: 12px; margin-bottom: 14px;
+  background: rgba(255,255,255,.04); border: 1px solid var(--line);
+  font-family: 'Space Grotesk'; font-size: 24px; letter-spacing: .14em; text-align: center;
+}
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.keypad button, .modal-action {
+  border: 1px solid var(--line); background: rgba(255,255,255,.05); color: var(--ink-1);
+  border-radius: 12px; padding: 13px; font: inherit; font-weight: 600; cursor: pointer;
+}
+.keypad button:hover, .modal-action:hover { background: rgba(96,165,250,.12); border-color: rgba(96,165,250,.3); }
+.modal-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.modal-action.primary { background: var(--blue); border-color: var(--blue); }
+.modal-select {
+  width: 100%; margin-top: 8px; padding: 12px 13px; border-radius: 11px;
+  color: var(--ink-1); background: var(--panel-2); border: 1px solid var(--line);
+  font: inherit;
+}
+.modal-select option { background: var(--panel); color: var(--ink-1); }
+
+.toast {
+  position: fixed; right: 24px; bottom: 24px; z-index: 150;
+  max-width: min(380px, calc(100vw - 32px)); padding: 13px 16px;
+  color: var(--ink-1); background: rgba(15,20,33,.96); border: 1px solid rgba(96,165,250,.28);
+  border-radius: 12px; box-shadow: 0 16px 50px rgba(0,0,0,.4);
+  opacity: 0; transform: translateY(12px); pointer-events: none;
+  transition: opacity .2s, transform .2s;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
 @media (max-width: 1280px) {
   .app { grid-template-columns: 220px 1fr 300px; }
   .col-stats { display: none; }
@@ -398,6 +501,9 @@ body::before {
   .sidebar, .col-right { display: none; }
   .answer-time { font-size: 64px; }
   .eve-orb { width: 130px; height: 130px; }
+  .call-controls { gap: 11px; flex-wrap: wrap; }
+  .modal-backdrop { padding: 12px; }
+  .data-grid { grid-template-columns: 1fr; }
 }
 
 </style>
@@ -423,39 +529,39 @@ body::before {
       </div>
     </div>
 
-    <nav class="nav">
-      <div class="nav-item active">
+    <nav class="nav" aria-label="Dashboard sections">
+      <button class="nav-item active" type="button" data-view="Dashboard" aria-current="page">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9M5 10v10h14V10"/></svg>
         Dashboard
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" type="button" data-view="Calls">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
         Calls
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" type="button" data-view="Leads">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Leads
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" type="button" data-view="Appointments">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         Appointments
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" type="button" data-view="Services">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94L8.36 19.64a2.12 2.12 0 0 1-3-3L11.7 10.3a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg>
         Services
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" type="button" data-view="Analytics">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg>
         Analytics
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" type="button" data-view="Integrations">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v6M15 18H9a3 3 0 0 1-3-3V9"/></svg>
         Integrations
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" type="button" data-view="Settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
         Settings
-      </div>
+      </button>
     </nav>
 
     <div class="sidebar-footer">
@@ -499,8 +605,13 @@ body::before {
 
     <div class="chart-card">
       <div class="chart-head">
-        <h3>Monthly Overview</h3>
-        <div class="chart-select">This Month <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <h3 id="chartTitle">Monthly Overview</h3>
+        <label class="sr-only" for="chartRange">Chart range</label>
+        <select class="chart-select" id="chartRange">
+          <option value="week">This Week</option>
+          <option value="month" selected>This Month</option>
+          <option value="quarter">This Quarter</option>
+        </select>
       </div>
       <svg class="chart-area" viewBox="0 0 260 130" preserveAspectRatio="none">
         <defs>
@@ -509,17 +620,17 @@ body::before {
             <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
           </linearGradient>
         </defs>
-        <path d="M0,100 L20,90 L40,95 L60,80 L80,70 L100,75 L120,60 L140,50 L160,55 L180,40 L200,35 L220,25 L240,20 L260,10" fill="none" stroke="#3b82f6" stroke-width="2"/>
-        <path d="M0,100 L20,90 L40,95 L60,80 L80,70 L100,75 L120,60 L140,50 L160,55 L180,40 L200,35 L220,25 L240,20 L260,10 L260,130 L0,130 Z" fill="url(#chartFill)"/>
+        <path id="chartLine" d="M0,100 L20,90 L40,95 L60,80 L80,70 L100,75 L120,60 L140,50 L160,55 L180,40 L200,35 L220,25 L240,20 L260,10" fill="none" stroke="#3b82f6" stroke-width="2"/>
+        <path id="chartFillPath" d="M0,100 L20,90 L40,95 L60,80 L80,70 L100,75 L120,60 L140,50 L160,55 L180,40 L200,35 L220,25 L240,20 L260,10 L260,130 L0,130 Z" fill="url(#chartFill)"/>
       </svg>
       <div class="chart-totals">
         <div>
           <div class="row">Leads</div>
-          <div class="val">162</div>
+          <div class="val" id="chartLeads">162</div>
         </div>
         <div>
           <div class="row">Appointments</div>
-          <div class="val">73</div>
+          <div class="val" id="chartAppointments">73</div>
         </div>
       </div>
     </div>
@@ -528,7 +639,7 @@ body::before {
   <!-- CENTRE: Call Panel -->
   <main class="call-panel">
     <div class="call-top">
-      <div class="call-status">Call in progress</div>
+      <div class="call-status" id="callStatus" aria-live="polite">Call in progress</div>
       <div class="call-timer" id="callTimer">00:00:18</div>
     </div>
 
@@ -554,23 +665,23 @@ body::before {
     </div>
 
     <div class="call-controls">
-      <button class="call-btn">
+      <button class="call-btn" type="button" id="muteButton" aria-pressed="false">
         <div class="call-btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"/></svg></div>
-        Mute
+        <span>Mute</span>
       </button>
-      <button class="call-btn">
+      <button class="call-btn" type="button" id="keypadButton">
         <div class="call-btn-circle"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="5" r="1.5"/><circle cx="12" cy="5" r="1.5"/><circle cx="19" cy="5" r="1.5"/><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/><circle cx="5" cy="19" r="1.5"/><circle cx="12" cy="19" r="1.5"/><circle cx="19" cy="19" r="1.5"/></svg></div>
         Keypad
       </button>
-      <button class="call-btn call-btn-end">
+      <button class="call-btn call-btn-end" type="button" id="endCallButton">
         <div class="call-btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" transform="rotate(135 12 12)"/></svg></div>
-        End Call
+        <span>End Call</span>
       </button>
-      <button class="call-btn">
+      <button class="call-btn" type="button" id="holdButton" aria-pressed="false">
         <div class="call-btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></div>
-        Hold
+        <span>Hold</span>
       </button>
-      <button class="call-btn">
+      <button class="call-btn" type="button" id="addCallButton">
         <div class="call-btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M20 8v6M23 11h-6"/></svg></div>
         Add Call
       </button>
@@ -580,44 +691,47 @@ body::before {
   <!-- RIGHT SIDEBAR -->
   <aside class="col-right">
     <div class="workspace">
-      <div class="workspace-name">
-        Home Services Pro
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="workspace-avatar">HS</div>
+      <label class="sr-only" for="workspaceSelect">Workspace</label>
+      <select class="workspace-select" id="workspaceSelect">
+        <option value="home">Home Services Pro</option>
+        <option value="vacation">Vacation Rentals</option>
+      </select>
+      <div class="workspace-avatar" id="workspaceAvatar">HS</div>
     </div>
 
     <div class="summary">
       <div class="summary-head">
         <h3>Today's Summary</h3>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+        <button class="icon-button" type="button" id="summaryActionsButton" aria-label="Download today's summary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+        </button>
       </div>
       <div class="summary-row">
         <div class="summary-ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
         <div class="summary-text">Calls Handled</div>
-        <div class="summary-val">37</div>
+        <div class="summary-val" data-summary="calls">37</div>
       </div>
       <div class="summary-row">
         <div class="summary-ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <div class="summary-text">Leads Qualified</div>
-        <div class="summary-val">24</div>
+        <div class="summary-val" data-summary="leads">24</div>
       </div>
       <div class="summary-row">
         <div class="summary-ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
         <div class="summary-text">Appointments Booked</div>
-        <div class="summary-val">11</div>
+        <div class="summary-val" data-summary="appointments">11</div>
       </div>
       <div class="summary-row">
         <div class="summary-ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10h-10z" fill="currentColor"/></svg></div>
         <div class="summary-text">Conversion Rate</div>
-        <div class="summary-val p">29.7%</div>
+        <div class="summary-val p" data-summary="conversion">29.7%</div>
       </div>
     </div>
 
     <div class="activity">
       <div class="activity-head">
         <h3>Recent Activity</h3>
-        <a href="#">View All</a>
+        <button class="link-button" type="button" id="viewAllButton">View All</button>
       </div>
       <div class="activity-row">
         <div class="activity-ic green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
@@ -656,27 +770,24 @@ body::before {
 
 </div>
 
-<script>
-// Build waveform bars
-const wave = document.getElementById('wave');
-for (let i = 0; i < 60; i++) {
-  const s = document.createElement('span');
-  s.style.animationDelay = (-Math.random() * 1.4) + 's';
-  s.style.animationDuration = (1 + Math.random() * .8) + 's';
-  wave.appendChild(s);
-}
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <div>
+        <div class="modal-kicker" id="modalKicker">AI EVE dashboard</div>
+        <h2 class="modal-title" id="modalTitle">Details</h2>
+      </div>
+      <button class="icon-button" type="button" id="modalCloseButton" aria-label="Close dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </section>
+</div>
 
-// Live timer
-const timer = document.getElementById('callTimer');
-let secs = 18;
-setInterval(() => {
-  secs++;
-  const h = String(Math.floor(secs / 3600)).padStart(2, '0');
-  const m = String(Math.floor((secs % 3600) / 60)).padStart(2, '0');
-  const s = String(secs % 60).padStart(2, '0');
-  timer.textContent = `${h}:${m}:${s}`;
-}, 1000);
-</script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="dashboard.js"></script>
 
 </body>
 </html>
