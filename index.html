@@ -57,7 +57,7 @@
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
 p { margin: 0; }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 .eyebrow { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--copper); }
@@ -84,18 +84,22 @@ p { margin: 0; }
 
 /* Hero */
 .hero { background: var(--night); color: var(--night-ink); overflow: hidden; }
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; padding-block: 72px 88px; }
-.hero h1 { font-size: clamp(2.6rem, 5.4vw, 4.5rem); margin: 16px 0 22px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr); gap: 64px; align-items: center; padding-block: 96px 112px; }
+.hero h1 { font-size: clamp(2.8rem, 5.6vw, 4.9rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.02; margin: 18px 0 24px; }
 .hero h1 em { font-style: italic; color: var(--copper); font-weight: 500; }
 .hero .lede { color: var(--night-muted); }
 .hero .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .hero .btn-line { color: var(--night-ink); }
 .hero-facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 28px; font-size: 0.88rem; color: var(--night-muted); }
 .hero-facts b { color: var(--night-ink); font-weight: 600; }
-.scene { position: relative; padding-bottom: 36px; }
-.scene .photo { border-radius: 14px; overflow: hidden; border: 1px solid var(--night-line); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45); }
-.scene .photo img { aspect-ratio: 4 / 3.6; object-fit: cover; object-position: center 38%; width: 100%; }
-.callcard { position: absolute; right: -8px; bottom: 0; width: min(330px, 78%); background: #fffdfb; color: #1d1712; border-radius: 14px; padding: 16px 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); display: grid; gap: 10px; font-size: 0.9rem; }
+.stage { position: relative; padding: 28px 0 60px 0; }
+.glow { position: absolute; inset: -90px -120px -70px -70px; background: radial-gradient(42% 50% at 60% 45%, rgba(212, 146, 74, 0.62), transparent 68%), radial-gradient(32% 38% at 22% 78%, rgba(181, 98, 26, 0.6), transparent 70%), radial-gradient(28% 32% at 90% 85%, rgba(240, 190, 150, 0.4), transparent 70%); filter: blur(28px); opacity: 0.9; pointer-events: none; }
+.stage .laptop { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(243, 237, 230, 0.18); box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55); background: #000; }
+.stage .laptop .bar { height: 28px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #1f1a16; }
+.stage .laptop .bar i { width: 9px; height: 9px; border-radius: 50%; background: #4a433d; }
+.stage .laptop .bar span { margin-left: 10px; font-size: 0.7rem; letter-spacing: 0.04em; color: #9b9087; }
+.stage .phone { position: absolute; left: -28px; bottom: 0; width: 24%; border-radius: 26px; overflow: hidden; border: 5px solid #241f1b; box-shadow: 0 28px 60px rgba(0, 0, 0, 0.6); }
+.callcard { position: absolute; right: -18px; bottom: 14px; width: min(320px, 62%); background: #fffdfb; color: #1d1712; border-radius: 14px; padding: 16px 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); display: grid; gap: 10px; font-size: 0.9rem; }
 .cc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .cc-who { display: flex; align-items: center; gap: 10px; font-weight: 700; }
 .cc-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #d4924a, #7a3a0c); color: #fff; display: grid; place-items: center; font: 600 0.95rem var(--display); position: relative; }
@@ -106,7 +110,7 @@ p { margin: 0; }
 .cc-booked { display: flex; gap: 8px; align-items: center; background: rgba(47, 125, 79, 0.1); color: #22603b; border-radius: 10px; padding: 9px 12px; font-weight: 600; font-size: 0.86rem; }
 
 /* Sections */
-section { padding-block: 96px; }
+section { padding-block: 120px; }
 .section-head { display: grid; gap: 14px; max-width: 760px; margin-bottom: 48px; }
 .section-head h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
 .tint { background: var(--surface); }
@@ -196,7 +200,8 @@ footer nav { display: flex; gap: 18px; }
 footer a { text-decoration: none; }
 
 @media (max-width: 900px) {
-  .hero .wrap, .call, .dash, .case, .band .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .hero .wrap, .call, .dash, .case, .band .wrap { grid-template-columns: 1fr; gap: 48px; }
+  .stage .phone { left: -10px; }
   .steps, .people { grid-template-columns: 1fr; gap: 28px; }
   .grid3 { grid-template-columns: 1fr 1fr; }
   .numbers { grid-template-columns: 1fr 1fr; }
@@ -206,7 +211,9 @@ footer a { text-decoration: none; }
 @media (max-width: 600px) {
   .grid3 { grid-template-columns: 1fr; }
   .hero .wrap { padding-block: 48px 64px; }
-  .callcard { right: 0; width: 86%; }
+  .callcard { right: 0; width: 78%; }
+  .stage .phone { left: -6px; width: 28%; }
+  .glow { inset: -30px -20px; }
 }
 /* ── VOICE WIDGET ── */
 /* Collapsed pill — default state */
@@ -373,8 +380,13 @@ footer a { text-decoration: none; }
         </div>
         <div class="hero-facts"><span><b>0.4s</b> to answer</span><span><b>24/7</b> cover</span><span>Live in <b>5 days</b></span><span>No long contracts</span></div>
       </div>
-      <div class="scene">
-        <div class="photo"><img src="/media/home/owner-phone.jpg" alt="A business owner smiling at her phone at a sunny café table" width="1400" height="1832"></div>
+      <div class="stage" aria-label="What you get with EVE: your dashboard, and EVE answering a call">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="laptop">
+          <div class="bar"><i></i><i></i><i></i><span>Your EVE dashboard</span></div>
+          <img src="/media/home/eve-dashboard.jpg" alt="The AI EVE dashboard: today's calls, qualified leads and booked appointments, with a live call being answered" width="1440" height="900">
+        </div>
+        <div class="phone"><img src="/media/home/eve-phone.jpg" alt="EVE answering a call in 0.4 seconds on a phone" width="780" height="1688"></div>
         <div class="callcard" aria-label="A call EVE has just answered">
           <div class="cc-head">
             <span class="cc-who"><span class="cc-avatar"><span class="ring" aria-hidden="true"></span>E</span>EVE took a call</span>
