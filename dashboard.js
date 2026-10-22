@@ -3,29 +3,29 @@
 
   const workspaceData = {
     home: {
-      name: "Home Services Pro",
-      avatar: "HS",
+      name: "The Harbour Hotel",
+      avatar: "HH",
       summary: { calls: 37, leads: 24, appointments: 11, conversion: "29.7%" },
       activity: [
-        ["New lead qualified", "Plumbing · Emergency", "2m ago"],
-        ["Appointment booked", "AC Repair · Tomorrow, 10:00 AM", "5m ago"],
-        ["New lead qualified", "Electrical · Panel Upgrade", "8m ago"],
-        ["Appointment booked", "Plumbing · Friday, 2:00 PM", "12m ago"],
-        ["Call handled", "Roofing · Estimate requested", "18m ago"],
-        ["Lead follow-up sent", "Heating · Annual service", "24m ago"]
+        ["Table enquiry", "Table for 6 · Sat 7:30pm", "2m ago"],
+        ["Room enquiry", "Double room · Fri, 2 nights", "5m ago"],
+        ["Function enquiry", "Function room · 40th birthday", "8m ago"],
+        ["Message taken", "Late check-in · Room 12", "12m ago"],
+        ["Call handled", "Parking and opening hours", "18m ago"],
+        ["Enquiry passed on", "Wedding fair · call back", "24m ago"]
       ]
     },
     vacation: {
-      name: "Vacation Rentals",
-      avatar: "VR",
+      name: "The Olive Table",
+      avatar: "OT",
       summary: { calls: 42, leads: 29, appointments: 14, conversion: "33.3%" },
       activity: [
-        ["New booking enquiry", "Seaside Cottage · 4 guests", "1m ago"],
-        ["Viewing booked", "Lake House · Tomorrow, 11:30 AM", "4m ago"],
-        ["Guest question answered", "City Loft · Parking details", "7m ago"],
-        ["Owner call scheduled", "Mountain Cabin · Friday, 3:00 PM", "10m ago"],
-        ["New booking enquiry", "Garden Studio · 2 guests", "16m ago"],
-        ["Availability confirmed", "Harbour Apartment · July stay", "21m ago"]
+        ["Table enquiry", "Table for 2 · Tonight, 8pm", "1m ago"],
+        ["Table enquiry", "Table for 8 · Sun lunch", "4m ago"],
+        ["Question answered", "Gluten-free menu", "7m ago"],
+        ["Message taken", "Private dining · call back", "10m ago"],
+        ["Table enquiry", "Table for 4 · Fri 7pm", "16m ago"],
+        ["Call handled", "Opening hours", "21m ago"]
       ]
     }
   };
@@ -57,49 +57,49 @@
       metrics: [["37", "Calls today"], ["04:12", "Average duration"], ["92%", "Answered first time"]],
       headers: ["Caller", "Reason", "Status"],
       rows: [
-        ["Sarah M.", "Emergency plumbing", "Qualified"],
-        ["Daniel R.", "AC repair", "Booked"],
-        ["Priya K.", "Electrical quote", "Follow-up"]
+        ["Sarah M.", "Table for 6", "Captured"],
+        ["Daniel R.", "Double room, Fri", "Passed on"],
+        ["Priya K.", "Function room", "Call back"]
       ]
     },
     Leads: {
-      copy: "Qualified prospects captured automatically from calls, including service need and urgency.",
-      metrics: [["24", "Qualified today"], ["65%", "Qualification rate"], ["8", "High priority"]],
-      headers: ["Lead", "Service", "Priority"],
+      copy: "Enquiries captured from calls, with what the guest wants and when.",
+      metrics: [["24", "Enquiries today"], ["65%", "Details taken"], ["8", "Call backs"]],
+      headers: ["Guest", "Enquiry", "Next step"],
       rows: [
-        ["Sarah M.", "Plumbing", "Urgent"],
-        ["Jordan B.", "Heating", "High"],
-        ["Luis A.", "Roofing", "Standard"]
+        ["Sarah M.", "Table for 6", "Confirm"],
+        ["Jordan B.", "Wedding fair", "Call back"],
+        ["Luis A.", "Late check-in", "Noted"]
       ]
     },
     Appointments: {
-      copy: "Bookings created during calls using the business availability configured for this demo.",
+      copy: "Bookings and enquiries taken during calls, in this example.",
       metrics: [["11", "Booked today"], ["3", "Tomorrow"], ["0", "Conflicts"]],
       headers: ["Customer", "Service", "Time"],
       rows: [
-        ["Daniel R.", "AC repair", "Tomorrow, 10:00"],
-        ["Priya K.", "Electrical", "Friday, 14:00"],
-        ["Maya T.", "Boiler service", "Friday, 16:30"]
+        ["Daniel R.", "Double room, 2 nights", "Friday"],
+        ["Priya K.", "Table for 6", "Saturday, 19:30"],
+        ["Maya T.", "Sunday lunch for 8", "Sunday, 13:00"]
       ]
     },
     Services: {
-      copy: "Services AI EVE can identify, qualify and book during a customer conversation.",
+      copy: "What guests ask about, and who EVE passes it to.",
       metrics: [["8", "Active services"], ["5", "Bookable"], ["3", "Quote only"]],
       headers: ["Service", "Routing", "Availability"],
       rows: [
-        ["Emergency plumbing", "On-call team", "24/7"],
-        ["AC repair", "Cooling team", "Mon–Sat"],
-        ["Electrical work", "Electrical team", "Mon–Fri"]
+        ["Table bookings", "Restaurant team", "24/7"],
+        ["Room enquiries", "Reception", "24/7"],
+        ["Functions and events", "Events manager", "Mon–Fri"]
       ]
     },
     Analytics: {
       copy: "A compact view of call outcomes and the revenue-driving actions completed by AI EVE.",
-      metrics: [["29.7%", "Lead conversion"], ["45.8%", "Booking rate"], ["0.4s", "Answer speed"]],
+      metrics: [["29.7%", "Enquiry conversion"], ["45.8%", "Booking rate"], ["1st ring", "Answer speed"]],
       headers: ["Metric", "Current", "Change"],
       rows: [
         ["Calls handled", "37", "+16%"],
-        ["Qualified leads", "24", "+20%"],
-        ["Appointments", "11", "+22%"]
+        ["Enquiries captured", "24", "+20%"],
+        ["Bookings taken", "11", "+22%"]
       ]
     },
     Integrations: {
@@ -108,13 +108,13 @@
       headers: ["Integration", "Purpose", "Status"],
       rows: [
         ["Business phone", "Inbound call routing", "Connected"],
-        ["Calendar", "Appointment booking", "Connected"],
-        ["CRM", "Lead capture", "Connected"]
+        ["Booking system", "Tables and rooms", "Connected"],
+        ["Inbox", "Enquiry alerts", "Connected"]
       ]
     },
     Settings: {
       copy: "Configuration preview for greeting, call routing and business-hours behaviour.",
-      metrics: [["24/7", "Call coverage"], ["English", "Primary language"], ["Instant", "Lead alerts"]],
+      metrics: [["24/7", "Call coverage"], ["English", "Primary language"], ["Instant", "Enquiry alerts"]],
       headers: ["Setting", "Value", "Status"],
       rows: [
         ["After-hours routing", "AI EVE answers", "Active"],
@@ -244,7 +244,7 @@
     const data = viewData[view];
     setActiveNav(view);
     openModal(
-      view,
+      ({ Leads: "Enquiries", Appointments: "Bookings" })[view] || view,
       `<p class="modal-copy">${data.copy}</p>${renderCards(data.metrics)}${renderTable(data.headers, data.rows)}`,
       "Workspace overview"
     );
@@ -396,8 +396,8 @@
       ["AI EVE daily summary", data.name],
       ["Metric", "Value"],
       ["Calls handled", data.summary.calls],
-      ["Leads qualified", data.summary.leads],
-      ["Appointments booked", data.summary.appointments],
+      ["Enquiries captured", data.summary.leads],
+      ["Bookings taken", data.summary.appointments],
       ["Conversion rate", data.summary.conversion]
     ].map((row) => row.map((value) => `"${String(value).replaceAll("\"", "\"\"")}"`).join(",")).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });

@@ -1,322 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Terms of Use | AI EVE</title>
-  <meta name="description" content="Terms of Use for the AI EVE website, demos, and enquiry handling." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --panel: rgba(255, 252, 247, 0.82);
-      --text: #201814;
-      --muted: #6f6257;
-      --accent: #8e6a42;
-      --shadow: 0 24px 80px rgba(58, 42, 27, 0.08);
-      --max: 1080px;
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: var(--sans);
-      background:
-        radial-gradient(circle at top left, rgba(232, 219, 202, 0.8), transparent 34%),
-        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8), transparent 30%),
-        linear-gradient(180deg, #f7f2ea 0%, #f3ede4 46%, #efe7dd 100%);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(53, 38, 24, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(53, 38, 24, 0.02) 1px, transparent 1px);
-      background-size: 24px 24px;
-      pointer-events: none;
-      opacity: 0.45;
-      z-index: -2;
-    }
-
-    a { color: inherit; }
-
-    .shell { position: relative; isolation: isolate; }
-
-    .shell::before,
-    .shell::after {
-      content: "";
-      position: fixed;
-      width: 34rem;
-      height: 34rem;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .shell::before { top: -10rem; right: -8rem; background: rgba(211, 190, 164, 0.7); }
-    .shell::after  { bottom: -16rem; left: -10rem; background: rgba(233, 221, 206, 0.9); }
-
-    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(20px);
-      background: rgba(247, 242, 234, 0.72);
-      border-bottom: 1px solid rgba(63, 47, 31, 0.06);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 80px;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid rgba(63, 47, 31, 0.16);
-      background: rgba(255, 255, 255, 0.4);
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .nav-link { font-size: 14px; color: rgba(32, 24, 20, 0.72); text-decoration: none; }
-
-    .hero { padding: 96px 0 28px; }
-
-    .eyebrow {
-      margin: 0 0 16px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(102, 82, 61, 0.75);
-    }
-
-    h1 {
-      margin: 0;
-      font-family: var(--serif);
-      font-size: clamp(3.4rem, 7vw, 6rem);
-      line-height: 0.88;
-      letter-spacing: -0.05em;
-      font-weight: 600;
-    }
-
-    .lead {
-      max-width: 42rem;
-      margin: 22px 0 0;
-      font-size: 18px;
-      line-height: 1.85;
-      color: var(--muted);
-    }
-
-    .policy-card {
-      margin: 34px 0 80px;
-      padding: 34px;
-      border: 1px solid rgba(63, 47, 31, 0.1);
-      border-radius: 32px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-    }
-
-    .policy-meta { margin: 0 0 24px; color: rgba(83, 64, 46, 0.78); font-size: 14px; }
-
-    .policy-section + .policy-section {
-      margin-top: 32px;
-      padding-top: 30px;
-      border-top: 1px solid rgba(63, 47, 31, 0.08);
-    }
-
-    .policy-section h2 {
-      margin: 0 0 14px;
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      line-height: 0.94;
-      letter-spacing: -0.04em;
-      font-weight: 600;
-    }
-
-    .policy-section p,
-    .policy-section li {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.9;
-    }
-
-    .policy-section p + p,
-    .policy-section ul + p,
-    .policy-section p + ul { margin-top: 14px; }
-
-    .policy-section ul { margin: 16px 0 0; padding-left: 20px; display: grid; gap: 10px; }
-
-    .footer { padding: 0 0 44px; }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding-top: 22px;
-      border-top: 1px solid rgba(63, 47, 31, 0.08);
-      color: rgba(83, 64, 46, 0.74);
-      font-size: 13px;
-    }
-
-    @media (max-width: 720px) {
-      .hero { padding-top: 72px; }
-      .policy-card { padding: 24px; border-radius: 24px; }
-      .nav { min-height: 72px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms of use | AI EVE</title>
+<meta name="description" content="The terms for using aieve.ai and the Talk to EVE voice demo.">
+<link rel="canonical" href="https://aieve.ai/terms.html">
+<meta property="og:title" content="Terms of use | AI EVE">
+<meta property="og:description" content="The terms for using aieve.ai and the Talk to EVE voice demo.">
+<meta property="og:url" content="https://aieve.ai/terms.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://aieve.ai/media/v2/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aieve.ai/media/v2/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e6c84a'/%3E%3Cpath d='M8 38c8 0 15-3 15-9s-6-8-10-5c-6 4-4 14 4 16 6 2 11-1 14-5 2-3 3-8 5-8s2 15 5 15 3-22 6-22 3 20 6 20' fill='none' stroke='%231f2e1b' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap">
+<link rel="stylesheet" href="/v2/style.css">
 </head>
-<body>
-  <div class="shell">
-    <header>
-      <div class="container nav">
-        <a class="brand" href="/index.html">
-          <span class="brand-mark">E</span>
-          <span>AI EVE</span>
-        </a>
-        <a class="nav-link" href="/index.html">Back to home</a>
-      </div>
-    </header>
+<body data-page="terms">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough" x="-10%" y="-20%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="page">
+  <header class="top">
+    <a class="brand logoF top-logo" href="/" aria-label="ai eve, home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>eve</b><span>by ai eve</span></a>
+    <nav aria-label="Main">
+      <a href="/">Meet EVE</a>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/services.html">Services</a>
+      <a href="/work.html">Work</a>
+      <a href="/book.html#contact">Contact us</a>
+      <a class="cta" href="/book.html">Book a demo</a>
+    </nav>
+  </header>
+  <main>
+    <section class="pagehead"><span class="label" style="color:var(--pop)">Terms</span><h1>The terms for <em>using this site.</em></h1><p>The plain rules for visiting aieve.ai and trying the voice demo.</p></section>
+    <article class="legal"><div class="legal-body">
+<p class="updated">Last updated 22 October 2026</p>
+<p>These terms cover your use of aieve.ai, including the &ldquo;Talk to EVE&rdquo; voice demo, the booking calendar and the rest of the site. By using the site you agree to them. If you don&rsquo;t agree, please don&rsquo;t use the site.</p>
 
-    <main>
-      <section class="hero">
-        <div class="container">
-          <p class="eyebrow">Terms of Use</p>
-          <h1>Terms for visiting AI EVE and using our website.</h1>
-          <p class="lead">
-            These Terms of Use govern your access to <strong>aieve.ai</strong>, our demos, enquiry forms, and any informational content we make available. By using the site you agree to these terms. If you do not agree, please do not use the site.
-          </p>
-        </div>
-      </section>
+<h2>About AI EVE</h2>
+<p>AI EVE is run by Hayley Moses, trading as AI EVE, in the United Kingdom. We provide an AI receptionist for hospitality businesses, along with websites, apps, automation and marketing. This site describes what we do, takes demo bookings and lets you try EVE. Paid work is covered by a separate written agreement, not by these terms.</p>
+<p>You can contact us at <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.</p>
 
-      <section class="container">
-        <div class="policy-card">
-          <p class="policy-meta"><strong>Effective date:</strong> May 13, 2026</p>
+<h2>Using the site</h2>
+<p>When you use the site, please don&rsquo;t:</p>
+<ul>
+<li>give false or misleading information when you book or get in touch;</li>
+<li>try to disrupt, probe, scan or test the security of the site or the services behind it;</li>
+<li>copy, scrape or reuse our content for competing commercial purposes without our written permission;</li>
+<li>use the voice demo to harass anyone, create unlawful content or break the law.</li>
+</ul>
 
-          <section class="policy-section">
-            <h2>About AI EVE</h2>
-            <p>
-              AI EVE provides AI voice and enquiry-handling services for independent businesses. The website at aieve.ai is operated by AI EVE and is intended to describe our services, accept enquiries, schedule demo calls, and showcase product demonstrations. Paid services are governed by a separate signed engagement agreement, not by these Terms.
-            </p>
-            <p>
-              You can contact us at <a href="mailto:hello@aieve.ai">hello@aieve.ai</a> regarding these Terms or anything else.
-            </p>
-          </section>
+<h2>The voice demo and AI replies</h2>
+<p>The &ldquo;Talk to EVE&rdquo; demo is a recorded AI demonstration. EVE&rsquo;s replies are generated by AI and may be wrong or incomplete. They are for demonstration only, so please don&rsquo;t rely on them as professional, legal, financial, medical or safety advice, and don&rsquo;t share sensitive information. Calls are limited in length. How we handle the recording is explained in our <a href="/privacy-policy.html">privacy policy</a>.</p>
 
-          <section class="policy-section">
-            <h2>Acceptable use</h2>
-            <p>When you use this website you agree not to:</p>
-            <ul>
-              <li>submit false or misleading enquiry information,</li>
-              <li>attempt to disrupt, probe, scan, or test the security of the site or our infrastructure,</li>
-              <li>copy, scrape, or reuse our content for competing commercial purposes without our written permission,</li>
-              <li>use the live voice demo or any interactive feature to harass others, generate unlawful content, or break applicable laws.</li>
-            </ul>
-          </section>
+<h2>Our content</h2>
+<p>The AI EVE name, logo, words, designs and code on this site belong to AI EVE or the people who licensed them to us. You&rsquo;re welcome to view the site and share links to it. Please don&rsquo;t copy, change or republish large parts of it without our written permission.</p>
 
-          <section class="policy-section">
-            <h2>Demos and AI-generated output</h2>
-            <p>
-              Our live voice demo and other interactive features may generate AI output in response to your input. AI output is provided for demonstration purposes only and may be inaccurate or incomplete. Do not rely on it as professional, medical, legal, financial, or safety advice. You are responsible for how you use any output you receive.
-            </p>
-          </section>
+<h2>Other services</h2>
+<p>Some features use other companies&rsquo; services, for example the booking calendar, the voice demo and web fonts. Their own terms and privacy policies also apply when you use those features. We choose them carefully, but we don&rsquo;t control how they run.</p>
 
-          <section class="policy-section">
-            <h2>Intellectual property</h2>
-            <p>
-              The AI EVE name, logo, written content, designs, and code on this site are owned by AI EVE or its licensors. You may view and share links to the site for personal or evaluation purposes. You may not copy, modify, or republish substantial portions of the site without written permission.
-            </p>
-          </section>
+<h2>No guarantee</h2>
+<p>We work hard to keep the site and demo running and accurate, but we provide them &ldquo;as is&rdquo; and can&rsquo;t promise they will always be available, error-free or secure.</p>
 
-          <section class="policy-section">
-            <h2>Third-party services</h2>
-            <p>
-              Some features on the site are powered by third parties (for example form processing, calendar booking, voice infrastructure, and font delivery). Your use of those features is also subject to the relevant third party's own terms and privacy policies. We do our best to choose reputable providers but we do not control how those third parties operate.
-            </p>
-          </section>
+<h2>Our liability</h2>
+<p>As far as the law allows, AI EVE is not liable for any indirect or consequential loss, or for loss of profit, revenue, data or goodwill, arising from your use of the site or the demo. Nothing in these terms limits liability that can&rsquo;t be limited by law, such as liability for death or personal injury caused by negligence, or for fraud.</p>
 
-          <section class="policy-section">
-            <h2>No warranty</h2>
-            <p>
-              The website and demos are provided "as is" and "as available". We make no warranties, express or implied, that the site will be uninterrupted, error-free, secure, or accurate. To the maximum extent permitted by law, we disclaim all implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
-            </p>
-          </section>
+<h2>Changes</h2>
+<p>We may update these terms from time to time. When we do, we&rsquo;ll change the date at the top. If you keep using the site after that, the new terms apply.</p>
 
-          <section class="policy-section">
-            <h2>Limitation of liability</h2>
-            <p>
-              To the maximum extent permitted by law, AI EVE will not be liable to you for any indirect, incidental, special, consequential, or punitive damages, or for any loss of profits, revenue, data, or goodwill, arising out of or in connection with your use of the site or its demos. Nothing in these Terms limits liability that cannot be limited by law (for example liability for death or personal injury caused by negligence).
-            </p>
-          </section>
+<h2>Law</h2>
+<p>These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction over any dispute.</p>
 
-          <section class="policy-section">
-            <h2>Changes</h2>
-            <p>
-              We may update these Terms from time to time. When we do, we will update the effective date above. Your continued use of the site after we update the Terms means you accept the new version.
-            </p>
-          </section>
-
-          <section class="policy-section">
-            <h2>Governing law</h2>
-            <p>
-              These Terms are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.
-            </p>
-          </section>
-
-          <section class="policy-section">
-            <h2>Contact</h2>
-            <p>
-              Questions about these Terms can be sent to <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.
-            </p>
-          </section>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-row">
-        <span>AI EVE</span>
-        <span>Direct revenue protection for independent businesses.</span>
-        <a href="/index.html">Return to homepage</a>
-      </div>
-    </footer>
-  </div>
+<h2>Contact</h2>
+<p>Questions about these terms? Email <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.</p>
+    </div></article>
+  </main>
+  <footer class="foot">
+    <a class="logoF" href="/" aria-label="ai eve home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>eve</b><span>by ai eve</span></a>
+    <nav aria-label="Footer"><a href="/">Meet EVE</a><a href="/dashboard.html">Dashboard</a><a href="/services.html">Services</a><a href="/work.html">Work</a><a href="/book.html">Book a demo</a><a href="/book.html#contact">Contact us</a><a href="/privacy-policy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="fine">&copy; 2026 AI EVE &middot; UK<br><a class="mail-hl" href="mailto:hello@aieve.ai">hello@aieve.ai</a></p>
+  </footer>
+</div>
 </body>
 </html>

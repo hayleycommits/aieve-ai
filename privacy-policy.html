@@ -1,367 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Privacy Policy | AI EVE</title>
-  <meta name="description" content="Privacy Policy for AI EVE, including how we handle website enquiries, booking requests, and voice demo interactions." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --panel: rgba(255, 252, 247, 0.82);
-      --text: #201814;
-      --muted: #6f6257;
-      --accent: #8e6a42;
-      --shadow: 0 24px 80px rgba(58, 42, 27, 0.08);
-      --max: 1080px;
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: var(--sans);
-      background:
-        radial-gradient(circle at top left, rgba(232, 219, 202, 0.8), transparent 34%),
-        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8), transparent 30%),
-        linear-gradient(180deg, #f7f2ea 0%, #f3ede4 46%, #efe7dd 100%);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(53, 38, 24, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(53, 38, 24, 0.02) 1px, transparent 1px);
-      background-size: 24px 24px;
-      pointer-events: none;
-      opacity: 0.45;
-      z-index: -2;
-    }
-
-    a { color: inherit; }
-
-    .shell {
-      position: relative;
-      isolation: isolate;
-    }
-
-    .shell::before,
-    .shell::after {
-      content: "";
-      position: fixed;
-      width: 34rem;
-      height: 34rem;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .shell::before {
-      top: -10rem;
-      right: -8rem;
-      background: rgba(211, 190, 164, 0.7);
-    }
-
-    .shell::after {
-      bottom: -16rem;
-      left: -10rem;
-      background: rgba(233, 221, 206, 0.9);
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(20px);
-      background: rgba(247, 242, 234, 0.72);
-      border-bottom: 1px solid rgba(63, 47, 31, 0.06);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 80px;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid rgba(63, 47, 31, 0.16);
-      background: rgba(255, 255, 255, 0.4);
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .nav-link {
-      font-size: 14px;
-      color: rgba(32, 24, 20, 0.72);
-      text-decoration: none;
-    }
-
-    .hero {
-      padding: 96px 0 28px;
-    }
-
-    .eyebrow {
-      margin: 0 0 16px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(102, 82, 61, 0.75);
-    }
-
-    h1 {
-      margin: 0;
-      font-family: var(--serif);
-      font-size: clamp(3.4rem, 7vw, 6rem);
-      line-height: 0.88;
-      letter-spacing: -0.05em;
-      font-weight: 600;
-    }
-
-    .lead {
-      max-width: 42rem;
-      margin: 22px 0 0;
-      font-size: 18px;
-      line-height: 1.85;
-      color: var(--muted);
-    }
-
-    .policy-card {
-      margin: 34px 0 80px;
-      padding: 34px;
-      border: 1px solid rgba(63, 47, 31, 0.1);
-      border-radius: 32px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-    }
-
-    .policy-meta {
-      margin: 0 0 24px;
-      color: rgba(83, 64, 46, 0.78);
-      font-size: 14px;
-    }
-
-    .policy-section + .policy-section {
-      margin-top: 32px;
-      padding-top: 30px;
-      border-top: 1px solid rgba(63, 47, 31, 0.08);
-    }
-
-    .policy-section h2 {
-      margin: 0 0 14px;
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      line-height: 0.94;
-      letter-spacing: -0.04em;
-      font-weight: 600;
-    }
-
-    .policy-section p,
-    .policy-section li {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.9;
-    }
-
-    .policy-section p + p,
-    .policy-section ul + p,
-    .policy-section p + ul {
-      margin-top: 14px;
-    }
-
-    .policy-section ul {
-      margin: 16px 0 0;
-      padding-left: 20px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .footer {
-      padding: 0 0 44px;
-    }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding-top: 22px;
-      border-top: 1px solid rgba(63, 47, 31, 0.08);
-      color: rgba(83, 64, 46, 0.74);
-      font-size: 13px;
-    }
-
-    @media (max-width: 720px) {
-      .hero {
-        padding-top: 72px;
-      }
-
-      .policy-card {
-        padding: 24px;
-        border-radius: 24px;
-      }
-
-      .nav {
-        min-height: 72px;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy policy | AI EVE</title>
+<meta name="description" content="How AI EVE handles personal information from demo bookings, the Talk to EVE voice demo and emails.">
+<link rel="canonical" href="https://aieve.ai/privacy-policy.html">
+<meta property="og:title" content="Privacy policy | AI EVE">
+<meta property="og:description" content="How AI EVE handles personal information from demo bookings, the Talk to EVE voice demo and emails.">
+<meta property="og:url" content="https://aieve.ai/privacy-policy.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://aieve.ai/media/v2/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aieve.ai/media/v2/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e6c84a'/%3E%3Cpath d='M8 38c8 0 15-3 15-9s-6-8-10-5c-6 4-4 14 4 16 6 2 11-1 14-5 2-3 3-8 5-8s2 15 5 15 3-22 6-22 3 20 6 20' fill='none' stroke='%231f2e1b' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap">
+<link rel="stylesheet" href="/v2/style.css">
 </head>
-<body>
-  <div class="shell">
-    <header>
-      <div class="container nav">
-        <a class="brand" href="/index.html">
-          <span class="brand-mark">E</span>
-          <span>AI EVE</span>
-        </a>
-        <a class="nav-link" href="/index.html">Back to home</a>
-      </div>
-    </header>
+<body data-page="privacy-policy">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough" x="-10%" y="-20%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="page">
+  <header class="top">
+    <a class="brand logoF top-logo" href="/" aria-label="ai eve, home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>eve</b><span>by ai eve</span></a>
+    <nav aria-label="Main">
+      <a href="/">Meet EVE</a>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/services.html">Services</a>
+      <a href="/work.html">Work</a>
+      <a href="/book.html#contact">Contact us</a>
+      <a class="cta" href="/book.html">Book a demo</a>
+    </nav>
+  </header>
+  <main>
+    <section class="pagehead"><span class="label" style="color:var(--pop)">Privacy</span><h1>How we look after <em>your information.</em></h1><p>What we collect when you book a demo, talk to EVE or email us, and the rights you have.</p></section>
+    <article class="legal"><div class="legal-body">
+<p class="updated">Last updated 22 October 2026</p>
+<p>This policy explains what personal information AI EVE collects through aieve.ai, why, how long we keep it and the rights you have. We keep it as short and plain as we can.</p>
 
-    <main>
-      <section class="hero">
-        <div class="container">
-          <p class="eyebrow">Privacy Policy</p>
-          <h1>How AI EVE handles website and enquiry data.</h1>
-          <p class="lead">
-            This Privacy Policy explains what information we collect through <strong>aieve.ai</strong>, how we use it, and how to contact us if you have questions or want us to update or delete your information.
-          </p>
-        </div>
-      </section>
+<h2>Who we are</h2>
+<p>The controller of your personal information is Hayley Moses, trading as AI EVE, based in the United Kingdom. You can contact us about anything in this policy at <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.</p>
 
-      <section class="container">
-        <div class="policy-card">
-          <p class="policy-meta"><strong>Effective date:</strong> April 21, 2026</p>
+<h2>What we collect</h2>
+<h3>When you book a demo</h3>
+<p>Our booking calendar is run by LeadConnector (GoHighLevel). When you book, we receive the details you enter, such as your name, email address, phone number, business name and the time you chose, plus anything you add in the notes.</p>
+<h3>When you talk to EVE on this website</h3>
+<p>The &ldquo;Talk to EVE&rdquo; voice demo uses your microphone. The call is recorded and transcribed. It runs on Vapi, with the audio carried by Daily.co, your speech turned into text by Deepgram, EVE&rsquo;s replies written by OpenAI and her voice produced by Cartesia. We receive the recording, the transcript and basic call details such as the date, time and length. Please don&rsquo;t share sensitive information during the demo.</p>
+<h3>When you email us</h3>
+<p>If you write to <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>, we receive your email address, your message and anything you attach.</p>
+<h3>When you visit the site</h3>
+<p>The site is hosted on GitHub Pages. GitHub keeps standard server logs, which include your IP address, browser type and the pages requested, to run and protect the service. We do not use analytics or advertising trackers on this site.</p>
 
-          <section class="policy-section">
-            <h2>Who we are</h2>
-            <p>
-              AI EVE provides AI voice and enquiry-handling services for independent hotels and hospitality businesses. If you have questions about this policy or want to make a privacy request, you can contact us at <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.
-            </p>
-          </section>
+<h2>Why we use it, and our lawful basis</h2>
+<ul>
+<li><b>Running the demo and answering your enquiry.</b> We use your booking details, demo recording and transcript, and emails to run the demo, reply to you and follow up if you ask us to. Lawful basis: our legitimate interests in responding to people who contact us and showing how EVE works.</li>
+<li><b>Improving the demo.</b> We may review demo transcripts to check EVE answered properly and to improve her. Lawful basis: legitimate interests.</li>
+<li><b>Keeping the site secure.</b> Hosting logs help keep the site running and protected from misuse. Lawful basis: legitimate interests.</li>
+<li><b>Where we ask for consent</b>, for example if you tick a box to hear from us, we rely on your consent, and you can withdraw it at any time by emailing us.</li>
+</ul>
+<p>You can object to any use based on legitimate interests (see your rights below).</p>
 
-          <section class="policy-section">
-            <h2>What we collect</h2>
-            <p>Depending on how you use the site, we may collect:</p>
-            <ul>
-              <li>Your name, company, email address, phone number, website, and message content when you submit an enquiry form.</li>
-              <li>Booking information you choose to provide when you schedule a call through our calendar link.</li>
-              <li>Audio, microphone access, and call interaction data if you choose to use the live voice demo on the website.</li>
-              <li>Basic technical information such as browser type, device information, and server or request logs created when you visit the site.</li>
-            </ul>
-          </section>
+<h2>Who we share it with</h2>
+<p>We only share your information with the service providers that run the features above: LeadConnector (GoHighLevel) for bookings; Vapi, Daily.co, Deepgram, OpenAI and Cartesia for the voice demo; our email provider for emails; and GitHub for hosting. They process it on our behalf. We do not sell your information, and we don&rsquo;t share it with anyone else unless the law requires it.</p>
 
-          <section class="policy-section">
-            <h2>How we use information</h2>
-            <p>We use information collected through the site to:</p>
-            <ul>
-              <li>Respond to enquiries and booking requests.</li>
-              <li>Arrange and deliver demos, callbacks, or follow-up conversations.</li>
-              <li>Understand how prospects want to use AI EVE and tailor our response.</li>
-              <li>Operate, secure, and improve the website and our lead-handling process.</li>
-            </ul>
-          </section>
+<h2>International transfers</h2>
+<p>Several of these providers are based in the United States, so your information may be processed outside the UK. Where that happens we rely on appropriate safeguards, such as UK adequacy regulations, the UK Extension to the EU-US Data Privacy Framework where the provider is certified, or the UK International Data Transfer Agreement or Addendum to the EU standard contractual clauses.</p>
 
-          <section class="policy-section">
-            <h2>Third-party services used on this site</h2>
-            <p>
-              Some actions on the site are provided by third-party services rather than being handled entirely on our own servers.
-            </p>
-            <ul>
-              <li><strong>Web3Forms</strong> is used to process website enquiry form submissions.</li>
-              <li><strong>Cal.com</strong> is used to display and manage call booking availability.</li>
-              <li><strong>Vapi</strong> is used to power the live voice demo and microphone-based interaction.</li>
-              <li><strong>Google Fonts</strong> is used to load the fonts displayed on the site.</li>
-            </ul>
-            <p>
-              When you use these parts of the site, your information may be processed by those providers under their own terms and privacy policies as well as ours.
-            </p>
-          </section>
+<h2>How long we keep it</h2>
+<ul>
+<li><b>Demo call recordings and transcripts:</b> up to 12 months, then deleted.</li>
+<li><b>Booking details and emails:</b> for as long as we need them to deal with your enquiry, then up to 2 years.</li>
+<li><b>Hosting logs:</b> kept by GitHub under its own retention rules.</li>
+</ul>
+<p>If you become a client, we keep what we need for the contract and our accounts for as long as the law requires.</p>
 
-          <section class="policy-section">
-            <h2>How long we keep information</h2>
-            <p>
-              We keep enquiry and booking information for as long as reasonably needed to respond to your request, manage our relationship with you, and maintain basic business records. If you ask us to delete your information, we will review that request and remove data where we are not required to keep it.
-            </p>
-          </section>
+<h2>Your rights</h2>
+<p>Under UK data protection law (UK GDPR and the Data Protection Act 2018) you have the right to:</p>
+<ul>
+<li>ask for a copy of the personal information we hold about you;</li>
+<li>ask us to correct it if it&rsquo;s wrong;</li>
+<li>ask us to delete it;</li>
+<li>ask us to restrict how we use it;</li>
+<li>object to us using it, including where we rely on legitimate interests;</li>
+<li>ask for it in a portable format, where that applies;</li>
+<li>withdraw consent at any time, where we rely on consent.</li>
+</ul>
+<p>To use any of these rights, email <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>. We&rsquo;ll reply within one month.</p>
+<p>If you&rsquo;re unhappy with how we&rsquo;ve handled your information, please tell us first so we can put it right. You also have the right to complain to the Information Commissioner&rsquo;s Office (ICO): <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">ico.org.uk</a>, telephone 0303 123 1113.</p>
 
-          <section class="policy-section">
-            <h2>How we share information</h2>
-            <p>
-              We do not sell personal information collected through this site. We may share information with service providers that help us operate the website, manage enquiries, run demos, or schedule calls. We may also disclose information where required by law or to protect our rights and systems.
-            </p>
-          </section>
+<h2>Automated decisions</h2>
+<p>EVE is an AI, and her replies in the demo are generated automatically. We don&rsquo;t make any decisions about you by automated means that have legal or similarly significant effects.</p>
 
-          <section class="policy-section">
-            <h2>Your choices</h2>
-            <p>You can choose not to use the enquiry form, booking form, or live voice demo. You can also contact us to:</p>
-            <ul>
-              <li>request a copy of the information we hold about you,</li>
-              <li>ask us to correct inaccurate information, or</li>
-              <li>ask us to delete information where we no longer need it.</li>
-            </ul>
-            <p>
-              To make a request, email <a href="mailto:hello@aieve.ai">hello@aieve.ai</a>.
-            </p>
-          </section>
+<h2>Cookies</h2>
+<p>This site doesn&rsquo;t use analytics or advertising cookies. The booking calendar from LeadConnector, shown on our Book a demo page, may set cookies it needs to work. The voice demo may store small technical data in your browser while the call runs.</p>
 
-          <section class="policy-section">
-            <h2>Changes to this policy</h2>
-            <p>
-              We may update this Privacy Policy from time to time. When we do, we will update the effective date on this page.
-            </p>
-          </section>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-row">
-        <span>AI EVE</span>
-        <span>Direct revenue protection for independent hotels.</span>
-        <a href="/index.html">Return to homepage</a>
-      </div>
-    </footer>
-  </div>
+<h2>Changes to this policy</h2>
+<p>If we change this policy we&rsquo;ll update it here and change the date at the top.</p>
+    </div></article>
+  </main>
+  <footer class="foot">
+    <a class="logoF" href="/" aria-label="ai eve home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>eve</b><span>by ai eve</span></a>
+    <nav aria-label="Footer"><a href="/">Meet EVE</a><a href="/dashboard.html">Dashboard</a><a href="/services.html">Services</a><a href="/work.html">Work</a><a href="/book.html">Book a demo</a><a href="/book.html#contact">Contact us</a><a href="/privacy-policy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="fine">&copy; 2026 AI EVE &middot; UK<br><a class="mail-hl" href="mailto:hello@aieve.ai">hello@aieve.ai</a></p>
+  </footer>
+</div>
 </body>
 </html>
