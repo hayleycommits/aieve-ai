@@ -50,7 +50,7 @@
             <p class="sub"><span class="dot" aria-hidden="true"></span>Online now &middot; your AI receptionist for hospitality</p>
           </div>
         </div>
-        <div class="chat" aria-live="polite"><span class="who" id="who">Incoming call &middot; The Olive Table</span><div id="chat" style="display:grid;gap:9px"></div></div>
+        <div class="chat" aria-live="polite"><span class="who" id="who">Example call &middot; The Olive Table</span><div id="chat" style="display:grid;gap:9px"></div></div>
         <div class="chips" role="group" aria-label="Try asking EVE">
           <button class="chip" type="button" data-talk>&ldquo;Table for six on Saturday?&rdquo;</button>
           <button class="chip" type="button" data-talk>&ldquo;Do you have a room on Friday?&rdquo;</button>
@@ -147,13 +147,13 @@
   }
   let li = 0; show(LINES[0]); if (!reduce) setInterval(() => { li = (li + 1) % LINES.length; show(LINES[li]); }, 4200);
   const CALLS = [
-    { who: "The Olive Table", lines: [["e", "Good evening, The Olive Table. How can I help?"], ["u", "Have you got a table for six on Saturday?"], ["e", "We do, at 7:30pm. Can I take a name and a mobile number?"], ["ok", "\u2713 Table for 6 booked. Saturday, 7:30pm."]] },
-    { who: "The Harbour Hotel", lines: [["e", "Hello, The Harbour Hotel. How can I help?"], ["u", "Do you have a double room this Friday night?"], ["e", "We do, a sea-view double. Shall I hold it in your name?"], ["ok", "\u2713 Room held for Friday. Confirmation sent."]] },
-    { who: "The Red Lion", lines: [["e", "Hi, The Red Lion. What can I do for you?"], ["u", "Could we hire your function room for a 40th, about 40 people?"], ["e", "Lovely. The back room is free on the 14th. Shall I pencil it in?"], ["ok", "\u2713 Function room pencilled in. Manager to call back."]] },
-    { who: "Little Crumb Caf\u00e9", lines: [["e", "Morning, Little Crumb Caf\u00e9. How can I help?"], ["u", "Can I order sandwich platters for twelve on Thursday?"], ["e", "Of course. Any dietary needs I should note?"], ["ok", "\u2713 Catering order taken for Thursday."]] }
+    { who: "The Olive Table", lines: [["e", "Good evening, The Olive Table. How can I help?"], ["u", "Have you got a table for six on Saturday?"], ["e", "Lovely. Can I take a name and a mobile number, and the team will confirm it with you?"], ["ok", "\u2713 Booking request for 6, Saturday. Sent to the team."]] },
+    { who: "The Harbour Hotel", lines: [["e", "Hello, The Harbour Hotel. How can I help?"], ["u", "Do you have a double room this Friday night?"], ["e", "I'll pass that straight to reservations. What's the best number to reach you on?"], ["ok", "\u2713 Room enquiry for Friday. Sent to reservations."]] },
+    { who: "The Red Lion", lines: [["e", "Hi, The Red Lion. What can I do for you?"], ["u", "Could we hire your function room for a 40th, about 40 people?"], ["e", "Lovely. Which date were you thinking, and what's the best number for the manager to call you on?"], ["ok", "\u2713 Function room enquiry taken. Manager to call back."]] },
+    { who: "Little Crumb Caf\u00e9", lines: [["e", "Morning, Little Crumb Caf\u00e9. How can I help?"], ["u", "Can I order sandwich platters for twelve on Thursday?"], ["e", "Of course. Any dietary needs I should note?"], ["ok", "\u2713 Catering request for Thursday. Sent to the team."]] }
   ];
   const chat = document.getElementById("chat"), who = document.getElementById("who"); let ci = 0;
-  function play() { const c = CALLS[ci]; who.textContent = "Incoming call \u00b7 " + c.who; chat.innerHTML = "";
+  function play() { const c = CALLS[ci]; who.textContent = "Example call \u00b7 " + c.who; chat.innerHTML = "";
     c.lines.forEach(([k, t], i) => setTimeout(() => { const m = document.createElement("div"); m.className = "msg " + k; m.textContent = t; chat.appendChild(m); }, reduce ? 0 : i * 1500));
     ci = (ci + 1) % CALLS.length; }
   play(); if (!reduce) setInterval(play, 8500);

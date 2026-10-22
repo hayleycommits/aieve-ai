@@ -215,3 +215,6 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .legal-body th, .legal-body td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px dashed var(--rule); }
 .legal-body .tablewrap { overflow-x: auto; }
 @media (max-width: 720px) { .legal { padding: 28px 18px 34px; } }
+.cal-gate { display: grid; place-items: center; text-align: center; padding: 48px 20px; min-height: 360px; }
+.cal-gate > div { max-width: 460px; display: grid; gap: 14px; justify-items: center; }
+.cal-gate .fine-note { font-size: .9rem; opacity: .8; }
