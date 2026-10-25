@@ -5,7 +5,7 @@ import Vapi from 'https://esm.sh/@vapi-ai/web@3.0.0';
 const VAPI_PUBLIC_KEY = '3d943765-7118-405d-b24e-505a7a79f07c';
 const VAPI_ASSISTANT_ID = 'b24725a8-f5f5-4664-b292-185e2e4c0cd2';
 const MAX_SECS = 300;
-const CONNECT_TIMEOUT_MS = 20000;
+const CONNECT_TIMEOUT_MS = 60000; // slow mobile connections can take 30s+ to join
 const NOTE = 'Recorded AI demo. We record and transcribe this call to run the demo and follow up if you ask. Please don&rsquo;t share sensitive information. <a href="/privacy-policy.html">Privacy policy</a>';
 const bars = '<span></span>'.repeat(10);
 
@@ -93,7 +93,10 @@ function setState(next, message) {
     vwTranscript.classList.remove('visible');
   }
   if (next === 'asking') vwSub.textContent = 'Allow your microphone to start…';
-  if (next === 'connecting') vwSub.textContent = 'Connecting…';
+  if (next === 'connecting') {
+    vwSub.textContent = 'Connecting…';
+    setTimeout(() => { if (state === 'connecting') vwSub.textContent = 'Still connecting… nearly there'; }, 12000);
+  }
   if (next === 'active') {
     vwSub.textContent = '● Live call';
     clearTimeout(connectTimer); connectTimer = null;
@@ -162,4 +165,8 @@ vapi.on('message', (msg) => {
 vapi.on('volume-level', (vol) => {
   vwBarEve.querySelectorAll('span').forEach((b, i) => { b.style.height = Math.max(3, Math.round(vol * 26 * (0.5 + 0.5 * Math.sin(i * 0.9)))) + 'px'; });
 });
-vapi.on('error', () => stopCall('Something went wrong with the call. Please try again.'));
+vapi.on('error', (e) => {
+  // EVE hanging up arrives as an 'ejected / Meeting has ended' error: that is a normal goodbye, not a fault.
+  if (/ejected|Meeting has ended/i.test(JSON.stringify(e || {}))) { stopCall(endNote || 'Call ended. Thanks for talking to EVE.'); endNote = ''; return; }
+  stopCall('Something went wrong with the call. Please try again.');
+});
