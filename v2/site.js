@@ -1,4 +1,4 @@
-// Shared bits for the AI EVE pages: live UK clock tile, live dashboard scaling, copy email.
+// Shared bits for the AI EVE pages: live UK clock tile, copy email.
 (function () {
   const clock = document.getElementById("clock"), line = document.getElementById("clockline");
   if (clock) {
@@ -9,15 +9,6 @@
       line.textContent = h < 6 ? "Everyone's asleep. EVE isn't." : h < 12 ? "Breakfast rush. EVE's got it." : h < 17 ? "Lunch service. EVE's on the phones." : h < 23 ? "Dinner service. EVE's taking bookings." : "Late one. EVE's still here.";
     };
     tick(); setInterval(tick, 15000);
-  }
-
-  const ld = document.querySelector(".live-dash"), lf = ld && ld.querySelector("iframe");
-  if (lf) {
-    const fit = () => { lf.style.transform = "scale(" + (ld.clientWidth / 1440) + ")"; };
-    addEventListener("resize", fit); fit();
-    lf.addEventListener("load", () => {
-      try { [...lf.contentDocument.querySelectorAll("a")].filter((a) => /back to aieve/i.test(a.textContent)).forEach((a) => a.remove()); } catch (e) {}
-    });
   }
 
   const copy = document.getElementById("copy");
