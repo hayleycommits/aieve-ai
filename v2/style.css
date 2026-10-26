@@ -48,7 +48,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--moss); outline-
 .brand b i { font-style: normal; color: #b8961f; }
 .top nav { display: flex; align-items: center; gap: 24px; }
 .top nav a { font: 500 0.72rem var(--mono); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
-.top nav a:hover, .top nav a[aria-current="page"] { color: #8a7317; }
+.top nav a:hover, .top nav a[aria-current="page"] { color: #6e5c12; }
 .top .cta { background: var(--lemon); color: var(--ink); padding: 12px 16px; }
 .top .cta:hover { background: var(--lemon-2); color: var(--ink); }
 
@@ -293,7 +293,7 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .compare .best { background: rgba(230,200,74,.22); }
 .compare .yes { font-weight: 700; color: var(--moss); }
 .compare .no { color: var(--muted); }
-.know { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+.know { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
 .know h3 { font: 700 1rem var(--sans); letter-spacing: 0; margin-bottom: 6px; }
 .know p { font-size: 0.96rem; }
 .know a { color: var(--moss); text-underline-offset: 3px; }
@@ -323,3 +323,6 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .price-teaser .pt.best span { color: rgba(246,245,234,.78); }
 .price-teaser .btn { align-self: flex-start; }
 @media (max-width: 720px) { .price-teaser .pt-row { grid-template-columns: 1fr; } }
+.soon-tag { display: inline-block; vertical-align: 0.1em; margin-left: 4px; padding: 2px 6px; font: 500 0.6rem var(--mono); letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid currentColor; white-space: nowrap; }
+.plan-best .soon-tag { color: var(--pop); }
+.compare .soon-tag { color: #6e5c12; margin-left: 0; }

@@ -40,10 +40,9 @@
     </nav>
   </header>
   <main>
-    <!-- TODO(Hayley): VAT. Are these prices before VAT (+ VAT) or including VAT? Add "+ VAT" or "inc. VAT" next to each price once decided. -->
-    <!-- TODO(Hayley): Set-up fee. Is there one? Nothing is said about it on the page until you decide. -->
-    <!-- TODO(Hayley): Contract. The site already says "no long contracts". Is there a minimum term, and how much notice to cancel? -->
-    <section class="pagehead"><span class="label" style="color:var(--pop)">Pricing</span><h1>Three plans. <em>Every call answered</em> on all of them.</h1><p>EVE answers your phone day and night on every plan. Pick how much more you want her to do. Paid monthly. Live in 5 days, no long contracts.</p></section>
+    <!-- TODO(Hayley): VAT. Are prices before VAT (+ VAT) or including VAT? Add it next to the price once decided. -->
+    <!-- No money-back or first-month guarantee anywhere: Hayley's rule, 26 Oct. -->
+    <section class="pagehead"><span class="label" style="color:var(--pop)">Pricing</span><h1>Three plans. <em>Every call answered</em> on all of them.</h1><p>EVE answers your phone day and night on every plan. Pick how much more you want her to do. Paid monthly, month to month. Live in 5 days. <!-- PROVISIONAL – awaiting Hayley's OK 26 Oct --></p></section>
     <div class="board">
       <section class="tile s12 t-linen plans-wrap" aria-labelledby="h-plans">
         <h2 id="h-plans" class="visually-hidden">The plans</h2>
@@ -60,7 +59,8 @@
               <li>Every call answered, 24/7</li>
               <li>Takes booking requests and enquiries</li>
               <li>An email write-up after each call</li>
-              <li>A set number of minutes each month<!-- TODO(Hayley): how many minutes on Answer? (fewer than Dashboard) --></li>
+              <!-- PROVISIONAL – awaiting Hayley's OK 26 Oct -->
+              <li>600 minutes a month, then 15p a minute</li>
             </ul>
             <p class="plan-note">No dashboard on this plan.</p>
             <a class="btn" href="/book.html" aria-label="Book a demo for EVE Answer">Book a demo</a>
@@ -82,8 +82,8 @@
               <li>An enquiries board: new, called back, confirmed</li>
               <li>Calls through the day, and your opening hours</li>
               <li>Your minutes used, week by week</li>
-              <!-- TODO(Hayley): confirm 1,000 minutes. It is the figure on the example dashboard (eve-portal demo), not yet a decided plan allowance. -->
-              <li>1,000 minutes a month, more than Answer</li>
+              <!-- PROVISIONAL – awaiting Hayley's OK 26 Oct -->
+              <li>1,000 minutes a month, then 15p a minute</li>
             </ul>
             <a class="plan-link" href="/dashboard.html">See the dashboard &rarr;</a>
             <a class="btn" href="/book.html" aria-label="Book a demo for EVE Dashboard">Book a demo</a>
@@ -91,7 +91,7 @@
 
           <article class="plan plan-best t-ink" aria-labelledby="p-foh">
             <div class="plan-top">
-              <span class="plan-stamp">Can pay for itself</span>
+              <span class="plan-stamp">Made to pay its way</span>
               <span class="label">For the takings</span>
               <h3 id="p-foh">EVE Front of House</h3>
               <p class="price"><b>&pound;799</b> <span>a month</span></p>
@@ -100,10 +100,14 @@
             </div>
             <ul class="ticks">
               <li>Everything in EVE Dashboard</li>
-              <li><b>Deposits by text.</b> You set the rule. EVE texts the caller a secure card link and the money goes to your own Stripe account.</li>
-              <li><b>EVE chases private hire.</b> Enquiries don&rsquo;t go cold. She follows up with the caller and reminds your manager.</li>
+              <li><b>Deposits by text.</b> <span class="soon-tag">Coming soon</span> You set the rule. EVE texts the caller a secure card link and the money goes to your own Stripe account.</li>
+              <li><b>EVE chases private hire.</b> <span class="soon-tag">Coming soon</span> Enquiries don&rsquo;t go cold. She follows up with the caller and reminds your manager.</li>
               <li>A weekly list of open private hire, and what it&rsquo;s worth</li>
-              <li>A set number of minutes each month<!-- TODO(Hayley): how many minutes on Front of House? --></li>
+              <!-- PROVISIONAL – awaiting Hayley's OK 26 Oct -->
+              <li>2,000 minutes a month, then 12p a minute</li>
+              <li>500 texts a month</li>
+              <li>Up to 3 venues</li>
+              <li>Priority support, and a check-in with us every month</li>
             </ul>
             <!-- TODO(Hayley): Front of House is not built yet. Add a launch date here when there is one. -->
             <p class="plan-note">Deposits and private-hire chasing are being built now. Ask us when they&rsquo;ll be ready.</p>
@@ -114,14 +118,14 @@
 
       <section class="tile t-moss s12" aria-labelledby="h-foh">
         <span class="pin" aria-hidden="true"></span>
-        <div class="foh-head"><span class="label">EVE Front of House &middot; in detail</span><h2 id="h-foh">Money in, <em>not just</em> calls answered.</h2><p>Two things a busy venue loses money on: no-shows on big tables, and private hire enquiries nobody rang back.</p></div>
+        <div class="foh-head"><span class="label">EVE Front of House &middot; in detail &middot; coming soon</span><h2 id="h-foh">Money in, <em>not just</em> calls answered.</h2><p>Two things a busy venue loses money on: no-shows on big tables, and private hire enquiries nobody rang back.</p></div>
         <div class="foh">
           <div class="dnotes">
             <h3>Deposits by text</h3>
             <ol>
               <li><b>You set the rule.</b> For example, tables of 8 or more, and all private hire.</li>
               <li><b>EVE texts the caller.</b> A secure card link to pay the deposit.</li>
-              <li><b>The money is yours.</b> It goes straight into your own Stripe account. <!-- TODO(Hayley): does AI EVE take any fee on deposits? Stripe's own fees? Are the texts included in the price? --></li>
+              <li><b>The money is yours.</b> It goes straight into your own Stripe account. <!-- TODO(Hayley): does AI EVE take any fee on deposits? Stripe's own fees? --></li>
               <li><b>You see who&rsquo;s paid.</b> Each deposit shows as paid or waiting on your dashboard.</li>
               <li><b>One reminder.</b> If they haven&rsquo;t paid, EVE sends one reminder. Just one.</li>
             </ol>
@@ -143,6 +147,7 @@
         <h2 id="h-compare" style="font-size:clamp(1.8rem,2.6vw,2.4rem)">What&rsquo;s in each plan.</h2>
         <div class="compare-wrap" role="region" aria-labelledby="h-compare" tabindex="0">
           <table class="compare">
+            <caption class="visually-hidden">What each EVE plan includes</caption>
             <thead><tr><th scope="col"><span class="visually-hidden">Feature</span></th><th scope="col">Answer<span>&pound;299</span></th><th scope="col">Dashboard<span>&pound;499</span></th><th scope="col" class="best">Front of House<span>&pound;799</span></th></tr></thead>
             <tbody>
               <tr><th scope="row">Every call answered, 24/7</th><td><span class="yes" aria-label="Included">&#10003;</span></td><td><span class="yes" aria-label="Included">&#10003;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
@@ -150,9 +155,14 @@
               <tr><th scope="row">Email write-up after each call</th><td><span class="yes" aria-label="Included">&#10003;</span></td><td><span class="yes" aria-label="Included">&#10003;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
               <tr><th scope="row">Dashboard, recordings and transcripts</th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="yes" aria-label="Included">&#10003;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
               <tr><th scope="row">Enquiries board and Needs you list</th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="yes" aria-label="Included">&#10003;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
-              <tr><th scope="row">Deposits by text</th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="no" aria-label="Not included">&ndash;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
-              <tr><th scope="row">EVE chases private hire</th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="no" aria-label="Not included">&ndash;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
-              <!-- TODO(Hayley): add a "Minutes a month" row once the allowance for each plan is decided. -->
+              <tr><th scope="row">Deposits by text <span class="soon-tag">Coming soon</span></th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="no" aria-label="Not included">&ndash;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
+              <tr><th scope="row">EVE chases private hire <span class="soon-tag">Coming soon</span></th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="no" aria-label="Not included">&ndash;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
+              <!-- PROVISIONAL – awaiting Hayley's OK 26 Oct -->
+              <tr><th scope="row">Minutes a month</th><td>600</td><td>1,000</td><td class="best">2,000</td></tr>
+              <tr><th scope="row">Each extra minute</th><td>15p</td><td>15p</td><td class="best">12p</td></tr>
+              <tr><th scope="row">Texts a month</th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="no" aria-label="Not included">&ndash;</span></td><td class="best">500</td></tr>
+              <tr><th scope="row">Up to 3 venues</th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="no" aria-label="Not included">&ndash;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
+              <tr><th scope="row">Priority support and a monthly check-in</th><td><span class="no" aria-label="Not included">&ndash;</span></td><td><span class="no" aria-label="Not included">&ndash;</span></td><td class="best"><span class="yes" aria-label="Included">&#10003;</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -162,10 +172,13 @@
         <span class="label">Good to know</span>
         <h2 id="h-know" style="font-size:clamp(1.8rem,2.6vw,2.4rem)">The small print, in plain English.</h2>
         <div class="know">
-          <div><h3>Live in 5 days</h3><p>We set EVE up for your venue, and there are no long contracts.</p></div>
-          <div><h3>Your minutes</h3><p>If you get close to your minutes, we tell you before anything extra is charged, never after.<!-- TODO(Hayley): what does an extra minute cost, or what happens when a venue goes over? --></p></div>
+          <!-- PROVISIONAL – awaiting Hayley's OK 26 Oct -->
+          <div><h3>Live in 5 days</h3><p>We set EVE up for your venue and she&rsquo;s answering within 5 days.</p></div>
+          <div><h3>Month to month</h3><p>No long contract. Give us 30 days&rsquo; notice and you can leave.</p></div>
+          <div><h3>Set-up fee</h3><p>&pound;299, waived for our first venues.</p></div>
+          <div><h3>Your minutes</h3><p>We tell you when you&rsquo;ve used 80% of your minutes, before anything extra is charged.</p></div>
+          <div><h3>Extra minutes</h3><p>15p a minute on Answer and Dashboard. 12p on Front of House.</p></div>
           <div><h3>Your team books</h3><p>EVE takes the request. Your team always makes the booking.</p></div>
-          <div><h3>Callers&rsquo; details</h3><p>Recordings are deleted after about 14 days. More in our <a href="/privacy-policy.html">privacy policy</a>.</p></div>
         </div>
       </section>
 
