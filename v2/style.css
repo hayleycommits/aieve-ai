@@ -404,3 +404,54 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
   .lp-times li { grid-template-columns: 1fr; gap: 10px; }
   .lp-call { box-shadow: 8px 8px 0 var(--lemon); margin-right: 8px; }
 }
+
+/* Landing pages, photo hero + simple sections (restaurants; hotels shares the hero) */
+.lp-photo { position: relative; background: linear-gradient(90deg, rgba(18,28,16,.94) 0%, rgba(18,28,16,.82) 38%, rgba(18,28,16,.35) 72%, rgba(18,28,16,.2) 100%), var(--photo) center / cover no-repeat var(--moss-2); min-height: min(78vh, 720px); }
+.lp-photo h1 { max-width: 16ch; font-size: clamp(2.8rem, 5vw, 4.7rem); }
+.lp-hero .evebox .demo-note { color: var(--muted); }
+.lp-photo .lp-keeps { font-size: clamp(1.4rem, 2.2vw, 1.9rem); color: var(--paper); }
+.lp-proof { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 26px; font-weight: 500; }
+.lp-proof li { position: relative; padding-left: 30px; }
+.lp-proof li::before { content: ""; position: absolute; left: 0; top: 0.1em; width: 20px; height: 20px; border-radius: 50%; background: var(--lemon); }
+.lp-proof li::after { content: ""; position: absolute; left: 6px; top: 0.46em; width: 8px; height: 4.5px; border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(-45deg); }
+.evebox.lp-talk { width: 100%; max-width: 520px; justify-self: end; padding: 22px; gap: 16px; }
+.evebox.lp-talk h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); }
+.evebox.lp-talk .orb { width: 62px; height: 62px; }
+.evebox.lp-talk .orb svg { width: 38px; height: 24px; }
+
+.lp-helps { background: var(--linen); padding: clamp(32px, 4.5vw, 60px) clamp(22px, 4vw, 60px); display: grid; gap: clamp(22px, 3vw, 36px); }
+.lp-helps > h2 { text-align: center; }
+.lp-helps ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+.lp-helps li { background: #fff; border: 1px solid var(--rule); padding: 26px 22px; display: grid; gap: 8px; justify-items: center; text-align: center; align-content: start; }
+.lp-helps svg { width: 38px; height: 38px; fill: none; stroke: var(--moss); stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; margin-bottom: 6px; }
+.lp-helps h3 { font: 700 1.12rem/1.25 var(--sans); letter-spacing: 0; }
+.lp-helps p { font-size: 0.98rem; color: var(--muted); max-width: 26ch; }
+
+.lp-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--paper); }
+.lp-split img { width: 100%; height: 100%; min-height: 340px; object-fit: cover; }
+.lp-split > div { padding: clamp(28px, 4.5vw, 64px); display: grid; gap: 18px; align-content: center; }
+.lp-split p { font-size: 1.06rem; max-width: 48ch; }
+.lp-split .ticks { font-size: 1.02rem; gap: 12px; }
+.lp-split .ticks a { text-underline-offset: 3px; }
+.lp-flip img { order: 2; }
+.lp-flip { background: var(--sage); }
+
+.lp-action { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: center; background: var(--moss); color: var(--paper); padding: clamp(28px, 4vw, 56px) clamp(22px, 4vw, 60px); }
+.lp-action > div { display: grid; gap: 16px; justify-items: start; }
+.lp-action p { font-size: 1.08rem; max-width: 36ch; color: rgba(246,245,234,.86); }
+.lp-action video { width: 100%; height: auto; display: block; background: #111a0f; box-shadow: 14px 14px 0 var(--lemon); }
+
+@media (max-width: 1100px) {
+  .lp-photo { background: linear-gradient(180deg, rgba(18,28,16,.9) 0%, rgba(18,28,16,.78) 100%), var(--photo) center / cover no-repeat var(--moss-2); min-height: 0; }
+  .evebox.lp-talk { justify-self: start; }
+  .lp-helps ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lp-action { grid-template-columns: 1fr; }
+  .lp-action video { width: calc(100% - 14px); }
+}
+@media (max-width: 720px) {
+  .lp-split { grid-template-columns: 1fr; }
+  .lp-split img { min-height: 220px; max-height: 300px; }
+  .lp-flip img { order: 0; }
+  .lp-helps ul { grid-template-columns: 1fr; }
+  .evebox.lp-talk { box-shadow: 0 20px 50px rgba(0,0,0,.4), 8px 8px 0 var(--lemon); width: calc(100% - 8px); }
+}
