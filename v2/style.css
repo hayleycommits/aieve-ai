@@ -468,3 +468,5 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 @media (max-width: 720px) { .lp-photohead { background: linear-gradient(180deg, rgba(18,28,16,.74), rgba(18,28,16,.6)), var(--photo) center / cover no-repeat var(--moss-2); } }
 .lp-close-photo { background: linear-gradient(90deg, rgba(18,28,16,.9) 0%, rgba(18,28,16,.7) 45%, rgba(18,28,16,.25) 100%), var(--photo) center / cover no-repeat var(--moss-2); min-height: 420px; align-content: center; }
 @media (max-width: 720px) { .lp-close-photo { background: linear-gradient(180deg, rgba(18,28,16,.8), rgba(18,28,16,.7)), var(--photo) center / cover no-repeat var(--moss-2); } }
+.lp-action { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+.lp-action video { max-width: 620px; justify-self: center; }
