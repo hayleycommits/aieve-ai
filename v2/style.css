@@ -470,3 +470,17 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 @media (max-width: 720px) { .lp-close-photo { background: linear-gradient(180deg, rgba(18,28,16,.8), rgba(18,28,16,.7)), var(--photo) center / cover no-repeat var(--moss-2); } }
 .lp-action { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
 .lp-action video { max-width: 620px; justify-self: center; }
+.ringme { display: grid; gap: 14px; align-content: start; }
+.ringme h2 { font-size: clamp(1.8rem, 2.6vw, 2.3rem); }
+.ringme h2 em { color: var(--pop); }
+.ringme form { display: grid; gap: 12px; }
+.ringme label { display: grid; gap: 5px; font-size: .92rem; font-weight: 500; }
+.ringme label span { font-weight: 400; opacity: .7; }
+.ringme input { font: inherit; font-size: 1rem; padding: 11px 12px; border: 1px solid rgba(246,245,234,.35); background: var(--paper); color: var(--ink); border-radius: 0; }
+.ringme input:focus-visible { outline: 3px solid var(--lemon); outline-offset: 1px; }
+.ringme .hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
+.ringme .btn { justify-self: start; margin-top: 4px; }
+.ring-msg { min-height: 1.4em; font-weight: 500; color: var(--pop); }
+.ringme .fine-note { font-size: .8rem; opacity: .75; }
+.ringme label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 6px; }
+.ringme label input { flex-basis: 100%; }

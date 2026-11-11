@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap">
-<link rel="stylesheet" href="/v2/style.css?v=20261111f">
+<link rel="stylesheet" href="/v2/style.css?v=20261111g">
 <link rel="stylesheet" href="/v2/eve-widget.css">
 </head>
 <body data-page="book">
@@ -42,7 +42,22 @@
   <main>
     <section style="--photo:url('/media/lp/book-head-b.jpg')" class="lp-photohead pagehead"><span class="label" style="color:var(--pop)">Get started</span><h1>Let&rsquo;s set EVE up <em>for you</em>.</h1><p>Pick a time for a short call. We&rsquo;ll hear about your venue, put EVE on a test line answering as <em>your</em> business, and agree a date to go live. Live in 5 days, no long contracts.</p></section>
     <div class="board">
-      <section class="tile t-linen s12" style="padding:0">
+      <section class="tile t-moss s5 ringme" aria-labelledby="h-ring">
+        <span class="label">Rather we rang you?</span>
+        <h2 id="h-ring">Leave your number. <em>We&rsquo;ll ring you.</em></h2>
+        <form id="ringform" novalidate>
+          <label>Your name<input name="name" autocomplete="name" required maxlength="80"></label>
+          <label>Hotel or venue<input name="venue" autocomplete="organization" required maxlength="120"></label>
+          <label>Phone number<input name="phone" type="tel" autocomplete="tel" required maxlength="30"></label>
+          <label>Email <span>(optional)</span><input name="email" type="email" autocomplete="email" maxlength="120"></label>
+          <label>Best time to ring <span>(optional)</span><input name="when" maxlength="60" placeholder="e.g. weekday mornings"></label>
+          <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn lemon" type="submit">Ring me back</button>
+          <p class="ring-msg" id="ringmsg" role="status" aria-live="polite"></p>
+          <p class="fine-note">We use these details only to ring you about EVE. <a href="/privacy-policy.html">Privacy policy</a></p>
+        </form>
+      </section>
+      <section class="tile t-linen s7" style="padding:0;display:grid;align-content:center">
         <div class="cal cal-gate" id="calgate"><div><span class="label">Booking calendar</span><p>Our calendar is run by LeadConnector, which sets cookies it needs to work. It only loads when you ask for it.</p><button class="btn" type="button" id="calload">Show the booking calendar</button><p class="fine-note">Or email <a href="mailto:hello@aieve.ai">hello@aieve.ai</a> and we&rsquo;ll find a time.</p></div></div>
       </section>
       <section class="tile t-lemon s6"><span class="label">Prefer to just talk?</span><h2 style="font-size:2rem">Talk to EVE right now.</h2><button class="btn" type="button" data-talk>Talk to EVE</button><p class="demo-note">Recorded AI demo. We record and transcribe this call to run the demo and follow up if you ask. Please don&rsquo;t share sensitive information. <a href="/privacy-policy.html">Privacy policy</a></p></section>
@@ -69,6 +84,25 @@
     gate.replaceWith(f);
     var s = document.createElement("script"); s.src = "https://link.msgsndr.com/js/form_embed.js"; document.body.appendChild(s);
     f.focus();
+  });
+})();
+</script>
+<script>
+(function () {
+  const f = document.getElementById("ringform"), msg = document.getElementById("ringmsg");
+  if (!f) return;
+  f.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(f));
+    if (!d.name.trim() || !d.venue.trim() || d.phone.replace(/\D/g, "").length < 9) { msg.textContent = "Please add your name, venue and phone number."; return; }
+    const b = f.querySelector("button"); b.disabled = true; msg.textContent = "Sending\u2026";
+    try {
+      const r = await fetch("https://eve-portal.vercel.app/api/public/callback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok && j.ok) { f.reset(); msg.textContent = "Thank you. We\u2019ll ring you soon."; }
+      else msg.textContent = j.error || "Sorry, that didn\u2019t send. Please email hello@aieve.ai.";
+    } catch { msg.textContent = "Sorry, that didn\u2019t send. Please email hello@aieve.ai."; }
+    b.disabled = false;
   });
 })();
 </script>
