@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap">
-<link rel="stylesheet" href="/v2/style.css?v=20261111">
+<link rel="stylesheet" href="/v2/style.css?v=20261111b">
 <link rel="stylesheet" href="/v2/eve-widget.css">
 </head>
 <body data-page="home">
@@ -45,92 +45,113 @@
       <a class="cta" href="/book.html">Book a demo</a>
     </nav>
   </header>
-  <main>
-    <section class="stage" aria-label="Talk to EVE">
-      <div class="flapboard" id="flap" aria-label="EVE is answering your calls"></div>
-      <div class="evebox">
-        <span class="hand note">go on, she won&rsquo;t bite</span>
+  <main class="lp">
+    <section class="lp-hero lp-photo" style="--photo:url('/media/lp/home-hero.jpg')" aria-labelledby="h-top">
+      <div class="lp-hero-text">
+        <h1 id="h-top">Your AI receptionist for <em>hospitality</em></h1>
+        <p class="lp-keeps">Every call answered. Every enquiry captured.</p>
+        <p>EVE answers the phone for your restaurant, hotel, pub or caf&eacute;, day and night, and sends your team every booking request and enquiry.</p>
+        <div class="lp-actions">
+          <a class="btn lemon" href="/book.html">Book a free demo</a>
+          <a class="lp-ring" href="tel:+442039284107">or ring EVE on <b>020 3928 4107</b></a>
+        </div>
+        <ul class="lp-proof">
+          <li>Answers on the first ring</li>
+          <li>Day and night</li>
+          <li>Live in 5 days</li>
+        </ul>
+      </div>
+      <div class="evebox lp-talk">
         <div class="head">
           <span class="orb" aria-hidden="true"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg></span>
           <div>
-            <h1>Hi, I&rsquo;m EVE. Talk to me.</h1>
-            <p class="sub"><span class="dot" aria-hidden="true"></span>Online now &middot; your AI receptionist for hospitality</p>
+            <h2>Hi, I&rsquo;m EVE. Talk to me.</h2>
+            <p class="sub"><span class="dot" aria-hidden="true"></span>Online now. Pretend you&rsquo;re a guest.</p>
           </div>
         </div>
-        <div class="chat" aria-live="polite"><span class="who" id="who">Example call &middot; The Olive Table</span><div id="chat" style="display:grid;gap:9px"></div></div>
         <div class="chips" role="group" aria-label="Try asking EVE">
           <button class="chip" type="button" data-talk>&ldquo;Table for six on Saturday?&rdquo;</button>
           <button class="chip" type="button" data-talk>&ldquo;Do you have a room on Friday?&rdquo;</button>
           <button class="chip" type="button" data-talk>&ldquo;Can I hire the function room?&rdquo;</button>
         </div>
-        <button class="talk" type="button" id="heroTalkBtn" data-talk><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3Z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Talk to EVE now</button>
-        <div class="efoot"><span>Free &middot; no sign-up &middot; uses your microphone</span><span>5 minute live demo</span></div>
+        <button class="talk" type="button" data-talk><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3Z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Talk to EVE now</button>
+        <div class="efoot"><span>Free, no sign-up, uses your microphone</span><span>5 minute live demo</span></div>
         <p class="demo-note">Recorded AI demo. We record and transcribe this call to run the demo and follow up if you ask. Please don&rsquo;t share sensitive information. <a href="/privacy-policy.html">Privacy policy</a></p>
-      </div>
-      <div class="tagline">
-        <h2>Every call answered. <em>Every enquiry captured.</em></h2>
-        <p class="small">Built for restaurants, hotels, pubs and caf&eacute;s &middot; also answering for salons, clinics and trades</p>
       </div>
     </section>
 
-    <div class="board">
-      <section class="tile c t-ink s3" aria-label="EVE's shift right now">
-        <span class="pin" aria-hidden="true"></span>
-        <span class="label" style="display:flex;align-items:center;gap:8px"><span class="dot" aria-hidden="true"></span>EVE is on shift</span>
-        <div class="clock" id="clock">--:--</div>
-        <p id="clockline">Answering calls right now.</p>
-      </section>
-      <section class="tile t-linen s3" aria-label="Answer time">
-        <span class="label">Time to answer</span>
-        <div class="big">1st<small> ring</small></div>
-        <svg class="ring" viewBox="0 0 64 64" aria-hidden="true"><circle class="track" cx="32" cy="32" r="28"/><circle class="bar" cx="32" cy="32" r="28"/></svg>
-        <p class="muted ringnote" style="font-size:.9rem;max-width:16ch">Answers straight away, day and night.</p>
-      </section>
-      <section class="tile t-sage s6" aria-label="EVE's staff record">
-        <span class="pin" aria-hidden="true"></span>
-        <span class="label">EVE&rsquo;s staff record</span>
-        <div class="facts">
-          <div><span>Lunch breaks taken</span><b>0</b></div>
-          <div><span>Sick days</span><b>0</b></div>
-          <div><span>Calls answered at 3am</span><b>All</b></div>
-        </div>
-      </section>
+    <section class="lp-helps" aria-labelledby="h-helps">
+      <h2 id="h-helps">What EVE does for you</h2>
+      <ul>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+          <h3>Answers every call</h3><p>On the first ring, day and night, even in the middle of service.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8.5 15l2.5 2.5 4.5-5"/></svg>
+          <h3>Takes booking requests</h3><p>Tables, rooms and functions, with names and numbers, ready for your team to confirm.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v6a6 6 0 0 1-12 0V3ZM12 15v6M8 21h8"/></svg>
+          <h3>Catches the big ones</h3><p>Private hire, parties and catering, taken down properly so none go cold.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3.5 6 8.5 7 8.5-7"/></svg>
+          <h3>Tells your team</h3><p>A write-up after each call, by email or on your dashboard.</p>
+        </li>
+      </ul>
+    </section>
 
-      <a class="tile t-paper s7 r3" href="/dashboard.html" aria-label="See the EVE dashboard">
-        <span class="stamp">From &pound;499 a month</span>
-        <div><span class="label">Your dashboard</span><h2 style="margin-top:10px;font-size:clamp(1.9rem,2.8vw,2.6rem)">Every call, <em style="color:#8a7317">counted</em> for you.</h2></div>
-        <span class="live-dash"><img src="/media/home/eve-dashboard.jpg" width="1440" height="900" alt="The EVE dashboard's Today page for The Olive Table, an example venue: calls taken, enquiries waiting and calls through the day." loading="lazy" decoding="async"></span>
-        <p class="muted" style="font-size:.88rem">The real dashboard, shown with an example venue. It comes with the EVE Dashboard and Front of House plans: every call written up, and the enquiries waiting for you. See the tour &rarr;</p>
-      </a>
-      <a class="tile t-lemon s5" href="/book.html">
-        <span class="label">Book a free demo</span>
-        <h2 style="font-size:clamp(1.9rem,2.8vw,2.5rem)">Hear EVE answer <em>your</em> calls.</h2>
-        <span class="label">Live in 5 days &middot; no long contracts &rarr;</span>
-      </a>
-      <a class="tile t-moss s5" href="/ai-receptionist-for-hotels.html">
-        <span class="label">For hotels, inns and B&amp;Bs</span>
-        <h2 style="font-size:clamp(1.7rem,2.4vw,2.2rem)">Room enquiries answered, day and night.</h2>
-        <span class="label">EVE for hotels &rarr;</span>
-      </a>
-      <a class="tile t-ink s5" href="mailto:hello@aieve.ai">
-        <span class="pin" aria-hidden="true"></span>
-        <span class="label">Rather write to us?</span>
-        <h2 style="font-size:clamp(1.7rem,2.4vw,2.2rem)">Ask us anything about EVE. &#8599;</h2>
-        <span class="mail-hl">hello@aieve.ai</span>
-      </a>
+    <section class="lp-split" aria-labelledby="h-rings">
+      <img src="/media/lp/p-phone.jpg" width="1280" height="960" alt="A phone waiting on a busy pub bar while the bartender pulls a pint." loading="lazy" decoding="async">
+      <div>
+        <h2 id="h-rings">It always rings when your hands are full.</h2>
+        <p>The bar is three deep, the kitchen is calling service, and the phone goes. Whoever is ringing wants to book. If nobody picks up, they ring somewhere else.</p>
+        <ul class="ticks">
+          <li><b>Keep your number.</b> Your line forwards to EVE.</li>
+          <li><b>You choose when she picks up.</b> Every call, only when nobody answers, or only when you&rsquo;re closed.</li>
+          <li><b>Honest with callers.</b> EVE says she&rsquo;s an AI, and takes a message rather than guess.</li>
+        </ul>
+      </div>
+    </section>
 
-      <section class="tile t-sage s12 price-teaser" aria-labelledby="h-pricing">
-        <span class="pin" aria-hidden="true"></span>
-        <div><span class="label">Pricing</span><h2 id="h-pricing" style="margin-top:8px;font-size:clamp(1.8rem,2.6vw,2.4rem)">Three plans. Every call answered on all of them.</h2></div>
-        <div class="pt-row">
-          <div class="pt"><b>EVE Answer</b><span>&pound;299 a month &middot; calls answered, write-ups by email</span></div>
-          <div class="pt"><b>EVE Dashboard</b><span>&pound;499 a month &middot; plus your own dashboard</span></div>
-          <div class="pt best"><b>EVE Front of House</b><span>&pound;799 a month &middot; plus deposits by text and private hire chased (coming soon)</span></div>
-        </div>
-        <p class="pt-note">No VAT to add: the price you see is the price you pay.</p>
-        <a class="btn" href="/pricing.html">See the plans</a>
-      </section>
-    </div>
+    <section class="lp-action" aria-labelledby="h-action">
+      <div>
+        <h2 id="h-action">See EVE in action</h2>
+        <p>Every call she takes is written up for you. Watch the two-minute tour of the dashboard. It comes with the EVE Dashboard and Front of House plans.</p>
+        <a class="btn lemon" href="/dashboard.html">See the dashboard</a>
+      </div>
+      <video controls playsinline preload="none" poster="/media/lp/tour-poster.jpg" width="1920" height="1200" aria-label="A narrated tour of the EVE dashboard for The Olive Table, an example venue."><source src="/media/dashboard/eve-dashboard-tour.mp4?v=2610b" type="video/mp4"></video>
+    </section>
+
+    <section class="lp-split lp-flip" aria-labelledby="h-venues">
+      <img src="/media/lp/p-cafe.jpg" width="1280" height="960" alt="A bright, busy caf&eacute; counter with pastries under glass and a barista at the coffee machine." loading="lazy" decoding="async">
+      <div>
+        <h2 id="h-venues">Made for every kind of venue.</h2>
+        <p>EVE is set up with your hours, your menu and the way you like the phone answered, whether you run one caf&eacute; or a hotel with a restaurant.</p>
+        <ul class="ticks">
+          <li><a href="/ai-receptionist-for-restaurants.html">Restaurants and bistros</a></li>
+          <li><a href="/ai-receptionist-for-hotels.html">Hotels, inns and B&amp;Bs</a></li>
+          <li>Pubs and bars</li>
+          <li>Caf&eacute;s and coffee shops</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lp-price" aria-labelledby="h-price">
+      <h2 id="h-price">From &pound;299 a month.</h2>
+      <p>Three plans, and every call is answered on all of them. Month to month, no VAT to add, live in 5 days.</p>
+      <a class="btn" href="/pricing.html">See the plans</a>
+    </section>
+
+    <section class="lp-close" aria-labelledby="h-book">
+      <h2 id="h-book">Hear EVE answer as <em>your</em> venue.</h2>
+      <p>We&rsquo;ll put EVE on a test line for your business and you&rsquo;ll hear her take a booking request, live on the call.</p>
+      <div class="lp-actions">
+        <a class="btn lemon" href="/book.html">Book a free demo</a>
+        <a class="lp-ring" href="mailto:hello@aieve.ai">or write to <b>hello@aieve.ai</b></a>
+      </div>
+    </section>
   </main>
   <footer class="foot">
     <a class="logoF" href="/" aria-label="ai eve home"><svg viewBox="0 18 170 70" aria-hidden="true"><path class="ink" d="M8 58 C 26 58 42 51 42 40 C 42 29 29 25 21 31 C 9 40 12 62 30 67 C 41 70 50 65 56 57 C 60 51 62 42 66 42 C 70 42 70 74 76 74 C 82 74 82 30 88 30 C 94 30 94 80 100 80 C 106 80 106 44 112 44 C 117 44 117 66 122 66 C 127 66 127 52 132 52 C 137 52 137 60 142 60 C 150 60 156 57 164 57"/></svg><b>eve</b><span>by ai eve</span></a>
@@ -140,33 +161,5 @@
 </div>
 <script src="/v2/site.js"></script>
 <script type="module" src="/v2/eve-widget.js?v=20261025"></script>
-<script>
-(function () {
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const COLS = 12, LINES = [["EVE IS", "TAKING", "BOOKINGS"], ["EVE IS", "AWAKE", "AT 3AM"], ["EVE IS", "ANSWERING", "YOUR CALLS"], ["EVE IS", "NEVER ON", "HER BREAK"]];
-  const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:", flap = document.getElementById("flap");
-  const rows = LINES[0].map(() => { const r = document.createElement("div"); r.className = "row"; const cells = Array.from({ length: COLS }, () => { const c = document.createElement("span"); c.className = "cell"; c.textContent = " "; r.appendChild(c); return c; }); flap.appendChild(r); return cells; });
-  function show(lines) {
-    lines.forEach((text, ri) => { const p = text.padEnd(COLS, " ").slice(0, COLS); rows[ri].forEach((cell, ci) => {
-      const t = p[ci]; cell.classList.toggle("hot", ri > 0); if (reduce) { cell.textContent = t; return; }
-      let i = CHARS.indexOf(cell.textContent); if (i < 0) i = 0; const steps = (CHARS.indexOf(t) - i + CHARS.length) % CHARS.length; let n = 0;
-      const tick = () => { if (n >= Math.min(steps, 5 + ci)) { cell.textContent = t; return; } i = (i + 1) % CHARS.length; cell.textContent = CHARS[i]; cell.classList.remove("flip"); void cell.offsetWidth; cell.classList.add("flip"); n++; setTimeout(tick, 55); };
-      setTimeout(tick, ci * 35 + ri * 90); }); });
-    flap.setAttribute("aria-label", lines.join(" "));
-  }
-  let li = 0; show(LINES[0]); if (!reduce) setInterval(() => { li = (li + 1) % LINES.length; show(LINES[li]); }, 4200);
-  const CALLS = [
-    { who: "The Olive Table", lines: [["e", "Good evening, The Olive Table. How can I help?"], ["u", "Have you got a table for six on Saturday?"], ["e", "Lovely. Can I take a name and a mobile number, and the team will confirm it with you?"], ["ok", "\u2713 Booking request for 6, Saturday. Sent to the team."]] },
-    { who: "The Harbour Hotel", lines: [["e", "Hello, The Harbour Hotel. How can I help?"], ["u", "Do you have a double room this Friday night?"], ["e", "I'll pass that straight to reservations. What's the best number to reach you on?"], ["ok", "\u2713 Room enquiry for Friday. Sent to reservations."]] },
-    { who: "The Red Lion", lines: [["e", "Hi, The Red Lion. What can I do for you?"], ["u", "Could we hire your function room for a 40th, about 40 people?"], ["e", "Lovely. Which date were you thinking, and what's the best number for the manager to call you on?"], ["ok", "\u2713 Function room enquiry taken. Manager to call back."]] },
-    { who: "Little Crumb Caf\u00e9", lines: [["e", "Morning, Little Crumb Caf\u00e9. How can I help?"], ["u", "Can I order sandwich platters for twelve on Thursday?"], ["e", "Of course. Any dietary needs I should note?"], ["ok", "\u2713 Catering request for Thursday. Sent to the team."]] }
-  ];
-  const chat = document.getElementById("chat"), who = document.getElementById("who"); let ci = 0;
-  function play() { const c = CALLS[ci]; who.textContent = "Example call \u00b7 " + c.who; chat.innerHTML = "";
-    c.lines.forEach(([k, t], i) => setTimeout(() => { const m = document.createElement("div"); m.className = "msg " + k; m.textContent = t; chat.appendChild(m); }, reduce ? 0 : i * 1500));
-    ci = (ci + 1) % CALLS.length; }
-  play(); if (!reduce) setInterval(play, 8500);
-})();
-</script>
 </body>
 </html>

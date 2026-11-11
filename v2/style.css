@@ -455,3 +455,10 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
   .lp-helps ul { grid-template-columns: 1fr; }
   .evebox.lp-talk { box-shadow: 0 20px 50px rgba(0,0,0,.4), 8px 8px 0 var(--lemon); width: calc(100% - 8px); }
 }
+
+/* Photo page headers (pricing, dashboard, book) */
+.lp-photohead { position: relative; background: linear-gradient(90deg, rgba(18,28,16,.94) 0%, rgba(18,28,16,.8) 45%, rgba(18,28,16,.3) 100%), var(--photo) center / cover no-repeat var(--moss-2); min-height: min(52vh, 460px); align-content: end; padding: clamp(48px, 7vw, 96px) clamp(22px, 4vw, 60px) clamp(40px, 5vw, 64px); }
+.lp-photohead p { color: rgba(246,245,234,.88); }
+@media (max-width: 720px) {
+  .lp-photohead { background: linear-gradient(180deg, rgba(18,28,16,.86), rgba(18,28,16,.8)), var(--photo) center / cover no-repeat var(--moss-2); min-height: 0; }
+}
