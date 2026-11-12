@@ -529,3 +529,4 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 }
 .evebox p, .evebox .demo-note { text-shadow: none; }
 .lp-two > .dnotes { align-content: center; }
+@media (max-width: 720px) { .top nav a, .foot nav a { padding: 10px 0; display: inline-block; } }
