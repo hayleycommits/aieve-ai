@@ -551,3 +551,9 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .lp-play { text-shadow: none; }
 .lp-play > span + * { display: none; }
 .lp-play .lp-play-label { display: inline-block; font-style: normal; background: rgba(31,46,27,.94); padding: 10px 16px; }
+/* Video always fits the screen: never taller than ~55% of the window */
+.lp-vid { max-width: min(520px, calc(55svh * 1.6)); }
+.tour .frame { max-width: min(900px, calc(62svh * 1.6)); margin-inline: auto; }
+.tour .frame video { width: 100%; height: auto; max-height: 62svh; display: block; }
+.lp-action { padding-block: clamp(28px, 3.5vw, 48px); }
+.tour .frame.lp-vid { box-shadow: 14px 14px 0 var(--lemon); max-width: min(900px, calc(62svh * 1.6)); }
