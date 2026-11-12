@@ -508,3 +508,24 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .chip:focus-visible, .talk:focus-visible, .btn:focus-visible, .ringme input:focus-visible { outline: 3px solid var(--moss); outline-offset: 2px; }
 .lp-photo .btn:focus-visible, .t-moss .btn:focus-visible, .lp-close .btn:focus-visible { outline-color: var(--lemon); }
 @media (prefers-reduced-motion: reduce) { .btn, .talk, .top .cta { transition: none; } .btn:hover, .talk:hover, .top .cta:hover { transform: none; } }
+
+/* ===== Taste pass b: pictures in text sections, photo close, entrance + hover ===== */
+.lp-helps li { padding: 0 0 24px; overflow: hidden; }
+.lp-helps li > :not(img) { margin-left: 20px; margin-right: 20px; }
+.lp-thumb { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 10px; transition: transform .6s ease; }
+.lp-helps li:hover .lp-thumb { transform: scale(1.03); }
+.lp-helps li svg { margin-top: -34px; background: #fff; border-radius: 50%; padding: 8px; width: 52px; height: 52px; box-sizing: border-box; position: relative; }
+.lp-day-pic { width: 100%; height: clamp(180px, 22vw, 300px); object-fit: cover; }
+.lp-two-pic { width: 100%; height: auto; box-shadow: 10px 10px 0 var(--lemon); margin-bottom: 8px; }
+.lp-split { overflow: hidden; }
+.lp-split img { transition: transform .6s ease; }
+.lp-split:hover img { transform: scale(1.025); }
+@keyframes lpEnter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.lp-hero-text, .lp-hero .evebox, .lp-photohead > * { animation: lpEnter .8s cubic-bezier(.2,.7,.2,1) both; }
+.lp-hero .evebox { animation-delay: .18s; }
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-text, .lp-hero .evebox, .lp-photohead > * { animation: none; }
+  .lp-thumb, .lp-split img { transition: none; transform: none !important; }
+}
+.evebox p, .evebox .demo-note { text-shadow: none; }
+.lp-two > .dnotes { align-content: center; }
