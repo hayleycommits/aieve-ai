@@ -4,7 +4,7 @@ import Vapi from 'https://esm.sh/@vapi-ai/web@3.0.0';
 
 const VAPI_PUBLIC_KEY = '3d943765-7118-405d-b24e-505a7a79f07c';
 const VAPI_ASSISTANT_ID = 'b24725a8-f5f5-4664-b292-185e2e4c0cd2';
-const MAX_SECS = 300;
+const MAX_SECS = 180;
 const CONNECT_TIMEOUT_MS = 60000; // slow mobile connections can take 30s+ to join
 const NOTE = 'Recorded AI demo. We record and transcribe this call to run the demo and follow up if you ask. Please don&rsquo;t share sensitive information. <a href="/privacy-policy.html">Privacy policy</a>';
 const bars = '<span></span>'.repeat(10);
@@ -134,6 +134,11 @@ async function startCall() {
     setState('idle', 'Please allow microphone access to talk to EVE (click the lock icon in the address bar).');
     return;
   }
+  if (state !== 'asking') { releaseMic(); return; }
+  try {
+    const g = await fetch('https://eve-portal.vercel.app/api/public/demo-allow', { signal: AbortSignal.timeout(5000) }).then((r) => r.json());
+    if (g && g.ok === false) { releaseMic(); setState('idle', 'EVE’s demo line is busy today. Ring her on 020 3928 4107, or press Get started and we’ll ring you.'); return; }
+  } catch (e) { /* never block a prospect on a hiccup */ }
   if (state !== 'asking') { releaseMic(); return; }
   setState('connecting');
   connectTimer = setTimeout(() => { if (state === 'connecting') stopCall('EVE couldn’t connect just now. Please try again.'); }, CONNECT_TIMEOUT_MS);
