@@ -484,3 +484,27 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .ringme .fine-note { font-size: .8rem; opacity: .75; }
 .ringme label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 6px; }
 .ringme label input { flex-basis: 100%; }
+
+/* ===== Taste pass 12 Nov: screens, edges, contrast, one button, focus ===== */
+/* 1. hero fills the first screen alone; feature sections hold a screen */
+.lp-hero.lp-photo { min-height: calc(100svh - 112px); }
+@media (min-width: 1101px) {
+
+}
+/* 2. photos sit inside the same edges as the text */
+.lp-split { padding: clamp(22px, 4vw, 60px); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.lp-split > div { padding: 0; }
+.lp-split img { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
+/* 3. stronger small text */
+.lp-hero-text > p, .lp-photo p, .lp-photohead p { color: rgba(246,245,234,.96); text-shadow: 0 1px 12px rgba(10,16,9,.55); }
+.evebox .demo-note, .lp-hero .evebox .demo-note { color: #3f4a3b; }
+.lp-helps p { color: #4a5546; }
+/* 4. one button family: same size, weight, spacing; lift on hover, press on click */
+.btn, .talk, .top .cta { font: 700 0.8rem var(--sans); letter-spacing: 0.12em; text-transform: uppercase; transition: transform .15s ease, background .2s ease, box-shadow .15s ease; }
+.btn { padding: 16px 22px; }
+.btn:hover, .talk:hover, .top .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(18,28,16,.18); }
+.btn:active, .talk:active, .top .cta:active { transform: translateY(0); box-shadow: none; }
+/* 8. visible keyboard focus everywhere, incl. the question chips */
+.chip:focus-visible, .talk:focus-visible, .btn:focus-visible, .ringme input:focus-visible { outline: 3px solid var(--moss); outline-offset: 2px; }
+.lp-photo .btn:focus-visible, .t-moss .btn:focus-visible, .lp-close .btn:focus-visible { outline-color: var(--lemon); }
+@media (prefers-reduced-motion: reduce) { .btn, .talk, .top .cta { transition: none; } .btn:hover, .talk:hover, .top .cta:hover { transform: none; } }
