@@ -530,3 +530,24 @@ a.mail-hl:hover, a:hover > .mail-hl { background: var(--lemon-2); }
 .evebox p, .evebox .demo-note { text-shadow: none; }
 .lp-two > .dnotes { align-content: center; }
 @media (max-width: 720px) { .top nav a, .foot nav a { padding: 10px 0; display: inline-block; } }
+
+/* Tour video: full dashboard poster, big play button, stacks on phones */
+.lp-vid { position: relative; width: 100%; max-width: 640px; justify-self: center; box-shadow: 14px 14px 0 var(--lemon); }
+.lp-action .lp-vid video { width: 100%; max-width: none; box-shadow: none; display: block; }
+.lp-play { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; border: 0; background: rgba(18,28,16,.28); color: var(--paper); font: 700 .8rem var(--sans); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .2s; }
+.lp-play span { width: 84px; height: 84px; border-radius: 50%; background: var(--lemon); box-shadow: 0 10px 30px rgba(0,0,0,.35); position: relative; transition: transform .2s; }
+.lp-play span::after { content: ""; position: absolute; left: 34px; top: 26px; border-left: 26px solid var(--ink); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
+.lp-play:hover { background: rgba(18,28,16,.12); }
+.lp-play:hover span { transform: scale(1.06); }
+.lp-play:focus-visible { outline: 3px solid var(--lemon); outline-offset: 3px; }
+@media (max-width: 1100px) {
+  .lp-action { grid-template-columns: 1fr; }
+  .lp-vid { width: calc(100% - 14px); justify-self: start; }
+}
+@media (max-width: 720px) { .lp-vid { box-shadow: 8px 8px 0 var(--lemon); width: calc(100% - 8px); } .lp-play span { width: 64px; height: 64px; } .lp-play span::after { left: 26px; top: 19px; border-left-width: 20px; border-top-width: 13px; border-bottom-width: 13px; } }
+.lp-play { font-size: .78rem; }
+.lp-play { color: var(--paper); }
+.lp-play::after { content: none; }
+.lp-play { text-shadow: none; }
+.lp-play > span + * { display: none; }
+.lp-play .lp-play-label { display: inline-block; font-style: normal; background: rgba(31,46,27,.94); padding: 10px 16px; }

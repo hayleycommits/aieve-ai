@@ -18,3 +18,10 @@
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText("hello@aieve.ai").then(() => { out.textContent = "Copied"; }).catch(select); else select();
   });
 })();
+
+// Tour video: big play button, then normal controls.
+document.querySelectorAll(".lp-vid").forEach((w) => {
+  const v = w.querySelector("video"), b = w.querySelector(".lp-play");
+  if (!v || !b) return;
+  b.addEventListener("click", () => { b.remove(); v.controls = true; v.play().catch(() => {}); });
+});
