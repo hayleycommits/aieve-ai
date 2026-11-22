@@ -125,8 +125,24 @@ function addLine(role, text, partial) {
   vwTranscript.scrollTop = vwTranscript.scrollHeight;
 }
 
-async function startCall() {
+// Guard against bots: automated browsers, and more than 3 call starts from one browser in 10 minutes.
+const RATE_KEY = 'eveDemoStarts', RATE_MAX = 3, RATE_WINDOW_MS = 10 * 60 * 1000;
+function recentStarts() {
+  try { return JSON.parse(localStorage.getItem(RATE_KEY) || '[]').filter((t) => Date.now() - t < RATE_WINDOW_MS); } catch (e) { return []; }
+}
+function noteStart() {
+  try { localStorage.setItem(RATE_KEY, JSON.stringify([...recentStarts(), Date.now()])); } catch (e) { /* storage blocked: skip */ }
+}
+
+async function startCall(ev) {
   if (state !== 'idle') return;
+  if (navigator.webdriver || (ev && ev.isTrusted === false)) return;
+  if (recentStarts().length >= RATE_MAX) {
+    openWidget();
+    vwSub.className = 'vw-sub warn';
+    vwSub.textContent = 'You’ve tried a few times. Please wait a few minutes, or ring EVE on 020 3928 4107.';
+    return;
+  }
   setState('asking');
   try {
     micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
@@ -140,6 +156,7 @@ async function startCall() {
     if (g && g.ok === false) { releaseMic(); setState('idle', 'EVE’s demo line is busy today. Ring her on 020 3928 4107, or press Get started and we’ll ring you.'); return; }
   } catch (e) { /* never block a prospect on a hiccup */ }
   if (state !== 'asking') { releaseMic(); return; }
+  noteStart();
   setState('connecting');
   connectTimer = setTimeout(() => { if (state === 'connecting') stopCall('EVE couldn’t connect just now. Please try again.'); }, CONNECT_TIMEOUT_MS);
   try {
@@ -159,7 +176,7 @@ vwPill.addEventListener('click', openWidget);
 $('vwClose').addEventListener('click', closeWidget);
 vwStart.addEventListener('click', startCall);
 vwEnd.addEventListener('click', () => stopCall());
-document.querySelectorAll('[data-talk]').forEach((b) => b.addEventListener('click', () => { openWidget(); startCall(); }));
+document.querySelectorAll('[data-talk]').forEach((b) => b.addEventListener('click', (ev) => { openWidget(); startCall(ev); }));
 
 vapi.on('call-start', () => { if (state === 'connecting') setState('active'); });
 vapi.on('call-end', () => { const note = endNote; endNote = ''; setState('idle', note); });
