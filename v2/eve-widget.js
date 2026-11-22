@@ -1,9 +1,10 @@
 // Talk to EVE voice widget, shared by every page. Any [data-talk] button opens it and starts a call.
-// The microphone is asked for before a Vapi call is created, so a blocked mic never starts a call.
+// The microphone is asked for before a call is created, so a blocked mic never starts a call.
+// There is no Vapi key in this page: our server starts the call (fixed assistant, its own limits)
+// and returns the room to join. The Vapi SDK is only used to join that room.
 import Vapi from 'https://esm.sh/@vapi-ai/web@3.0.0';
 
-const VAPI_PUBLIC_KEY = '3d943765-7118-405d-b24e-505a7a79f07c';
-const VAPI_ASSISTANT_ID = 'b24725a8-f5f5-4664-b292-185e2e4c0cd2';
+const START_URL = 'https://eve-portal.vercel.app/api/public/eve-web-call';
 const MAX_SECS = 180;
 const CONNECT_TIMEOUT_MS = 60000; // slow mobile connections can take 30s+ to join
 const NOTE = 'Recorded AI demo. We record and transcribe this call to run the demo and follow up if you ask. Please don&rsquo;t share sensitive information. <a href="/privacy-policy.html">Privacy policy</a>';
@@ -32,7 +33,7 @@ const $ = (id) => document.getElementById(id);
 const vwPill = $('vwPill'), vw = $('vw'), vwAva = $('vwAva'), vwSub = $('vwSub');
 const vwBarUser = $('vwBarUser'), vwBarEve = $('vwBarEve'), vwTranscript = $('vwTranscript');
 const vwTimer = $('vwTimer'), vwStart = $('vwStart'), vwEnd = $('vwEnd');
-const vapi = new Vapi(VAPI_PUBLIC_KEY);
+const vapi = new Vapi(''); // no key: it never calls the Vapi API, it only joins the room our server made
 
 // The floating pill stays off the Book page and out of the way while the home page's own Talk box is on screen.
 const page = document.body.dataset.page;
@@ -43,7 +44,7 @@ if (hero && 'IntersectionObserver' in window) {
   new IntersectionObserver(([e]) => vwPill.classList.toggle('away', e.isIntersecting)).observe(hero);
 }
 
-let state = 'idle', timerInterval = null, connectTimer = null, secs = 0, endNote = '';
+let state = 'idle', timerInterval = null, connectTimer = null, secs = 0, endNote = '', attempt = 0;
 let audioCtx = null, micStream = null, rafId = null, partialLine = null;
 const fmt = (s) => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 
@@ -134,6 +135,9 @@ function noteStart() {
   try { localStorage.setItem(RATE_KEY, JSON.stringify([...recentStarts(), Date.now()])); } catch (e) { /* storage blocked: skip */ }
 }
 
+const BUSY = 'EVE’s demo line is busy today. Ring her on 020 3928 4107, or press Get started and we’ll ring you.';
+const waitNote = (mins) => 'Thanks for trying EVE! Please wait ' + mins + (mins === 1 ? ' minute' : ' minutes') + ' before calling again, or ring her on 020 3928 4107.';
+
 async function startCall(ev) {
   if (state !== 'idle') return;
   if (navigator.webdriver || (ev && ev.isTrusted === false)) return;
@@ -141,7 +145,7 @@ async function startCall(ev) {
     openWidget();
     vwSub.className = 'vw-sub warn';
     const mins = Math.max(1, Math.ceil((RATE_WINDOW_MS - (Date.now() - recentStarts()[0])) / 60000));
-    vwSub.textContent = 'Thanks for trying EVE! Please wait ' + mins + (mins === 1 ? ' minute' : ' minutes') + ' before calling again, or ring her on 020 3928 4107.';
+    vwSub.textContent = waitNote(mins);
     return;
   }
   setState('asking');
@@ -152,18 +156,23 @@ async function startCall(ev) {
     return;
   }
   if (state !== 'asking') { releaseMic(); return; }
-  try {
-    const g = await fetch('https://eve-portal.vercel.app/api/public/demo-allow', { signal: AbortSignal.timeout(5000) }).then((r) => r.json());
-    if (g && g.ok === false) { releaseMic(); setState('idle', 'EVE’s demo line is busy today. Ring her on 020 3928 4107, or press Get started and we’ll ring you.'); return; }
-  } catch (e) { /* never block a prospect on a hiccup */ }
-  if (state !== 'asking') { releaseMic(); return; }
   noteStart();
+  const mine = ++attempt;
   setState('connecting');
   connectTimer = setTimeout(() => { if (state === 'connecting') stopCall('EVE couldn’t connect just now. Please try again.'); }, CONNECT_TIMEOUT_MS);
   try {
-    await vapi.start(VAPI_ASSISTANT_ID);
+    const r = await fetch(START_URL, { method: 'POST', signal: AbortSignal.timeout(CONNECT_TIMEOUT_MS) });
+    const call = await r.json().catch(() => ({}));
+    if (state !== 'connecting' || mine !== attempt) return; // ended or timed out while waiting
+    if (r.status === 429) {
+      stopCall(call.error === 'busy' ? BUSY : waitNote(Math.min(60, Math.max(1, Math.ceil((call.retryAfterSecs || 600) / 60)))));
+      return;
+    }
+    if (!r.ok || !call.webCallUrl) throw new Error('start failed');
+    await vapi.reconnect({ id: call.id, webCallUrl: call.webCallUrl, ...(call.callToken ? { transport: { callToken: call.callToken } } : {}) });
+    if (state === 'idle') { try { vapi.stop(); } catch (e) { /* already stopped */ } } // ended while joining
   } catch (e) {
-    stopCall('EVE couldn’t connect just now. Please try again.');
+    if (mine === attempt) stopCall('EVE couldn’t connect just now. Please try again.');
   }
 }
 
