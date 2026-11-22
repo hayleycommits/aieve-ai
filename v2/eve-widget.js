@@ -140,7 +140,8 @@ async function startCall(ev) {
   if (recentStarts().length >= RATE_MAX) {
     openWidget();
     vwSub.className = 'vw-sub warn';
-    vwSub.textContent = 'You’ve tried a few times. Please wait a few minutes, or ring EVE on 020 3928 4107.';
+    const mins = Math.max(1, Math.ceil((RATE_WINDOW_MS - (Date.now() - recentStarts()[0])) / 60000));
+    vwSub.textContent = 'Thanks for trying EVE! Please wait ' + mins + (mins === 1 ? ' minute' : ' minutes') + ' before calling again, or ring her on 020 3928 4107.';
     return;
   }
   setState('asking');
